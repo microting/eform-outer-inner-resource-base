@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>eFormMachineAreaDotnet</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Infrastructure\Data\Entities" />
+      <Folder Include="Infrastructure\Data\Factories" />
+      <Folder Include="Infrastructure\Migrations" />
+      <Folder Include="Infrastructure\Models" />
+    </ItemGroup>
+
+</Project>
