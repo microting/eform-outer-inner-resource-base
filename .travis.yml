@@ -3,12 +3,13 @@ branches:
   only:
     - master
 language: csharp
-solution: eForm-MachineArea-dotnet.sln
+solution: eForm-MachineArea-dotnet/eForm-MachineArea-dotnet.sln
 mono: none
 dotnet: 2.2
 services:
 - mysql
 script:
+  - cd eForm-MachineArea-dotnet
   - dotnet restore
   - dotnet build eForm-MachineArea-dotnet.sln
   - dotnet test -v n eForm-MachineArea-dotnet.Integration.Tests/eForm-MachineArea-dotnet.Integration.Tests.csproj
