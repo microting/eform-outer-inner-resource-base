@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace eFormMachineAreaDotnet.Infrastructure.Data.Entities
+namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
     public class Area : BaseEntity
     {

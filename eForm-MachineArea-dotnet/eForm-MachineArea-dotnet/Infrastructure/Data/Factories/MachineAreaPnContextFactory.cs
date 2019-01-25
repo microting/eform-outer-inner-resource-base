@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace eFormMachineAreaDotnet.Infrastructure.Data.Factories
+namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Factories
 {
     public class MachineAreaPnContextFactory : IDesignTimeDbContextFactory<MachineAreaPnDbContext>
     {

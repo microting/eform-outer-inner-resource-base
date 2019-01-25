@@ -1,7 +1,4 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace eFormMachineAreaDotnet.Infrastructure.Data.Entities
+namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
     public class MachineArea : BaseEntity
     {

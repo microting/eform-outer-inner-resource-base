@@ -1,6 +1,6 @@
 
 
-namespace eFormMachineAreaDotnet.Infrastructure.Data.Entities
+namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
     public class MachineAreaSetting : BaseEntity
     {

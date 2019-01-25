@@ -2,7 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>eFormMachineAreaDotnet</RootNamespace>
+        <RootNamespace>Microting.eFormMachineAreaBase</RootNamespace>
+        <AssemblyName>Microting.eFormMachineAreaBase</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

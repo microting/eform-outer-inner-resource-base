@@ -1,7 +1,7 @@
-using eFormMachineAreaDotnet.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microting.eFormMachineAreaBase.Infrastructure.Data.Entities;
 
-namespace eFormMachineAreaDotnet.Infrastructure.Data
+namespace Microting.eFormMachineAreaBase.Infrastructure.Data
 {
     public class MachineAreaPnDbContext : DbContext
     {

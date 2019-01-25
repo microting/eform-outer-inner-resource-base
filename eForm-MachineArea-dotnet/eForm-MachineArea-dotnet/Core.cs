@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace eFormMachineAreaDotnet
+﻿namespace Microting.eFormMachineAreaBase
 {
     public class Core
     {
