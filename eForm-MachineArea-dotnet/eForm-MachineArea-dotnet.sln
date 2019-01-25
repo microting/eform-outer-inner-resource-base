@@ -1,12 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eForm-MachineArea-dotnet", "eForm-MachineArea-dotnet\eForm-MachineArea-dotnet.csproj", "{BAB3B67F-7127-4752-BBC1-3450A8207067}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eForm-MachineArea-dotnet", "eForm-MachineArea-dotnet\eForm-MachineArea-dotnet.csproj", "{BAB3B67F-7127-4752-BBC1-3450A8207067}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9C4D71F6-16A3-4379-9BC1-E9A0DA960FCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eForm-MachineArea-dotnet.Integration.Tests", "eForm-MachineArea-dotnet.Integration.Tests\eForm-MachineArea-dotnet.Integration.Tests.csproj", "{28032EEE-CA03-4781-9DAF-E50416A4F5E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eForm-MachineArea-dotnet.Integration.Tests", "eForm-MachineArea-dotnet.Integration.Tests\eForm-MachineArea-dotnet.Integration.Tests.csproj", "{28032EEE-CA03-4781-9DAF-E50416A4F5E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eForm-MachineArea-dotnet.Tests", "eForm-MachineArea-dotnet.Tests\eForm-MachineArea-dotnet.Tests.csproj", "{7AB2D87A-12ED-4FFD-BBEF-A742610132ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eForm-MachineArea-dotnet.Tests", "eForm-MachineArea-dotnet.Tests\eForm-MachineArea-dotnet.Tests.csproj", "{7AB2D87A-12ED-4FFD-BBEF-A742610132ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBMigrator", "DBMigrator\DBMigrator.csproj", "{A5870F61-359C-4183-B05F-12BE51003845}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +31,19 @@ Global
 		{7AB2D87A-12ED-4FFD-BBEF-A742610132ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AB2D87A-12ED-4FFD-BBEF-A742610132ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AB2D87A-12ED-4FFD-BBEF-A742610132ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5870F61-359C-4183-B05F-12BE51003845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5870F61-359C-4183-B05F-12BE51003845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5870F61-359C-4183-B05F-12BE51003845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5870F61-359C-4183-B05F-12BE51003845}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{28032EEE-CA03-4781-9DAF-E50416A4F5E7} = {9C4D71F6-16A3-4379-9BC1-E9A0DA960FCE}
 		{7AB2D87A-12ED-4FFD-BBEF-A742610132ED} = {9C4D71F6-16A3-4379-9BC1-E9A0DA960FCE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58CDABD7-59DA-4DCF-8F9D-D79846A33C72}
 	EndGlobalSection
 EndGlobal

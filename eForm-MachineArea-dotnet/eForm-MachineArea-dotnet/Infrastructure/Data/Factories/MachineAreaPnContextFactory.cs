@@ -25,7 +25,8 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Factories
             {
                 throw new ArgumentNullException("Connection string not present");
             }
-//            optionsBuilder.UseSqlServer(@"data source=(LocalDb)\SharedInstance;Initial catalog=machine-area-pn-tests;Integrated Security=True");
+            //optionsBuilder.UseSqlServer(@"data source=(LocalDb)\SharedInstance;Initial catalog=machine-area-base;Integrated Security=True");
+            // dotnet ef migrations add InitialCreate --project eForm-MachineArea-dotnet --startup-project DBMigrator
             optionsBuilder.UseLazyLoadingProxies(true);
             return new MachineAreaPnDbContext(optionsBuilder.Options);
         }
