@@ -14,6 +14,9 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public int SDKCaseId { get; set; }
         public int SDKFieldValueId { get; set; }
         public int TimeInSeconds { get; set; }
+        public int TimeInMinutes { get; set; }
+        public int TimeInHours { get; set; }
+        public int SDKSiteId { get; set; }
 
     }
 }
