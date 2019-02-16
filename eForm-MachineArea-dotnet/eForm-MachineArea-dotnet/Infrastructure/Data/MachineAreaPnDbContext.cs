@@ -18,6 +18,8 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data
         public DbSet<Area> Areas { get; set; }
         public DbSet<AreaVersion> AreaVersions { get; set; }
         public DbSet<MachineArea> MachineAreas { get; set; }
+        public DbSet<MachineAreaSite> MachineAreaSites { get; set; }
+        public DbSet<MachineAreaSiteVersion> MachineAreaSiteVersions { get; set; }
         public DbSet<MachineAreaVersion> MachineAreaVersions { get; set; }
         public DbSet<MachineAreaSetting> MachineAreaSettings { get; set; }
         public DbSet<MachineAreaSettingVersion> MachineAreaSettingVersions { get; set; }
