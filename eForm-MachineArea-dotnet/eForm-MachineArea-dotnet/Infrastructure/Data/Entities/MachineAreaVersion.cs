@@ -12,7 +12,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
         public virtual Area Area { get; set; }
         
-        public int Verseion { get; set; }
+        public int Version { get; set; }
         
         [ForeignKey("MachineArea")]
         public int MachineAreaId { get; set; }
