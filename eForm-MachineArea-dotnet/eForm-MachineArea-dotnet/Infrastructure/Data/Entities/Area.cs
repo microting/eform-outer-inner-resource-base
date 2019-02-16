@@ -12,6 +12,9 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
         [StringLength(250)]
         public string Name { get; set; }
+        
         public virtual ICollection<MachineArea> MachineAreas { get; set; }
+        
+        public int Version { get; set; }
     }
 }

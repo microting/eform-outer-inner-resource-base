@@ -14,10 +14,15 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data
         }
 
         public DbSet<Machine> Machines { get; set; }
+        public DbSet<MachineVersion> MachineVersions { get; set; }
         public DbSet<Area> Areas { get; set; }
-        public DbSet<Entities.MachineArea> MachineAreas { get; set; }
+        public DbSet<AreaVersion> AreaVersions { get; set; }
+        public DbSet<MachineArea> MachineAreas { get; set; }
+        public DbSet<MachineAreaVersion> MachineAreaVersions { get; set; }
         public DbSet<MachineAreaSetting> MachineAreaSettings { get; set; }
+        public DbSet<MachineAreaSettingVersion> MachineAreaSettingVersions { get; set; }
         public DbSet<MachineAreaTimeRegistration> MachineAreaTimeRegistrations { get; set; }
+        public DbSet<MachineAreaTimeRegistrationVersion> MachineAreaTimeRegistrationVersions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

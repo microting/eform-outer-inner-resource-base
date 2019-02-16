@@ -1,18 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
-    public class MachineAreaTimeRegistration : BaseEntity
+    public class MachineAreaTimeRegistrationVersion : BaseEntity
     {
-        [ForeignKey("Machine")]
+        
         public int MachineId { get; set; }
         
         public virtual Machine Machine { get; set; }
         
-        [ForeignKey("Area")]
         public int AreaId { get; set; }
         
         public virtual Area Area { get; set; }
@@ -32,6 +29,10 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public int SDKSiteId { get; set; }
         
         public int Version { get; set; }
-
+        
+        [ForeignKey("Area")]
+        public int MachineAreaTimeRegistrationId { get; set; }
+        
+        public virtual MachineAreaTimeRegistration MachineAreaTimeRegistration { get; set; }
     }
 }
