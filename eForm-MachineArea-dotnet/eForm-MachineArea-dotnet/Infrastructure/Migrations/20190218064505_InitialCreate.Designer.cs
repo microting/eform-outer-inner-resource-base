@@ -10,8 +10,8 @@ using Microting.eFormMachineAreaBase.Infrastructure.Data;
 namespace Microting.eFormMachineAreaBase.Migrations
 {
     [DbContext(typeof(MachineAreaPnDbContext))]
-    [Migration("20190216044030_FixingTypo")]
-    partial class FixingTypo
+    [Migration("20190218064505_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -233,6 +233,8 @@ namespace Microting.eFormMachineAreaBase.Migrations
 
                     b.Property<int>("MicrotingEFormSdkId");
 
+                    b.Property<int>("MicrotingSdkSiteId");
+
                     b.Property<int>("Status");
 
                     b.Property<DateTime?>("UpdatedAt");
@@ -248,7 +250,41 @@ namespace Microting.eFormMachineAreaBase.Migrations
 
                     b.HasIndex("MachineAreaId");
 
-                    b.ToTable("MachineAreaSite");
+                    b.ToTable("MachineAreaSites");
+                });
+
+            modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineAreaSiteVersion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<int>("CreatedByUserId");
+
+                    b.Property<int>("MachineAreaId");
+
+                    b.Property<int>("MachineAreaSiteId");
+
+                    b.Property<int>("MicrotingEFormSdkId");
+
+                    b.Property<int>("MicrotingSdkSiteId");
+
+                    b.Property<int>("Status");
+
+                    b.Property<DateTime?>("UpdatedAt");
+
+                    b.Property<int>("UpdatedByUserId");
+
+                    b.Property<int>("Version");
+
+                    b.Property<string>("WorkflowState")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MachineAreaSiteVersions");
                 });
 
             modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineAreaTimeRegistration", b =>

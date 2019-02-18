@@ -27,4 +27,8 @@
       <None Remove="Migrations\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Infrastructure\Migrations" />
+    </ItemGroup>
+
 </Project>
