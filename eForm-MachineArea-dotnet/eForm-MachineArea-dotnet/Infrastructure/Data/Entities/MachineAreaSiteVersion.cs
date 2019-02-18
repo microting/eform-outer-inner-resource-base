@@ -15,5 +15,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         [ForeignKey("MachineAreaSite")]
         public int MachineAreaSiteId { get; set; }
         
+        public int MicrotingSdkSiteId { get; set; }
+        
     }
 }
