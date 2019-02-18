@@ -9,12 +9,12 @@ namespace Microting.eFormMachineAreaBase.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             //Setup for SQL Server Provider
-           
-            string autoIDGenStrategy = "SqlServer:ValueGenerationStrategy";
-            object autoIDGenStrategyValue= SqlServerValueGenerationStrategy.IdentityColumn;
+
+            var autoIDGenStrategy = "SqlServer:ValueGenerationStrategy";
+            object autoIDGenStrategyValue = SqlServerValueGenerationStrategy.IdentityColumn;
 
             // Setup for MySQL Provider
-            if (migrationBuilder.ActiveProvider=="Pomelo.EntityFrameworkCore.MySql")
+            if (migrationBuilder.ActiveProvider == "Pomelo.EntityFrameworkCore.MySql")
             {
                 DbConfig.IsMySQL = true;
                 autoIDGenStrategy = "MySql:ValueGenerationStrategy";
@@ -333,24 +333,23 @@ namespace Microting.eFormMachineAreaBase.Migrations
                     TimeInHours = table.Column<int>(nullable: false),
                     SDKSiteId = table.Column<int>(nullable: false),
                     Version = table.Column<int>(nullable: false),
-                    MachineAreaTimeRegistrationId = table.Column<int>(nullable: false),
-                    MachineAreaTimeRegistrationId1 = table.Column<int>(nullable: true)
+                    MachineAreaTimeRegistrationId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MachineAreaTimeRegistrationVersions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MachineAreaTimeRegistrationVersions_Areas_MachineAreaTimeRegistrationId",
-                        column: x => x.MachineAreaTimeRegistrationId,
+                        name: "FK_MachineAreaTimeRegistrationVersions_Areas_AreaId",
+                        column: x => x.AreaId,
                         principalTable: "Areas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrations_MachineAreaTimeRegistrationId1",
-                        column: x => x.MachineAreaTimeRegistrationId1,
+                        name: "FK_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrations_MachineAreaTimeRegistrationId",
+                        column: x => x.MachineAreaTimeRegistrationId,
                         principalTable: "MachineAreaTimeRegistrations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MachineAreaTimeRegistrationVersions_Machines_MachineId",
                         column: x => x.MachineId,
@@ -405,14 +404,14 @@ namespace Microting.eFormMachineAreaBase.Migrations
                 column: "MachineId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MachineAreaTimeRegistrationVersions_AreaId",
+                table: "MachineAreaTimeRegistrationVersions",
+                column: "AreaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrationId",
                 table: "MachineAreaTimeRegistrationVersions",
                 column: "MachineAreaTimeRegistrationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrationId1",
-                table: "MachineAreaTimeRegistrationVersions",
-                column: "MachineAreaTimeRegistrationId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MachineAreaTimeRegistrationVersions_MachineId",

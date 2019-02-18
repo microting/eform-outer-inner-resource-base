@@ -10,7 +10,7 @@ using Microting.eFormMachineAreaBase.Infrastructure.Data;
 namespace Microting.eFormMachineAreaBase.Migrations
 {
     [DbContext(typeof(MachineAreaPnDbContext))]
-    [Migration("20190218064505_InitialCreate")]
+    [Migration("20190218071621_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -349,8 +349,6 @@ namespace Microting.eFormMachineAreaBase.Migrations
 
                     b.Property<int>("MachineAreaTimeRegistrationId");
 
-                    b.Property<int?>("MachineAreaTimeRegistrationId1");
-
                     b.Property<int>("MachineId");
 
                     b.Property<int>("SDKCaseId");
@@ -376,9 +374,9 @@ namespace Microting.eFormMachineAreaBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MachineAreaTimeRegistrationId");
+                    b.HasIndex("AreaId");
 
-                    b.HasIndex("MachineAreaTimeRegistrationId1");
+                    b.HasIndex("MachineAreaTimeRegistrationId");
 
                     b.HasIndex("MachineId");
 
@@ -498,12 +496,13 @@ namespace Microting.eFormMachineAreaBase.Migrations
                 {
                     b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Area", "Area")
                         .WithMany()
-                        .HasForeignKey("MachineAreaTimeRegistrationId")
+                        .HasForeignKey("AreaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineAreaTimeRegistration", "MachineAreaTimeRegistration")
                         .WithMany()
-                        .HasForeignKey("MachineAreaTimeRegistrationId1");
+                        .HasForeignKey("MachineAreaTimeRegistrationId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Machine", "Machine")
                         .WithMany()

@@ -30,7 +30,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         
         public int Version { get; set; }
         
-        [ForeignKey("Area")]
+        [ForeignKey("MachineAreaTimeRegistration")]
         public int MachineAreaTimeRegistrationId { get; set; }
         
         public virtual MachineAreaTimeRegistration MachineAreaTimeRegistration { get; set; }
