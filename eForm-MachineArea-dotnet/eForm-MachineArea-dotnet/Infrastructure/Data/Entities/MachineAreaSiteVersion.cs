@@ -4,7 +4,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
     public class MachineAreaSiteVersion : BaseEntity
     {
-        public int MicrotingEFormSdkId { get; set; }
+        public int MicrotingSdkeFormId { get; set; }
         
         public int Status { get; set; }
         
@@ -16,6 +16,8 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public int MachineAreaSiteId { get; set; }
         
         public int MicrotingSdkSiteId { get; set; }
+        
+        public int MicrotingSdkCaseId { get; set; }
         
     }
 }
