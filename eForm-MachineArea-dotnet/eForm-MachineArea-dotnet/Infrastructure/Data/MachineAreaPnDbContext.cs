@@ -8,7 +8,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data
 
         public MachineAreaPnDbContext() { }
 
-        public MachineAreaPnDbContext(DbContextOptions<MachineAreaPnDbContext> options) : base(options)
+        public MachineAreaPnDbContext(DbContextOptions options) : base(options)
         {
 
         }
