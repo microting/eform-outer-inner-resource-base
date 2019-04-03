@@ -1,6 +1,7 @@
 
 
 using System.ComponentModel.DataAnnotations;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
@@ -11,7 +12,5 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public string Name { get; set; }
 
         public string Value { get; set; }
-        
-        public int Version { get; set; }
     }
 }

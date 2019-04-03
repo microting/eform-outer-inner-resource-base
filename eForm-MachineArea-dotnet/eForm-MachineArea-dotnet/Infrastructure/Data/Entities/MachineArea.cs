@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
     public class MachineArea : BaseEntity
     {
-        
         public MachineArea()
         {
             this.MachineAreaSites = new HashSet<MachineAreaSite>();
@@ -20,8 +20,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public int AreaId { get; set; }
 
         public virtual Area Area { get; set; }
-        
-        public int Version { get; set; }
         
         public virtual ICollection<MachineAreaSite> MachineAreaSites { get; set; }
 

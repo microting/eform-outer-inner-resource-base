@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
@@ -7,8 +8,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public int MicrotingSdkeFormId { get; set; }
         
         public int Status { get; set; }
-        
-        public int Version { get; set; }
         
         public int MachineAreaId { get; set; }
         

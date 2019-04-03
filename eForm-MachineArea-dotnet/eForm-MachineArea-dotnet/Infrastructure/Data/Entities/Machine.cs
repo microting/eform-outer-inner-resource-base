@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
@@ -14,7 +15,5 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public string Name { get; set; }
         
         public virtual ICollection<MachineArea> MachineAreas { get; set; }
-        
-        public int Version { get; set; }
     }
 }
