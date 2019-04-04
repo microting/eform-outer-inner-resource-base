@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Microting.eFormMachineAreaBase.Migrations
+namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 {
     public partial class SmallRefactoring : Migration
     {

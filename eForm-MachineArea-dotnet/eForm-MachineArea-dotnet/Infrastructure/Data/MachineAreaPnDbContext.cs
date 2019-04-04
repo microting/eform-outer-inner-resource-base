@@ -1,16 +1,18 @@
 using Microsoft.EntityFrameworkCore;
+using Microting.eFormApi.BasePn.Abstractions;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Entities;
 using Microting.eFormMachineAreaBase.Infrastructure.Data.Entities;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data
 {
-    public class MachineAreaPnDbContext : DbContext
+    public class MachineAreaPnDbContext : DbContext, IPluginDbContext
     {
 
         public MachineAreaPnDbContext() { }
 
-        public MachineAreaPnDbContext(DbContextOptions options) : base(options)
+        public MachineAreaPnDbContext(DbContextOptions<MachineAreaPnDbContext> options) 
+            : base(options)
         {
-
         }
 
         public DbSet<Machine> Machines { get; set; }
@@ -25,6 +27,10 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data
         public DbSet<MachineAreaSettingVersion> MachineAreaSettingVersions { get; set; }
         public DbSet<MachineAreaTimeRegistration> MachineAreaTimeRegistrations { get; set; }
         public DbSet<MachineAreaTimeRegistrationVersion> MachineAreaTimeRegistrationVersions { get; set; }
+        
+        // plugin settings
+        public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
+        public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

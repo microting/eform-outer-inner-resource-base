@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
@@ -13,7 +14,5 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
         [ForeignKey("MachineAreaSetting")]
         public int MachineAreaSettingId { get; set; }
-        
-        public int Version { get; set; }
     }
 }

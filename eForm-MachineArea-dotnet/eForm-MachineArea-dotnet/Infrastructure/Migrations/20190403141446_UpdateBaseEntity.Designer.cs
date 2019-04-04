@@ -3,90 +3,37 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microting.eFormMachineAreaBase.Infrastructure.Data;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 {
     [DbContext(typeof(MachineAreaPnDbContext))]
-    partial class MachineAreaPnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190403141446_UpdateBaseEntity")]
+    partial class UpdateBaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            string autoIdGenStrategy = "SqlServer:ValueGenerationStrategy";
-            object autoIdGenStrategyValue = SqlServerValueGenerationStrategy.IdentityColumn;
+            string autoIDGenStrategy = "SqlServer:ValueGenerationStrategy";
+            object autoIDGenStrategyValue = SqlServerValueGenerationStrategy.IdentityColumn;
             if (DbConfig.IsMySQL)
             {
-                autoIdGenStrategy = "MySql:ValueGenerationStrategy";
-                autoIdGenStrategyValue = MySqlValueGenerationStrategy.IdentityColumn;
+                autoIDGenStrategy = "MySql:ValueGenerationStrategy";
+                autoIDGenStrategyValue = MySqlValueGenerationStrategy.IdentityColumn;
             }
 
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
-
-            modelBuilder.Entity("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginConfigurationValue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("CreatedByUserId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<DateTime?>("UpdatedAt");
-
-                    b.Property<int>("UpdatedByUserId");
-
-                    b.Property<string>("Value");
-
-                    b.Property<int>("Version");
-
-                    b.Property<string>("WorkflowState")
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PluginConfigurationValues");
-                });
-
-            modelBuilder.Entity("Microting.eFormApi.BasePn.Infrastructure.Database.Entities.PluginConfigurationValueVersion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("CreatedByUserId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<DateTime?>("UpdatedAt");
-
-                    b.Property<int>("UpdatedByUserId");
-
-                    b.Property<string>("Value");
-
-                    b.Property<int>("Version");
-
-                    b.Property<string>("WorkflowState")
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PluginConfigurationValueVersions");
-                });
+                .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
             modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Area", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -119,7 +66,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<int>("AreaId");
 
@@ -150,7 +97,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -183,7 +130,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<int>("AreaId");
 
@@ -215,7 +162,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -245,7 +192,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -277,7 +224,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -313,7 +260,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -349,7 +296,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<int>("AreaId");
 
@@ -395,7 +342,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<int>("AreaId");
 
@@ -445,7 +392,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<int>("AreaId");
 
@@ -481,7 +428,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation(autoIdGenStrategy, autoIdGenStrategyValue);
+                        .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
                     b.Property<DateTime>("CreatedAt");
 
