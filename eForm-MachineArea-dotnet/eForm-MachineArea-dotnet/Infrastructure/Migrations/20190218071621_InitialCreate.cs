@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Microting.eFormMachineAreaBase.Migrations
+namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 {
     public partial class InitialCreate : Migration
     {
