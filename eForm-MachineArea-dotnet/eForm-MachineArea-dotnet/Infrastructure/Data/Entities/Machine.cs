@@ -19,10 +19,8 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public string Name { get; set; }
         
         public virtual ICollection<MachineArea> MachineAreas { get; set; }
-        
-        public int Version { get; set; }
 
-        public async Task Save(MachineAreaPnDbContext _dbContext)
+        public async Task Save(MachineAreaPnDbContext dbContext)
         {
             Machine machine = new Machine
             {
@@ -33,17 +31,17 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 WorkflowState = Constants.WorkflowStates.Created
             };
 
-            _dbContext.Machines.Add(machine);
-            _dbContext.SaveChanges();
+            dbContext.Machines.Add(machine);
+            dbContext.SaveChanges();
 
-            _dbContext.MachineVersions.Add(MapMachineVersion(_dbContext, machine));
-            _dbContext.SaveChanges();
+            dbContext.MachineVersions.Add(MapMachineVersion(machine));
+            dbContext.SaveChanges();
             Id = machine.Id;
         }
 
-        public async Task Update(MachineAreaPnDbContext _dbContext)
+        public async Task Update(MachineAreaPnDbContext dbContext)
         {
-            Machine machine = _dbContext.Machines.FirstOrDefault(x => x.Id == Id);
+            Machine machine = dbContext.Machines.FirstOrDefault(x => x.Id == Id);
 
             if (machine == null)
             {
@@ -53,19 +51,19 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             machine.Name = Name;
             // TODO: INSERT UPDATE MAPPING
 
-            if (_dbContext.ChangeTracker.HasChanges())
+            if (dbContext.ChangeTracker.HasChanges())
             {
                 machine.UpdatedAt = DateTime.Now;
                 machine.Version += 1;
 
-                _dbContext.MachineVersions.Add(MapMachineVersion(_dbContext, machine));
-                _dbContext.SaveChanges();
+                dbContext.MachineVersions.Add(MapMachineVersion(machine));
+                dbContext.SaveChanges();
             }
         }
 
-        public async Task Delete(MachineAreaPnDbContext _dbContext)
+        public async Task Delete(MachineAreaPnDbContext dbContext)
         {
-            Machine machine = _dbContext.Machines.FirstOrDefault(x => x.Id == Id);
+            Machine machine = dbContext.Machines.FirstOrDefault(x => x.Id == Id);
 
             if (machine == null)
             {
@@ -74,17 +72,17 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
             machine.WorkflowState = Constants.WorkflowStates.Removed;
 
-            if (_dbContext.ChangeTracker.HasChanges())
+            if (dbContext.ChangeTracker.HasChanges())
             {
                 machine.UpdatedAt = DateTime.Now;
                 machine.Version += 1;
 
-                _dbContext.MachineVersions.Add(MapMachineVersion(_dbContext, machine));
-                _dbContext.SaveChanges();
+                dbContext.MachineVersions.Add(MapMachineVersion(machine));
+                dbContext.SaveChanges();
             }
         }
 
-        private MachineVersion MapMachineVersion(MachineAreaPnDbContext _dbContext, Machine machine)
+        private MachineVersion MapMachineVersion(Machine machine)
         {
             MachineVersion machineVer = new MachineVersion();
 

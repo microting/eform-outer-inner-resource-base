@@ -17,9 +17,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public string Name { get; set; }
 
         public string Value { get; set; }
-        
-        public int Version { get; set; }
-
 
         public void Save(MachineAreaPnDbContext dbContext)
         {
@@ -43,7 +40,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             dbContext.MachineAreaSettings.Add(machineAreaSetting);
             dbContext.SaveChanges();
 
-            dbContext.MachineAreaSettingVersions.Add(MapMachineAreaSettingVersion(dbContext, machineAreaSetting));
+            dbContext.MachineAreaSettingVersions.Add(MapMachineAreaSettingVersion(machineAreaSetting));
             dbContext.SaveChanges();
         }
 
@@ -65,7 +62,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machineAreaSetting.UpdatedByUserId = UpdatedByUserId;
                 machineAreaSetting.Version += 1;
 
-                dbContext.MachineAreaSettingVersions.Add(MapMachineAreaSettingVersion(dbContext, machineAreaSetting));
+                dbContext.MachineAreaSettingVersions.Add(MapMachineAreaSettingVersion(machineAreaSetting));
                 dbContext.SaveChanges();
             }
 
@@ -88,14 +85,13 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machineAreaSetting.UpdatedAt = DateTime.Now;
                 machineAreaSetting.UpdatedByUserId = UpdatedByUserId;
                 machineAreaSetting.Version += 1;
-                dbContext.MachineAreaSettingVersions.Add(MapMachineAreaSettingVersion(dbContext, machineAreaSetting));
+                dbContext.MachineAreaSettingVersions.Add(MapMachineAreaSettingVersion(machineAreaSetting));
                 dbContext.SaveChanges();
             }
 
         }
 
-        private MachineAreaSettingVersion MapMachineAreaSettingVersion(MachineAreaPnDbContext dbContext,
-            MachineAreaSetting machineAreaSetting)
+        private MachineAreaSettingVersion MapMachineAreaSettingVersion(MachineAreaSetting machineAreaSetting)
         {
             MachineAreaSettingVersion machineAreaSettingVersion = new MachineAreaSettingVersion();
 

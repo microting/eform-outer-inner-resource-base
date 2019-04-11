@@ -19,10 +19,8 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public string Name { get; set; }
         
         public virtual ICollection<MachineArea> MachineAreas { get; set; }
-        
-        public int Version { get; set; }
 
-        public async Task Save(MachineAreaPnDbContext _dbContext)
+        public async Task Save(MachineAreaPnDbContext dbContext)
         {
             Area area = new Area
             {
@@ -33,17 +31,17 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 WorkflowState = Constants.WorkflowStates.Created
             };
 
-            _dbContext.Areas.Add(area);
-            _dbContext.SaveChanges();
+            dbContext.Areas.Add(area);
+            dbContext.SaveChanges();
 
-            _dbContext.AreaVersions.Add(MapAreaVersion(_dbContext, area));
-            _dbContext.SaveChanges();
+            dbContext.AreaVersions.Add(MapAreaVersion(area));
+            dbContext.SaveChanges();
             Id = area.Id;
         }
 
-        public async Task Update(MachineAreaPnDbContext _dbContext)
+        public async Task Update(MachineAreaPnDbContext dbContext)
         {
-            Area area = _dbContext.Areas.FirstOrDefault(x => x.Id == Id);
+            Area area = dbContext.Areas.FirstOrDefault(x => x.Id == Id);
 
             if (area == null)
             {
@@ -52,19 +50,19 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
             area.Name = Name;
 
-            if (_dbContext.ChangeTracker.HasChanges())
+            if (dbContext.ChangeTracker.HasChanges())
             {
                 area.UpdatedAt = DateTime.Now;
                 area.Version += 1;
 
-                _dbContext.AreaVersions.Add(MapAreaVersion(_dbContext, area));
-                _dbContext.SaveChanges();
+                dbContext.AreaVersions.Add(MapAreaVersion(area));
+                dbContext.SaveChanges();
             }
         }
 
-        public async Task Delete(MachineAreaPnDbContext _dbContext)
+        public async Task Delete(MachineAreaPnDbContext dbContext)
         {
-            Area area = _dbContext.Areas.FirstOrDefault(x => x.Id == Id);
+            Area area = dbContext.Areas.FirstOrDefault(x => x.Id == Id);
 
             if (area == null)
             {
@@ -73,17 +71,17 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
             area.WorkflowState = Constants.WorkflowStates.Removed;
 
-            if (_dbContext.ChangeTracker.HasChanges())
+            if (dbContext.ChangeTracker.HasChanges())
             {
                 area.UpdatedAt = DateTime.Now;
                 area.Version += 1;
 
-                _dbContext.AreaVersions.Add(MapAreaVersion(_dbContext, area));
-                _dbContext.SaveChanges();
+                dbContext.AreaVersions.Add(MapAreaVersion(area));
+                dbContext.SaveChanges();
             }
         }
 
-        private AreaVersion MapAreaVersion(MachineAreaPnDbContext _dbContext, Area area)
+        private AreaVersion MapAreaVersion(Area area)
         {
             AreaVersion areaVer = new AreaVersion();
 
