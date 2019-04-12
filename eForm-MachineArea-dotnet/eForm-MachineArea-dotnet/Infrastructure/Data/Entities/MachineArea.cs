@@ -100,7 +100,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             machineAreaVersionVer.Version = machineArea.Version;
             machineAreaVersionVer.CreatedAt = machineArea.CreatedAt;
             machineAreaVersionVer.UpdatedAt = machineArea.UpdatedAt;
-            machineAreaVersionVer.MachineId = machineArea.Id;
+            machineAreaVersionVer.MachineAreaId = machineArea.Id;
 
 
             return machineAreaVersionVer;
