@@ -97,7 +97,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             machineAreaSiteVersionVer.MachineAreaId = machineAreaSite.MachineAreaId;
             machineAreaSiteVersionVer.MicrotingSdkCaseId = machineAreaSite.MicrotingSdkCaseId;
             machineAreaSiteVersionVer.MicrotingSdkeFormId = machineAreaSite.MicrotingSdkeFormId;
-            machineAreaSiteVersionVer.MachineAreaSiteId = machineAreaSite.MicrotingSdkSiteId;
+            machineAreaSiteVersionVer.MachineAreaSiteId = machineAreaSite.Id;
             machineAreaSiteVersionVer.Version = machineAreaSite.Version;
             machineAreaSiteVersionVer.CreatedAt = machineAreaSite.CreatedAt;
             machineAreaSiteVersionVer.UpdatedAt = machineAreaSite.UpdatedAt;
