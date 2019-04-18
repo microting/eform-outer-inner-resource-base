@@ -125,7 +125,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             machineAreaTimeRegistrationVersion.TimeInHours = machineAreaTimeRegistration.TimeInHours;
             machineAreaTimeRegistrationVersion.SDKSiteId = machineAreaTimeRegistration.SDKSiteId;
             machineAreaTimeRegistrationVersion.Version = machineAreaTimeRegistration.Version;
-            machineAreaTimeRegistrationVersion.AreaId = machineAreaTimeRegistration.Id;
+            machineAreaTimeRegistrationVersion.MachineAreaTimeRegistrationId = machineAreaTimeRegistration.Id;
             machineAreaTimeRegistrationVersion.CreatedAt = machineAreaTimeRegistration.CreatedAt;
             machineAreaTimeRegistrationVersion.UpdatedAt = machineAreaTimeRegistration.UpdatedAt;
 
