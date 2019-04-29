@@ -13,6 +13,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Consts
         NumberOfWorkers,
         Token,
         SdkeFormId,
-        EnabledSiteIds
+        EnabledSiteIds,
+        QuickSyncEnabled
     }
 }
