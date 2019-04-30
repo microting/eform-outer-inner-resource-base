@@ -327,21 +327,9 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_MachineAreaTimeRegistrationVersions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MachineAreaTimeRegistrationVersions_Areas_AreaId",
-                        column: x => x.AreaId,
-                        principalTable: "Areas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrations_MachineAreaTimeRegistrationId",
                         column: x => x.MachineAreaTimeRegistrationId,
                         principalTable: "MachineAreaTimeRegistrations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MachineAreaTimeRegistrationVersions_Machines_MachineId",
-                        column: x => x.MachineId,
-                        principalTable: "Machines",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
