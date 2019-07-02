@@ -55,29 +55,16 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
         public async Task Save(MachineAreaPnDbContext dbContext)
         {
-            MachineAreaTimeRegistration area = new MachineAreaTimeRegistration
-            {
-                MachineId = MachineId,
-                AreaId = AreaId,
-                DoneAt = DoneAt,
-                SDKCaseId = SDKCaseId,
-                SDKFieldValueId = SDKFieldValueId,
-                TimeInSeconds = TimeInSeconds,
-                TimeInMinutes = TimeInMinutes,
-                TimeInHours = TimeInHours,
-                SDKSiteId = SDKSiteId,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
-            };
-
-            dbContext.MachineAreaTimeRegistrations.Add(area);
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            Version = 1;
+            WorkflowState = Constants.WorkflowStates.Created;
+     
+            dbContext.MachineAreaTimeRegistrations.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.MachineAreaTimeRegistrationVersions.Add(MapAreaVersion(area));
+            dbContext.MachineAreaTimeRegistrationVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
-            Id = area.Id;
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
@@ -104,7 +91,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machineAreaTimeRegistration.UpdatedAt = DateTime.Now;
                 machineAreaTimeRegistration.Version += 1;
 
-                dbContext.MachineAreaTimeRegistrationVersions.Add(MapAreaVersion(machineAreaTimeRegistration));
+                dbContext.MachineAreaTimeRegistrationVersions.Add(MapVersions(machineAreaTimeRegistration));
                 dbContext.SaveChanges();
             }
         }
@@ -125,12 +112,12 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machineAreaTimeRegistration.UpdatedAt = DateTime.Now;
                 machineAreaTimeRegistration.Version += 1;
 
-                dbContext.MachineAreaTimeRegistrationVersions.Add(MapAreaVersion(machineAreaTimeRegistration));
+                dbContext.MachineAreaTimeRegistrationVersions.Add(MapVersions(machineAreaTimeRegistration));
                 dbContext.SaveChanges();
             }
         }
 
-        private MachineAreaTimeRegistrationVersion MapAreaVersion(MachineAreaTimeRegistration machineAreaTimeRegistration)
+        private MachineAreaTimeRegistrationVersion MapVersions(MachineAreaTimeRegistration machineAreaTimeRegistration)
         {
             MachineAreaTimeRegistrationVersion machineAreaTimeRegistrationVersion = new MachineAreaTimeRegistrationVersion();
 

@@ -44,25 +44,16 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         
         public async Task Save(MachineAreaPnDbContext dbContext)
         {
-            MachineAreaSite machineAreaSite = new MachineAreaSite
-            {
-                MachineAreaId = MachineAreaId,
-                MicrotingSdkCaseId = MicrotingSdkCaseId,
-                MicrotingSdkeFormId = MicrotingSdkeFormId,
-                MicrotingSdkSiteId = MicrotingSdkSiteId,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
-            };
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            Version = 1;
+            WorkflowState = Constants.WorkflowStates.Created;
 
-            dbContext.MachineAreaSites.Add(machineAreaSite);
+            dbContext.MachineAreaSites.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.MachineAreaSiteVersions.Add(MapMachineAreaSiteVersion(machineAreaSite));
+            dbContext.MachineAreaSiteVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
-            
-            Id = machineAreaSite.Id;
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
@@ -84,7 +75,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machineAreaSite.UpdatedAt = DateTime.Now;
                 machineAreaSite.Version += 1;
 
-                dbContext.MachineAreaSiteVersions.Add(MapMachineAreaSiteVersion(machineAreaSite));
+                dbContext.MachineAreaSiteVersions.Add(MapVersions(machineAreaSite));
                 dbContext.SaveChanges();
             }
         }
@@ -105,12 +96,12 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machineAreaSite.UpdatedAt = DateTime.Now;
                 machineAreaSite.Version += 1;
 
-                dbContext.MachineAreaSiteVersions.Add(MapMachineAreaSiteVersion(machineAreaSite));
+                dbContext.MachineAreaSiteVersions.Add(MapVersions(machineAreaSite));
                 dbContext.SaveChanges();
             }
         }
 
-        private MachineAreaSiteVersion MapMachineAreaSiteVersion(MachineAreaSite machineAreaSite)
+        private MachineAreaSiteVersion MapVersions(MachineAreaSite machineAreaSite)
         {
             MachineAreaSiteVersion machineAreaSiteVersionVer = new MachineAreaSiteVersion();
 

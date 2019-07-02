@@ -42,21 +42,16 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
         public async Task Save(MachineAreaPnDbContext dbContext)
         {
-            Area area = new Area
-            {
-                Name = Name,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
-            };
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            Version = 1;
+            WorkflowState = Constants.WorkflowStates.Created;
 
-            dbContext.Areas.Add(area);
+            dbContext.Areas.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.AreaVersions.Add(MapAreaVersion(area));
+            dbContext.AreaVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
-            Id = area.Id;
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
@@ -75,7 +70,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 area.UpdatedAt = DateTime.Now;
                 area.Version += 1;
 
-                dbContext.AreaVersions.Add(MapAreaVersion(area));
+                dbContext.AreaVersions.Add(MapVersions(area));
                 dbContext.SaveChanges();
             }
         }
@@ -96,12 +91,12 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 area.UpdatedAt = DateTime.Now;
                 area.Version += 1;
 
-                dbContext.AreaVersions.Add(MapAreaVersion(area));
+                dbContext.AreaVersions.Add(MapVersions(area));
                 dbContext.SaveChanges();
             }
         }
 
-        private AreaVersion MapAreaVersion(Area area)
+        private AreaVersion MapVersions(Area area)
         {
             AreaVersion areaVer = new AreaVersion();
 

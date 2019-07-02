@@ -42,21 +42,16 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
         public async Task Save(MachineAreaPnDbContext dbContext)
         {
-            Machine machine = new Machine
-            {
-                Name = Name,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
-            };
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            Version = 1;
+            WorkflowState = Constants.WorkflowStates.Created;
 
-            dbContext.Machines.Add(machine);
+            dbContext.Machines.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.MachineVersions.Add(MapMachineVersion(machine));
+            dbContext.MachineVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
-            Id = machine.Id;
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
@@ -76,7 +71,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machine.UpdatedAt = DateTime.Now;
                 machine.Version += 1;
 
-                dbContext.MachineVersions.Add(MapMachineVersion(machine));
+                dbContext.MachineVersions.Add(MapVersions(machine));
                 dbContext.SaveChanges();
             }
         }
@@ -97,12 +92,12 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machine.UpdatedAt = DateTime.Now;
                 machine.Version += 1;
 
-                dbContext.MachineVersions.Add(MapMachineVersion(machine));
+                dbContext.MachineVersions.Add(MapVersions(machine));
                 dbContext.SaveChanges();
             }
         }
 
-        private MachineVersion MapMachineVersion(Machine machine)
+        private MachineVersion MapVersions(Machine machine)
         {
             MachineVersion machineVer = new MachineVersion();
 

@@ -49,23 +49,18 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         
         public async Task Save(MachineAreaPnDbContext dbContext)
         {
-            MachineArea machineArea = new MachineArea
-            {
-                MachineId = MachineId,
-                AreaId = AreaId,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Version = 1,
-                WorkflowState = Constants.WorkflowStates.Created
-            };
 
-            dbContext.MachineAreas.Add(machineArea);
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            Version = 1;
+            WorkflowState = Constants.WorkflowStates.Created;
+
+            dbContext.MachineAreas.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.MachineAreaVersions.Add(MapMachineAreaVersion(machineArea));
+            dbContext.MachineAreaVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
             
-            Id = machineArea.Id;
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
@@ -85,7 +80,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machineArea.UpdatedAt = DateTime.Now;
                 machineArea.Version += 1;
 
-                dbContext.MachineAreaVersions.Add(MapMachineAreaVersion(machineArea));
+                dbContext.MachineAreaVersions.Add(MapVersions(machineArea));
                 dbContext.SaveChanges();
             }
         }
@@ -106,12 +101,12 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 machineArea.UpdatedAt = DateTime.Now;
                 machineArea.Version += 1;
 
-                dbContext.MachineAreaVersions.Add(MapMachineAreaVersion(machineArea));
+                dbContext.MachineAreaVersions.Add(MapVersions(machineArea));
                 dbContext.SaveChanges();
             }
         }
 
-        private MachineAreaVersion MapMachineAreaVersion(MachineArea machineArea)
+        private MachineAreaVersion MapVersions(MachineArea machineArea)
         {
             MachineAreaVersion machineAreaVersionVer = new MachineAreaVersion();
 
