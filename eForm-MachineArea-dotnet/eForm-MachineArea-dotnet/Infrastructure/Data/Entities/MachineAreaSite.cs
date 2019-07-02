@@ -42,7 +42,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         
         public int MicrotingSdkCaseId { get; set; }
         
-        public async Task Save(MachineAreaPnDbContext dbContext)
+        public async Task Create(MachineAreaPnDbContext dbContext)
         {
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
