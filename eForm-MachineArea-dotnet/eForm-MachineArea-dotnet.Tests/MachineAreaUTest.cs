@@ -1,7 +1,171 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microting.eFormMachineAreaBase.Infrastructure.Data.Entities;
+using NUnit.Framework;
+
 namespace eFormMachineAreaDotnet.Tests
 {
-    public class MachineAreaUTest
+    [TestFixture]
+    public class MachineAreaUTest : DbTestFixture
     {
-        //TODO Write tests
+        [Test]
+        public void MachineArea_Create_DoesCreate()
+        {
+            Area area = new Area()
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+            area.Create(DbContext);
+            
+            Machine machine = new Machine()
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+            machine.Create(DbContext);
+            
+            Random rnd = new Random();
+            MachineArea machineArea = new MachineArea();
+
+            machineArea.Area = area;
+            machineArea.Machine = machine;
+            
+            //Act
+            
+            machineArea.Create(DbContext);
+            
+            MachineArea dbMachineArea = DbContext.MachineAreas.AsNoTracking().First();
+            List<MachineArea> machineAreaList = DbContext.MachineAreas.AsNoTracking().ToList();
+            
+            //Assert
+            
+            Assert.NotNull(dbMachineArea);
+            Assert.NotNull(dbMachineArea.Id);
+            
+            Assert.AreEqual(machineArea.AreaId, area.Id);
+            Assert.AreEqual(machineArea.MachineId, machine.Id);
+            
+            Assert.AreEqual(1,machineAreaList.Count());
+            Assert.AreEqual(machineArea.CreatedAt, dbMachineArea.CreatedAt);                                                     
+            Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
+            Assert.AreEqual(machineArea.UpdatedAt, dbMachineArea.UpdatedAt);                                                     
+            Assert.AreEqual(dbMachineArea.WorkflowState, eFormShared.Constants.WorkflowStates.Created);                   
+            Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
+            Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
+        }
+
+        [Test]
+        public void MachineArea_Update_DoesUpdate()
+        {
+            Area area = new Area()
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+            DbContext.Areas.Add(area);
+            DbContext.SaveChanges();
+            
+            Machine machine = new Machine()
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+            DbContext.Machines.Add(machine);
+            DbContext.SaveChanges();
+            
+            Random rnd = new Random();
+            MachineArea machineArea = new MachineArea();
+
+            machineArea.Area = area;
+            machineArea.Machine = machine;
+            
+            DbContext.MachineAreas.Add(machineArea);
+            DbContext.SaveChanges();
+            
+            //Act
+
+            Area newArea = new Area()
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+            DbContext.Areas.Add(newArea);
+            DbContext.SaveChanges();
+
+            machineArea.Area = newArea;
+            machineArea.Update(DbContext);
+            
+            MachineArea dbMachineArea = DbContext.MachineAreas.AsNoTracking().First();
+            List<MachineArea> machineAreaList = DbContext.MachineAreas.AsNoTracking().ToList();
+            List<MachineAreaVersion> machineAreaVersions = DbContext.MachineAreaVersions.AsNoTracking().ToList();
+            
+            //Assert
+            
+            Assert.NotNull(dbMachineArea);
+            Assert.NotNull(dbMachineArea.Id);
+            
+            Assert.AreEqual(dbMachineArea.AreaId, newArea.Id);
+            Assert.AreEqual(dbMachineArea.MachineId, machine.Id);
+            
+            Assert.AreEqual(1,machineAreaList.Count());
+            Assert.AreEqual(1, machineAreaVersions.Count());
+            
+            Assert.AreEqual(machineArea.CreatedAt, dbMachineArea.CreatedAt);                                                     
+            Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
+            Assert.AreEqual(machineArea.UpdatedAt, dbMachineArea.UpdatedAt);                                                     
+            Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
+            Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
+        }
+
+        [Test]
+        public void MachineArea_Delete_DoesSetWorkflowStateToRemoved()
+        {
+            Area area = new Area()
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+            DbContext.Areas.Add(area);
+            DbContext.SaveChanges();
+            
+            Machine machine = new Machine()
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+            DbContext.Machines.Add(machine);
+            DbContext.SaveChanges();
+            
+            Random rnd = new Random();
+            MachineArea machineArea = new MachineArea();
+
+            machineArea.Area = area;
+            machineArea.Machine = machine;
+            
+            DbContext.MachineAreas.Add(machineArea);
+            DbContext.SaveChanges();
+            
+            //Act
+            
+            machineArea.Delete(DbContext);
+            
+            MachineArea dbMachineArea = DbContext.MachineAreas.AsNoTracking().First();
+            List<MachineArea> machineAreaList = DbContext.MachineAreas.AsNoTracking().ToList();
+            List<MachineAreaVersion> machineAreaVersions = DbContext.MachineAreaVersions.AsNoTracking().ToList();
+            
+            //Assert
+            
+            Assert.NotNull(dbMachineArea);
+            Assert.NotNull(dbMachineArea.Id);
+            
+            Assert.AreEqual(dbMachineArea.MachineId, machine.Id);
+            Assert.AreEqual(dbMachineArea.AreaId, area.Id);
+            
+            Assert.AreEqual(1,machineAreaList.Count());
+            Assert.AreEqual(1, machineAreaVersions.Count());
+            
+            Assert.AreEqual(machineArea.CreatedAt, dbMachineArea.CreatedAt);                                                     
+            Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
+            Assert.AreEqual(machineArea.UpdatedAt, dbMachineArea.UpdatedAt);                                                     
+            Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
+            Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
+            Assert.AreEqual(dbMachineArea.WorkflowState, eFormShared.Constants.WorkflowStates.Removed);
+        }
     }
 }
