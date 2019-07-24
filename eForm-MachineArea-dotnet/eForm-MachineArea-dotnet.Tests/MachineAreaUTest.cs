@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microting.eForm.Infrastructure.Constants;
 using Microting.eFormMachineAreaBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
@@ -50,7 +51,7 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(machineArea.CreatedAt, dbMachineArea.CreatedAt);                                                     
             Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
             Assert.AreEqual(machineArea.UpdatedAt, dbMachineArea.UpdatedAt);                                                     
-            Assert.AreEqual(dbMachineArea.WorkflowState, eFormShared.Constants.WorkflowStates.Created);                   
+            Assert.AreEqual(dbMachineArea.WorkflowState, Constants.WorkflowStates.Created);                   
             Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
             Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
         }
@@ -165,7 +166,7 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(machineArea.UpdatedAt, dbMachineArea.UpdatedAt);                                                     
             Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
             Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
-            Assert.AreEqual(dbMachineArea.WorkflowState, eFormShared.Constants.WorkflowStates.Removed);
+            Assert.AreEqual(dbMachineArea.WorkflowState, Constants.WorkflowStates.Removed);
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microting.eForm.Infrastructure.Constants;
 using Microting.eFormMachineAreaBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
@@ -172,7 +173,7 @@ namespace eFormMachineAreaDotnet.Tests
             //Assert
             
             Assert.NotNull(dbMatr);
-            Assert.AreEqual(dbMatr.WorkflowState, eFormShared.Constants.WorkflowStates.Removed);
+            Assert.AreEqual(dbMatr.WorkflowState, Constants.WorkflowStates.Removed);
             
             Assert.AreEqual(matr.DoneAt, dbMatr.DoneAt);
             Assert.AreEqual(matr.TimeInHours, dbMatr.TimeInHours);
