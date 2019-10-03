@@ -19,4 +19,4 @@ script:
   - dotnet pack eForm-MachineArea-dotnet.sln -c Release -o ./artifacts -p:PackageVersion=$GITVERSION
   - export FILENAME="/home/travis/build/microting/eform-machinearea-dotnet/eForm-MachineArea-dotnet/eForm-MachineArea-dotnet/artifacts/Microting.eFormMachineAreaBase.${GITVERSION}.nupkg"
   - echo $FILENAME
-  - dotnet nuget push $FILENAME -k $NUGET_SECRET_KEY -s https://api.nuget.org/v3/index.json
+  - dotnet nuget push $FILENAME -k $NUGET_SECRET_KEY -s https://api.nuget.org/v3/index.json || true
