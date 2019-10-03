@@ -16,4 +16,4 @@ script:
   - dotnet build eForm-MachineArea-dotnet.sln -c Release
   - export GITVERSION=`git describe --abbrev=0 --tags | cut -d "v" -f 2`
   - echo $GITVERSION
-  - dotnet pack eForm-MachineArea-dotnet.sln -c Release ./artifacts /p:Version=$GITVERSION
+  - dotnet pack eForm-MachineArea-dotnet.sln -c Release -o ./artifacts -p:PackageVersion=$GITVERSION
