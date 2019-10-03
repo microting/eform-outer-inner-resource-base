@@ -13,3 +13,8 @@ script:
   - dotnet restore
   - dotnet build eForm-MachineArea-dotnet.sln
   - dotnet test -v n eForm-MachineArea-dotnet.Integration.Tests/eForm-MachineArea-dotnet.Integration.Tests.csproj
+  - dotnet build eForm-MachineArea-dotnet.sln -c Release
+  - revision=${TRAVIS_JOB_ID:=1}
+  - echo $revision
+  - revision=${printf "%4d" $revision}
+  - echo $revision
