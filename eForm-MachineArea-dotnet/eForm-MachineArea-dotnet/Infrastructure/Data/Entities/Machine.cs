@@ -30,15 +30,15 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
     public class Machine : BaseEntity
     {
-        public Machine()
-        {
-            this.MachineAreas = new HashSet<MachineArea>();
-        }
+//        public Machine()
+//        {
+//            this.MachineAreas = new HashSet<MachineArea>();
+//        }
 
         [StringLength(250)]
         public string Name { get; set; }
         
-        public virtual ICollection<MachineArea> MachineAreas { get; set; }
+//        public virtual ICollection<MachineArea> MachineAreas { get; set; }
 
         public async Task Create(MachineAreaPnDbContext dbContext)
         {
@@ -102,7 +102,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             MachineVersion machineVer = new MachineVersion();
 
             machineVer.Name = machine.Name;
-            machineVer.Machine = machine;
+            machineVer.MachineId = machine.Id;
             machineVer.Version = machine.Version;
             machineVer.CreatedAt = machine.CreatedAt;
             machineVer.UpdatedAt = machine.UpdatedAt;

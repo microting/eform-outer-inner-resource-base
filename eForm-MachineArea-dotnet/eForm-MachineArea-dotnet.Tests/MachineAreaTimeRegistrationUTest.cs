@@ -38,8 +38,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.Area = area;
-            matr.Machine = machine;
+            matr.AreaId = area.Id;
+            matr.MachineId = machine.Id;
             
             //Act
             
@@ -93,8 +93,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.Area = area;
-            matr.Machine = machine;
+            matr.AreaId = area.Id;
+            matr.MachineId = machine.Id;
 
             DbContext.MachineAreaTimeRegistrations.Add(matr);
             DbContext.SaveChanges();
@@ -154,8 +154,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.Area = area;
-            matr.Machine = machine;
+            matr.AreaId = area.Id;
+            matr.MachineId = machine.Id;
 
             DbContext.MachineAreaTimeRegistrations.Add(matr);
             DbContext.SaveChanges();

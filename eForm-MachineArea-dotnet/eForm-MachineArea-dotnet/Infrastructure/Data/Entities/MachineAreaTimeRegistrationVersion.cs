@@ -29,11 +29,11 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         
         public int MachineId { get; set; }
         
-        public virtual Machine Machine { get; set; }
+//        public virtual Machine Machine { get; set; }
         
         public int AreaId { get; set; }
         
-        public virtual Area Area { get; set; }
+//        public virtual Area Area { get; set; }
         
         public DateTime DoneAt { get; set; }
         
@@ -52,6 +52,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         [ForeignKey("MachineAreaTimeRegistration")]
         public int MachineAreaTimeRegistrationId { get; set; }
         
-        public virtual MachineAreaTimeRegistration MachineAreaTimeRegistration { get; set; }
+//        public virtual MachineAreaTimeRegistration MachineAreaTimeRegistration { get; set; }
     }
 }

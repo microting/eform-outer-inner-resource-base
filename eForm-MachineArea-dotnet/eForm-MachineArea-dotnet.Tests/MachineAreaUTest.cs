@@ -29,8 +29,8 @@ namespace eFormMachineAreaDotnet.Tests
             Random rnd = new Random();
             MachineArea machineArea = new MachineArea();
 
-            machineArea.Area = area;
-            machineArea.Machine = machine;
+            machineArea.AreaId = area.Id;
+            machineArea.MachineId = machine.Id;
             
             //Act
             
@@ -76,8 +76,8 @@ namespace eFormMachineAreaDotnet.Tests
             Random rnd = new Random();
             MachineArea machineArea = new MachineArea();
 
-            machineArea.Area = area;
-            machineArea.Machine = machine;
+            machineArea.AreaId = area.Id;
+            machineArea.MachineId = machine.Id;
             
             DbContext.MachineAreas.Add(machineArea);
             DbContext.SaveChanges();
@@ -91,7 +91,7 @@ namespace eFormMachineAreaDotnet.Tests
             DbContext.Areas.Add(newArea);
             DbContext.SaveChanges();
 
-            machineArea.Area = newArea;
+            machineArea.AreaId = newArea.Id;
             machineArea.Update(DbContext);
             
             MachineArea dbMachineArea = DbContext.MachineAreas.AsNoTracking().First();
@@ -136,8 +136,8 @@ namespace eFormMachineAreaDotnet.Tests
             Random rnd = new Random();
             MachineArea machineArea = new MachineArea();
 
-            machineArea.Area = area;
-            machineArea.Machine = machine;
+            machineArea.AreaId = area.Id;
+            machineArea.MachineId = machine.Id;
             
             DbContext.MachineAreas.Add(machineArea);
             DbContext.SaveChanges();

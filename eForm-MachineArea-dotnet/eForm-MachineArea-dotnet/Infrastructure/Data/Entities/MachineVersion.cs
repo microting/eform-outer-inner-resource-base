@@ -32,6 +32,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         [ForeignKey("Machine")]
         public int MachineId { get; set; }
         
-        public virtual Machine Machine { get; set; }
+//        public virtual Machine Machine { get; set; }
     }
 }
