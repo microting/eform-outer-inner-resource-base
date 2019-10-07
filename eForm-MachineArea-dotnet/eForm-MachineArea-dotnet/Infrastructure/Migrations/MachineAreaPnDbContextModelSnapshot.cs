@@ -42,7 +42,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                 autoIDGenStrategyValue = MySqlValueGenerationStrategy.IdentityColumn;
             }
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation(autoIDGenStrategy, autoIDGenStrategyValue);
 
@@ -161,8 +161,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AreaId");
-
                     b.ToTable("AreaVersions");
                 });
 
@@ -224,10 +222,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AreaId");
-
-                    b.HasIndex("MachineId");
-
                     b.ToTable("MachineAreas");
                 });
 
@@ -261,8 +255,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
                         .HasMaxLength(255);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MachineAreaId");
 
                     b.ToTable("MachineAreaSites");
                 });
@@ -342,10 +334,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AreaId");
-
-                    b.HasIndex("MachineId");
-
                     b.ToTable("MachineAreaTimeRegistrations");
                 });
 
@@ -390,12 +378,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AreaId");
-
-                    b.HasIndex("MachineAreaTimeRegistrationId");
-
-                    b.HasIndex("MachineId");
-
                     b.ToTable("MachineAreaTimeRegistrationVersions");
                 });
 
@@ -426,12 +408,6 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AreaId");
-
-                    b.HasIndex("MachineAreaId");
-
-                    b.HasIndex("MachineId");
-
                     b.ToTable("MachineAreaVersions");
                 });
 
@@ -461,95 +437,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MachineId");
-
                     b.ToTable("MachineVersions");
-                });
-
-            modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.AreaVersion", b =>
-                {
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Area", "Area")
-                        .WithMany()
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineArea", b =>
-                {
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Area", "Area")
-                        .WithMany("MachineAreas")
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Machine", "Machine")
-                        .WithMany("MachineAreas")
-                        .HasForeignKey("MachineId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineAreaSite", b =>
-                {
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineArea", "MachineArea")
-                        .WithMany("MachineAreaSites")
-                        .HasForeignKey("MachineAreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineAreaTimeRegistration", b =>
-                {
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Area", "Area")
-                        .WithMany()
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Machine", "Machine")
-                        .WithMany()
-                        .HasForeignKey("MachineId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineAreaTimeRegistrationVersion", b =>
-                {
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Area", "Area")
-                        .WithMany()
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineAreaTimeRegistration", "MachineAreaTimeRegistration")
-                        .WithMany()
-                        .HasForeignKey("MachineAreaTimeRegistrationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Machine", "Machine")
-                        .WithMany()
-                        .HasForeignKey("MachineId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineAreaVersion", b =>
-                {
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Area", "Area")
-                        .WithMany()
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineArea", "MachineArea")
-                        .WithMany()
-                        .HasForeignKey("MachineAreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Machine", "Machine")
-                        .WithMany()
-                        .HasForeignKey("MachineId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.MachineVersion", b =>
-                {
-                    b.HasOne("Microting.eFormMachineAreaBase.Infrastructure.Data.Entities.Machine", "Machine")
-                        .WithMany()
-                        .HasForeignKey("MachineId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
