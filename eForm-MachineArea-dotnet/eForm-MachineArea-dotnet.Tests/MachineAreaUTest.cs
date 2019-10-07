@@ -48,9 +48,9 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(machineArea.MachineId, machine.Id);
             
             Assert.AreEqual(1,machineAreaList.Count());
-            Assert.AreEqual(machineArea.CreatedAt, dbMachineArea.CreatedAt);                                                     
+            Assert.AreEqual(machineArea.CreatedAt.ToString(), dbMachineArea.CreatedAt.ToString());                                                     
             Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
-            Assert.AreEqual(machineArea.UpdatedAt, dbMachineArea.UpdatedAt);                                                     
+            Assert.AreEqual(machineArea.UpdatedAt.ToString(), dbMachineArea.UpdatedAt.ToString());                                                     
             Assert.AreEqual(dbMachineArea.WorkflowState, Constants.WorkflowStates.Created);                   
             Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
             Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
@@ -109,9 +109,9 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(1,machineAreaList.Count());
             Assert.AreEqual(1, machineAreaVersions.Count());
             
-            Assert.AreEqual(machineArea.CreatedAt, dbMachineArea.CreatedAt);                                                     
+            Assert.AreEqual(machineArea.CreatedAt.ToString(), dbMachineArea.CreatedAt.ToString());                                                     
             Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
-            Assert.AreEqual(machineArea.UpdatedAt, dbMachineArea.UpdatedAt);                                                     
+            Assert.AreEqual(machineArea.UpdatedAt.ToString(), dbMachineArea.UpdatedAt.ToString());                                                     
             Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
             Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
         }
@@ -161,9 +161,9 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(1,machineAreaList.Count());
             Assert.AreEqual(1, machineAreaVersions.Count());
             
-            Assert.AreEqual(machineArea.CreatedAt, dbMachineArea.CreatedAt);                                                     
+            Assert.AreEqual(machineArea.CreatedAt.ToString(), dbMachineArea.CreatedAt.ToString());                                                     
             Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
-            Assert.AreEqual(machineArea.UpdatedAt, dbMachineArea.UpdatedAt);                                                     
+            Assert.AreEqual(machineArea.UpdatedAt.ToString(), dbMachineArea.UpdatedAt.ToString());                                                     
             Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
             Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
             Assert.AreEqual(dbMachineArea.WorkflowState, Constants.WorkflowStates.Removed);

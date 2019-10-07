@@ -32,9 +32,9 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.NotNull(dbArea.Id);
             
             Assert.AreEqual(1,areaList.Count());
-            Assert.AreEqual(area.CreatedAt, dbArea.CreatedAt);
+            Assert.AreEqual(area.CreatedAt.ToString(), dbArea.CreatedAt.ToString());
             Assert.AreEqual(area.Version, dbArea.Version);
-            Assert.AreEqual(area.UpdatedAt, dbArea.UpdatedAt);
+            Assert.AreEqual(area.UpdatedAt.ToString(), dbArea.UpdatedAt.ToString());
             Assert.AreEqual(dbArea.WorkflowState, Constants.WorkflowStates.Created);
             Assert.AreEqual(area.CreatedByUserId, dbArea.CreatedByUserId);
             Assert.AreEqual(area.UpdatedByUserId, dbArea.UpdatedByUserId);
@@ -69,9 +69,9 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(1, areasList.Count());
             Assert.AreEqual(1, areaVersions.Count());
             Assert.AreEqual(area.Name, dbArea.Name);
-            Assert.AreEqual(area.CreatedAt, dbArea.CreatedAt);
+            Assert.AreEqual(area.CreatedAt.ToString(), dbArea.CreatedAt.ToString());
             Assert.AreEqual(area.Version, dbArea.Version);                                        
-            Assert.AreEqual(area.UpdatedAt, dbArea.UpdatedAt);
+            Assert.AreEqual(area.UpdatedAt.ToString(), dbArea.UpdatedAt.ToString());
             Assert.AreEqual(area.CreatedByUserId, dbArea.CreatedByUserId);                        
             Assert.AreEqual(area.UpdatedByUserId, dbArea.UpdatedByUserId);                        
         }
@@ -102,11 +102,11 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(1, areaVersions.Count());
             
             Assert.AreEqual(area.Name, dbArea.Name);
-            Assert.AreEqual(area.CreatedAt, dbArea.CreatedAt);
+            Assert.AreEqual(area.CreatedAt.ToString(), dbArea.CreatedAt.ToString());
             Assert.AreEqual(dbArea.WorkflowState, Constants.WorkflowStates.Removed);
                                                                             
             Assert.AreEqual(area.Version, dbArea.Version);                 
-            Assert.AreEqual(area.UpdatedAt, dbArea.UpdatedAt);             
+            Assert.AreEqual(area.UpdatedAt.ToString(), dbArea.UpdatedAt.ToString());             
             Assert.AreEqual(area.CreatedByUserId, dbArea.CreatedByUserId); 
             Assert.AreEqual(area.UpdatedByUserId, dbArea.UpdatedByUserId); 
         }

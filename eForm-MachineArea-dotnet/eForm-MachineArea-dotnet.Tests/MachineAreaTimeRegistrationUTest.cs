@@ -53,7 +53,7 @@ namespace eFormMachineAreaDotnet.Tests
             
             Assert.NotNull(dbMatr);
             
-            Assert.AreEqual(matr.DoneAt, dbMatr.DoneAt);
+            Assert.AreEqual(matr.DoneAt.ToString(), dbMatr.DoneAt.ToString());
             Assert.AreEqual(matr.TimeInHours, dbMatr.TimeInHours);
             Assert.AreEqual(matr.TimeInMinutes, dbMatr.TimeInMinutes);
             Assert.AreEqual(matr.TimeInSeconds, dbMatr.TimeInSeconds);
@@ -113,7 +113,7 @@ namespace eFormMachineAreaDotnet.Tests
             
             Assert.NotNull(dbMatr);
             
-            Assert.AreEqual(matr.DoneAt, dbMatr.DoneAt);
+            Assert.AreEqual(matr.DoneAt.ToString(), dbMatr.DoneAt.ToString());
             Assert.AreEqual(matr.TimeInHours, dbMatr.TimeInHours);
             Assert.AreEqual(matr.TimeInMinutes, dbMatr.TimeInMinutes);
             Assert.AreEqual(matr.TimeInSeconds, dbMatr.TimeInSeconds);
@@ -175,7 +175,7 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.NotNull(dbMatr);
             Assert.AreEqual(dbMatr.WorkflowState, Constants.WorkflowStates.Removed);
             
-            Assert.AreEqual(matr.DoneAt, dbMatr.DoneAt);
+            Assert.AreEqual(matr.DoneAt.ToString(), dbMatr.DoneAt.ToString());
             Assert.AreEqual(matr.TimeInHours, dbMatr.TimeInHours);
             Assert.AreEqual(matr.TimeInMinutes, dbMatr.TimeInMinutes);
             Assert.AreEqual(matr.TimeInSeconds, dbMatr.TimeInSeconds);
