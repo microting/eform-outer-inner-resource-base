@@ -23,8 +23,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
-using Microting.eFormMachineAreaBase.Infrastructure.Data;
-using Microting.eFormMachineAreaBase.Infrastructure.Data.Factories;
+using Microting.eFormOuterInnerResourceBase.Infrastructure.Data;
+using Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories;
 using NUnit.Framework;
 
 namespace eFormMachineAreaDotnet.Tests
@@ -32,12 +32,12 @@ namespace eFormMachineAreaDotnet.Tests
     [TestFixture]
     public abstract class DbTestFixture
     {
-        protected MachineAreaPnDbContext DbContext;
+        protected OuterInnerResourcePnDbContext DbContext;
         private string _connectionString;
 
         private void GetContext(string connectionStr)
         {
-            MachineAreaPnContextFactory contextFactory = new MachineAreaPnContextFactory();
+            OuterInnerResourcePnContextFactory contextFactory = new OuterInnerResourcePnContextFactory();
             DbContext = contextFactory.CreateDbContext(new[] {connectionStr});
 
             DbContext.Database.Migrate();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
-using Microting.eFormMachineAreaBase.Infrastructure.Data.Entities;
+using Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
 namespace eFormMachineAreaDotnet.Tests
@@ -16,20 +16,20 @@ namespace eFormMachineAreaDotnet.Tests
         {
             //Arrange
             
-            Area area = new Area()
+            OuterResource outerResource = new OuterResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            area.Create(DbContext);
+            outerResource.Create(DbContext);
             
-            Machine machine = new Machine()
+            InnerResource innerResource = new InnerResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            machine.Create(DbContext);
+            innerResource.Create(DbContext);
             
             Random rnd = new Random();
-            MachineAreaTimeRegistration matr = new MachineAreaTimeRegistration();
+            ResourceTimeRegistration matr = new ResourceTimeRegistration();
             
             matr.DoneAt = DateTime.Now;
             matr.TimeInHours = 10;
@@ -38,16 +38,16 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.Area = area;
-            matr.Machine = machine;
+            matr.OuterResource = outerResource;
+            matr.InnerResource = innerResource;
             
             //Act
             
             matr.Create(DbContext);
             
             
-            MachineAreaTimeRegistration dbMatr = DbContext.MachineAreaTimeRegistrations.AsNoTracking().First();
-            List<MachineAreaTimeRegistration> matrList = DbContext.MachineAreaTimeRegistrations.AsNoTracking().ToList();
+            ResourceTimeRegistration dbMatr = DbContext.ResourceTimeRegistrations.AsNoTracking().First();
+            List<ResourceTimeRegistration> matrList = DbContext.ResourceTimeRegistrations.AsNoTracking().ToList();
             
             //Assert
             
@@ -60,8 +60,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(matr.SDKCaseId, dbMatr.SDKCaseId);
             Assert.AreEqual(matr.SDKSiteId, dbMatr.SDKSiteId);
             Assert.AreEqual(matr.SDKFieldValueId, dbMatr.SDKFieldValueId);
-            Assert.AreEqual(matr.AreaId, dbMatr.AreaId);
-            Assert.AreEqual(matr.MachineId, dbMatr.MachineId);
+            Assert.AreEqual(matr.OuterResourceId, dbMatr.OuterResourceId);
+            Assert.AreEqual(matr.InnerResourceId, dbMatr.InnerResourceId);
             
             Assert.AreEqual(1,matrList.Count());
         }
@@ -69,22 +69,22 @@ namespace eFormMachineAreaDotnet.Tests
         [Test]
         public void MacineAreaTimeRegistration_Update_DoesUpdate()
         {
-            Area area = new Area()
+            OuterResource outerResource = new OuterResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Areas.Add(area);
+            DbContext.OuterResources.Add(outerResource);
             DbContext.SaveChanges();
 
-            Machine machine = new Machine()
+            InnerResource innerResource = new InnerResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Machines.Add(machine);
+            DbContext.InnerResources.Add(innerResource);
             DbContext.SaveChanges();
             
             Random rnd = new Random();
-            MachineAreaTimeRegistration matr = new MachineAreaTimeRegistration();
+            ResourceTimeRegistration matr = new ResourceTimeRegistration();
             
             matr.DoneAt = DateTime.Now;
             matr.TimeInHours = 10;
@@ -93,10 +93,10 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.Area = area;
-            matr.Machine = machine;
+            matr.OuterResource = outerResource;
+            matr.InnerResource = innerResource;
 
-            DbContext.MachineAreaTimeRegistrations.Add(matr);
+            DbContext.ResourceTimeRegistrations.Add(matr);
             DbContext.SaveChanges();
             
             //Act
@@ -104,10 +104,10 @@ namespace eFormMachineAreaDotnet.Tests
             
             matr.Update(DbContext);
 
-            MachineAreaTimeRegistration dbMatr = DbContext.MachineAreaTimeRegistrations.AsNoTracking().First();
-            List<MachineAreaTimeRegistration> matrList = DbContext.MachineAreaTimeRegistrations.AsNoTracking().ToList();
-            List<MachineAreaTimeRegistrationVersion> matrVersions =
-                DbContext.MachineAreaTimeRegistrationVersions.AsNoTracking().ToList();
+            ResourceTimeRegistration dbMatr = DbContext.ResourceTimeRegistrations.AsNoTracking().First();
+            List<ResourceTimeRegistration> matrList = DbContext.ResourceTimeRegistrations.AsNoTracking().ToList();
+            List<ResourceTimeRegistrationVersion> matrVersions =
+                DbContext.ResourceTimeRegistrationVersions.AsNoTracking().ToList();
             
             //Assert
             
@@ -120,8 +120,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(matr.SDKCaseId, dbMatr.SDKCaseId);
             Assert.AreEqual(matr.SDKSiteId, dbMatr.SDKSiteId);
             Assert.AreEqual(matr.SDKFieldValueId, dbMatr.SDKFieldValueId);
-            Assert.AreEqual(matr.AreaId, dbMatr.AreaId);
-            Assert.AreEqual(matr.MachineId, dbMatr.MachineId);
+            Assert.AreEqual(matr.OuterResourceId, dbMatr.OuterResourceId);
+            Assert.AreEqual(matr.InnerResourceId, dbMatr.InnerResourceId);
             
             Assert.AreEqual(1,matrList.Count());
             Assert.AreEqual(1, matrVersions.Count());
@@ -130,22 +130,22 @@ namespace eFormMachineAreaDotnet.Tests
         [Test]
         public void MachineAreaTimeRegistration_Delete_DoesSetWorkflowStateToRemoved()
         {
-             Area area = new Area()
+             OuterResource outerResource = new OuterResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Areas.Add(area);
+            DbContext.OuterResources.Add(outerResource);
             DbContext.SaveChanges();
 
-            Machine machine = new Machine()
+            InnerResource innerResource = new InnerResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Machines.Add(machine);
+            DbContext.InnerResources.Add(innerResource);
             DbContext.SaveChanges();
             
             Random rnd = new Random();
-            MachineAreaTimeRegistration matr = new MachineAreaTimeRegistration();
+            ResourceTimeRegistration matr = new ResourceTimeRegistration();
             
             matr.DoneAt = DateTime.Now;
             matr.TimeInHours = 10;
@@ -154,10 +154,10 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.Area = area;
-            matr.Machine = machine;
+            matr.OuterResource = outerResource;
+            matr.InnerResource = innerResource;
 
-            DbContext.MachineAreaTimeRegistrations.Add(matr);
+            DbContext.ResourceTimeRegistrations.Add(matr);
             DbContext.SaveChanges();
             
             //Act
@@ -165,10 +165,10 @@ namespace eFormMachineAreaDotnet.Tests
             
             matr.Delete(DbContext);
 
-            MachineAreaTimeRegistration dbMatr = DbContext.MachineAreaTimeRegistrations.AsNoTracking().First();
-            List<MachineAreaTimeRegistration> matrList = DbContext.MachineAreaTimeRegistrations.AsNoTracking().ToList();
-            List<MachineAreaTimeRegistrationVersion> matrVersions =
-                DbContext.MachineAreaTimeRegistrationVersions.AsNoTracking().ToList();
+            ResourceTimeRegistration dbMatr = DbContext.ResourceTimeRegistrations.AsNoTracking().First();
+            List<ResourceTimeRegistration> matrList = DbContext.ResourceTimeRegistrations.AsNoTracking().ToList();
+            List<ResourceTimeRegistrationVersion> matrVersions =
+                DbContext.ResourceTimeRegistrationVersions.AsNoTracking().ToList();
             
             //Assert
             
@@ -182,8 +182,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(matr.SDKCaseId, dbMatr.SDKCaseId);
             Assert.AreEqual(matr.SDKSiteId, dbMatr.SDKSiteId);
             Assert.AreEqual(matr.SDKFieldValueId, dbMatr.SDKFieldValueId);
-            Assert.AreEqual(matr.AreaId, dbMatr.AreaId);
-            Assert.AreEqual(matr.MachineId, dbMatr.MachineId);
+            Assert.AreEqual(matr.OuterResourceId, dbMatr.OuterResourceId);
+            Assert.AreEqual(matr.InnerResourceId, dbMatr.InnerResourceId);
             
             Assert.AreEqual(1,matrList.Count());
             Assert.AreEqual(1, matrVersions.Count());

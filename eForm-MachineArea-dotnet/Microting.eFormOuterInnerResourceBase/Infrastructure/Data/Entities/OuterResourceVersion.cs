@@ -1,4 +1,4 @@
-﻿/*
+/*
 The MIT License (MIT)
 Copyright (c) 2007 - 2019 Microting A/S
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,17 +18,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using NUnit.Framework;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace eForm_MachineArea_dotnet.Integration.Tests
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
 {
-    [TestFixture]
-    public class CanaryInAColeMine
+    public class OuterResourceVersion : BaseEntity
     {
-        [Test]
-        public void CanPeep()
-        {
-            Assert.True(true);
-        }
+        [StringLength(250)]
+        public string Name { get; set; }
+        
+        [ForeignKey("OuterResource")]
+        public int OuterResourceId { get; set; }
+        
+        public virtual OuterResource OuterResource { get; set; }
+        
     }
 }

@@ -18,17 +18,22 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace eForm_MachineArea_dotnet.Integration.Tests
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Consts
 {
-    [TestFixture]
-    public class CanaryInAColeMine
+    public enum MachineAreaSettingsEnum
     {
-        [Test]
-        public void CanPeep()
-        {
-            Assert.True(true);
-        }
+        LogLevel,
+        LogLimit,
+        SdkConnectionString,
+        MaxParallelism,
+        NumberOfWorkers,
+        Token,
+        SdkeFormId,
+        EnabledSiteIds,
+        QuickSyncEnabled
     }
 }

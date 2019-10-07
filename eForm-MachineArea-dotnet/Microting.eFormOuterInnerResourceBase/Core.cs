@@ -18,17 +18,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using NUnit.Framework;
-
-namespace eForm_MachineArea_dotnet.Integration.Tests
+namespace Microting.eFormOuterInnerResourceBase
 {
-    [TestFixture]
-    public class CanaryInAColeMine
+    public class Core
     {
-        [Test]
-        public void CanPeep()
-        {
-            Assert.True(true);
-        }
     }
 }

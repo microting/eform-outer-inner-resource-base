@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\eForm-MachineArea-dotnet\eForm-MachineArea-dotnet.csproj" />
+      <ProjectReference Include="..\Microting.eFormOuterInnerResourceBase\Microting.eFormOuterInnerResourceBase.csproj" />
     </ItemGroup>
 
 </Project>

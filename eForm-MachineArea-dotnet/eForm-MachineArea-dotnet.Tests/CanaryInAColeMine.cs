@@ -20,7 +20,7 @@ SOFTWARE.
 
 using NUnit.Framework;
 
-namespace eFormMachineAreaDotnet.Tests
+namespace eForm_MachineArea_dotnet.Tests
 {
     [TestFixture]
     public class CanaryInAColeMine
