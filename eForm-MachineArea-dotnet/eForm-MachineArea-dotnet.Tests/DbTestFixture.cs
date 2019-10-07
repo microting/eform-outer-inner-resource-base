@@ -84,14 +84,14 @@ namespace eFormMachineAreaDotnet.Tests
         private void ClearDb()
         {
             List<string> modelNames = new List<string>();
-            modelNames.Add("Areas");
-            modelNames.Add("AreaVersions");
-            modelNames.Add("Machines");
-            modelNames.Add("MachineVersions");
-            modelNames.Add("MachineAreas");
-            modelNames.Add("MachineAreaVersions");
-            modelNames.Add("MachineAreaTimeRegistrations");
-            modelNames.Add("MachineAreaTimeRegistrationVersions");
+            modelNames.Add("OuterResources");
+            modelNames.Add("OuterResourceVersions");
+            modelNames.Add("InnerResources");
+            modelNames.Add("InnerResourceVersions");
+            modelNames.Add("OuterInnerResources");
+            modelNames.Add("OuterInnerResourceVersions");
+            modelNames.Add("ResourceTimeRegistrations");
+            modelNames.Add("ResourceTimeRegistrationVersions");
             modelNames.Add("PluginConfigurationValues");
             modelNames.Add("PluginConfigurationValueVersions");
 

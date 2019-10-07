@@ -35,16 +35,16 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data
         {
         }
 
-        public DbSet<Machine> Machines { get; set; }
-        public DbSet<MachineVersion> MachineVersions { get; set; }
-        public DbSet<Area> Areas { get; set; }
-        public DbSet<AreaVersion> AreaVersions { get; set; }
-        public DbSet<MachineArea> MachineAreas { get; set; }
-        public DbSet<MachineAreaSite> MachineAreaSites { get; set; }
-        public DbSet<MachineAreaSiteVersion> MachineAreaSiteVersions { get; set; }
-        public DbSet<MachineAreaVersion> MachineAreaVersions { get; set; }
-        public DbSet<MachineAreaTimeRegistration> MachineAreaTimeRegistrations { get; set; }
-        public DbSet<MachineAreaTimeRegistrationVersion> MachineAreaTimeRegistrationVersions { get; set; }
+        public DbSet<InnerResource> InnerResources { get; set; }
+        public DbSet<InnerResourceVersion> InnerResourceVersions { get; set; }
+        public DbSet<OuterResource> OuterResources { get; set; }
+        public DbSet<OuterResourceVersion> OuterResourceVersions { get; set; }
+        public DbSet<OuterInnerResource> OuterInnerResources { get; set; }
+        public DbSet<OuterInnerResourceSite> OuterInnerResourceSites { get; set; }
+        public DbSet<OuterInnerResourceSiteVersion> OuterInnerResourceSiteVersions { get; set; }
+        public DbSet<OuterInnerResourceVersion> OuterInnerResourceVersions { get; set; }
+        public DbSet<ResourceTimeRegistration> ResourceTimeRegistrations { get; set; }
+        public DbSet<ResourceTimeRegistrationVersion> ResourceTimeRegistrationVersions { get; set; }
         
         // plugin settings
         public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
@@ -54,17 +54,17 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Machine>()
+            modelBuilder.Entity<InnerResource>()
                 .HasIndex(x => x.Name);
-            modelBuilder.Entity<Machine>()
+            modelBuilder.Entity<InnerResource>()
                 .HasIndex(x => x.CreatedByUserId);
-            modelBuilder.Entity<Machine>()
+            modelBuilder.Entity<InnerResource>()
                 .HasIndex(x => x.UpdatedByUserId);
-            modelBuilder.Entity<Area>()
+            modelBuilder.Entity<OuterResource>()
                 .HasIndex(x => x.Name);
-            modelBuilder.Entity<Area>()
+            modelBuilder.Entity<OuterResource>()
                 .HasIndex(x => x.CreatedByUserId);
-            modelBuilder.Entity<Area>()
+            modelBuilder.Entity<OuterResource>()
                 .HasIndex(x => x.UpdatedByUserId);
         }
     }

@@ -18,25 +18,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
-    public class MachineAreaSiteVersion : BaseEntity
+    public class InnerResourceVersion : BaseEntity
     {
-        public int MicrotingSdkeFormId { get; set; }
+        [StringLength(250)]
+        public string Name { get; set; }
         
-        public int Status { get; set; }
+        [ForeignKey("Machine")]
+        public int MachineId { get; set; }
         
-        public int MachineAreaId { get; set; }
-        
-        [ForeignKey("MachineAreaSite")]
-        public int MachineAreaSiteId { get; set; }
-        
-        public int MicrotingSdkSiteId { get; set; }
-        
-        public int MicrotingSdkCaseId { get; set; }
-        
+//        public virtual Machine Machine { get; set; }
     }
 }

@@ -28,7 +28,7 @@ using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
-    public class Machine : BaseEntity
+    public class InnerResource : BaseEntity
     {
 //        public Machine()
 //        {
@@ -47,69 +47,69 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             Version = 1;
             WorkflowState = Constants.WorkflowStates.Created;
 
-            dbContext.Machines.Add(this);
+            dbContext.InnerResources.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.MachineVersions.Add(MapVersions(this));
+            dbContext.InnerResourceVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
         {
-            Machine machine = dbContext.Machines.FirstOrDefault(x => x.Id == Id);
+            InnerResource innerResource = dbContext.InnerResources.FirstOrDefault(x => x.Id == Id);
 
-            if (machine == null)
+            if (innerResource == null)
             {
                 throw new NullReferenceException($"Could not find Machine with id: {Id}");
             }
 
-            machine.Name = Name;
+            innerResource.Name = Name;
             // TODO: INSERT UPDATE MAPPING
 
             if (dbContext.ChangeTracker.HasChanges())
             {
-                machine.UpdatedAt = DateTime.Now;
-                machine.Version += 1;
+                innerResource.UpdatedAt = DateTime.Now;
+                innerResource.Version += 1;
 
-                dbContext.MachineVersions.Add(MapVersions(machine));
+                dbContext.InnerResourceVersions.Add(MapVersions(innerResource));
                 dbContext.SaveChanges();
             }
         }
 
         public async Task Delete(MachineAreaPnDbContext dbContext)
         {
-            Machine machine = dbContext.Machines.FirstOrDefault(x => x.Id == Id);
+            InnerResource innerResource = dbContext.InnerResources.FirstOrDefault(x => x.Id == Id);
 
-            if (machine == null)
+            if (innerResource == null)
             {
                 throw new NullReferenceException($"Could not find machine with id: {Id}");
             }
 
-            machine.WorkflowState = Constants.WorkflowStates.Removed;
+            innerResource.WorkflowState = Constants.WorkflowStates.Removed;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
-                machine.UpdatedAt = DateTime.Now;
-                machine.Version += 1;
+                innerResource.UpdatedAt = DateTime.Now;
+                innerResource.Version += 1;
 
-                dbContext.MachineVersions.Add(MapVersions(machine));
+                dbContext.InnerResourceVersions.Add(MapVersions(innerResource));
                 dbContext.SaveChanges();
             }
         }
 
-        private MachineVersion MapVersions(Machine machine)
+        private InnerResourceVersion MapVersions(InnerResource innerResource)
         {
-            MachineVersion machineVer = new MachineVersion();
+            InnerResourceVersion innerResourceVer = new InnerResourceVersion();
 
-            machineVer.Name = machine.Name;
-            machineVer.MachineId = machine.Id;
-            machineVer.Version = machine.Version;
-            machineVer.CreatedAt = machine.CreatedAt;
-            machineVer.UpdatedAt = machine.UpdatedAt;
-            machineVer.MachineId = machine.Id;
+            innerResourceVer.Name = innerResource.Name;
+            innerResourceVer.MachineId = innerResource.Id;
+            innerResourceVer.Version = innerResource.Version;
+            innerResourceVer.CreatedAt = innerResource.CreatedAt;
+            innerResourceVer.UpdatedAt = innerResource.UpdatedAt;
+            innerResourceVer.MachineId = innerResource.Id;
 
 
-            return machineVer;
+            return innerResourceVer;
         }
     }
 }

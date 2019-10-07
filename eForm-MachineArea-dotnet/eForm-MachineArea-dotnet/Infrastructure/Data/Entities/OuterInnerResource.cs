@@ -28,7 +28,7 @@ using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
-    public class MachineArea : BaseEntity
+    public class OuterInnerResource : BaseEntity
     {
 //        public MachineArea()
 //        {
@@ -55,70 +55,70 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             Version = 1;
             WorkflowState = Constants.WorkflowStates.Created;
 
-            dbContext.MachineAreas.Add(this);
+            dbContext.OuterInnerResources.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.MachineAreaVersions.Add(MapVersions(this));
+            dbContext.OuterInnerResourceVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
             
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
         {
-            MachineArea machineArea = dbContext.MachineAreas.FirstOrDefault(x => x.Id == Id);
+            OuterInnerResource outerInnerResource = dbContext.OuterInnerResources.FirstOrDefault(x => x.Id == Id);
 
-            if (machineArea == null)
+            if (outerInnerResource == null)
             {
                 throw new NullReferenceException($"Could not find machineArea with id: {Id}");
             }
 
-            machineArea.AreaId = AreaId;
-            machineArea.MachineId = MachineId;
+            outerInnerResource.AreaId = AreaId;
+            outerInnerResource.MachineId = MachineId;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
-                machineArea.UpdatedAt = DateTime.Now;
-                machineArea.Version += 1;
+                outerInnerResource.UpdatedAt = DateTime.Now;
+                outerInnerResource.Version += 1;
 
-                dbContext.MachineAreaVersions.Add(MapVersions(machineArea));
+                dbContext.OuterInnerResourceVersions.Add(MapVersions(outerInnerResource));
                 dbContext.SaveChanges();
             }
         }
 
         public async Task Delete(MachineAreaPnDbContext dbContext)
         {
-            MachineArea machineArea = dbContext.MachineAreas.FirstOrDefault(x => x.Id == Id);
+            OuterInnerResource outerInnerResource = dbContext.OuterInnerResources.FirstOrDefault(x => x.Id == Id);
 
-            if (machineArea == null)
+            if (outerInnerResource == null)
             {
                 throw new NullReferenceException($"Could not find machineArea with id: {Id}");
             }
 
-            machineArea.WorkflowState = Constants.WorkflowStates.Removed;
+            outerInnerResource.WorkflowState = Constants.WorkflowStates.Removed;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
-                machineArea.UpdatedAt = DateTime.Now;
-                machineArea.Version += 1;
+                outerInnerResource.UpdatedAt = DateTime.Now;
+                outerInnerResource.Version += 1;
 
-                dbContext.MachineAreaVersions.Add(MapVersions(machineArea));
+                dbContext.OuterInnerResourceVersions.Add(MapVersions(outerInnerResource));
                 dbContext.SaveChanges();
             }
         }
 
-        private MachineAreaVersion MapVersions(MachineArea machineArea)
+        private OuterInnerResourceVersion MapVersions(OuterInnerResource outerInnerResource)
         {
-            MachineAreaVersion machineAreaVersionVer = new MachineAreaVersion();
+            OuterInnerResourceVersion outerInnerResourceVersionVer = new OuterInnerResourceVersion();
 
-            machineAreaVersionVer.AreaId = machineArea.AreaId;
-            machineAreaVersionVer.MachineId = machineArea.MachineId;
-            machineAreaVersionVer.Version = machineArea.Version;
-            machineAreaVersionVer.CreatedAt = machineArea.CreatedAt;
-            machineAreaVersionVer.UpdatedAt = machineArea.UpdatedAt;
-            machineAreaVersionVer.MachineAreaId = machineArea.Id;
+            outerInnerResourceVersionVer.AreaId = outerInnerResource.AreaId;
+            outerInnerResourceVersionVer.MachineId = outerInnerResource.MachineId;
+            outerInnerResourceVersionVer.Version = outerInnerResource.Version;
+            outerInnerResourceVersionVer.CreatedAt = outerInnerResource.CreatedAt;
+            outerInnerResourceVersionVer.UpdatedAt = outerInnerResource.UpdatedAt;
+            outerInnerResourceVersionVer.MachineAreaId = outerInnerResource.Id;
 
 
-            return machineAreaVersionVer;
+            return outerInnerResourceVersionVer;
         }
     }
 }

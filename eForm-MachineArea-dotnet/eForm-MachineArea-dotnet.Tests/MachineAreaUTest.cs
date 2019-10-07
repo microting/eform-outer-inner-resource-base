@@ -14,159 +14,159 @@ namespace eFormMachineAreaDotnet.Tests
         [Test]
         public void MachineArea_Create_DoesCreate()
         {
-            Area area = new Area()
+            OuterResource outerResource = new OuterResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            area.Create(DbContext);
+            outerResource.Create(DbContext);
             
-            Machine machine = new Machine()
+            InnerResource innerResource = new InnerResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            machine.Create(DbContext);
+            innerResource.Create(DbContext);
             
             Random rnd = new Random();
-            MachineArea machineArea = new MachineArea();
+            OuterInnerResource outerInnerResource = new OuterInnerResource();
 
-            machineArea.AreaId = area.Id;
-            machineArea.MachineId = machine.Id;
+            outerInnerResource.AreaId = outerResource.Id;
+            outerInnerResource.MachineId = innerResource.Id;
             
             //Act
             
-            machineArea.Create(DbContext);
+            outerInnerResource.Create(DbContext);
             
-            MachineArea dbMachineArea = DbContext.MachineAreas.AsNoTracking().First();
-            List<MachineArea> machineAreaList = DbContext.MachineAreas.AsNoTracking().ToList();
+            OuterInnerResource dbOuterInnerResource = DbContext.OuterInnerResources.AsNoTracking().First();
+            List<OuterInnerResource> machineAreaList = DbContext.OuterInnerResources.AsNoTracking().ToList();
             
             //Assert
             
-            Assert.NotNull(dbMachineArea);
-            Assert.NotNull(dbMachineArea.Id);
+            Assert.NotNull(dbOuterInnerResource);
+            Assert.NotNull(dbOuterInnerResource.Id);
             
-            Assert.AreEqual(machineArea.AreaId, area.Id);
-            Assert.AreEqual(machineArea.MachineId, machine.Id);
+            Assert.AreEqual(outerInnerResource.AreaId, outerResource.Id);
+            Assert.AreEqual(outerInnerResource.MachineId, innerResource.Id);
             
             Assert.AreEqual(1,machineAreaList.Count());
-            Assert.AreEqual(machineArea.CreatedAt.ToString(), dbMachineArea.CreatedAt.ToString());                                                     
-            Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
-            Assert.AreEqual(machineArea.UpdatedAt.ToString(), dbMachineArea.UpdatedAt.ToString());                                                     
-            Assert.AreEqual(dbMachineArea.WorkflowState, Constants.WorkflowStates.Created);                   
-            Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
-            Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
+            Assert.AreEqual(outerInnerResource.CreatedAt.ToString(), dbOuterInnerResource.CreatedAt.ToString());                                                     
+            Assert.AreEqual(outerInnerResource.Version, dbOuterInnerResource.Version);                                                         
+            Assert.AreEqual(outerInnerResource.UpdatedAt.ToString(), dbOuterInnerResource.UpdatedAt.ToString());                                                     
+            Assert.AreEqual(dbOuterInnerResource.WorkflowState, Constants.WorkflowStates.Created);                   
+            Assert.AreEqual(outerInnerResource.CreatedByUserId, dbOuterInnerResource.CreatedByUserId);                                         
+            Assert.AreEqual(outerInnerResource.UpdatedByUserId, dbOuterInnerResource.UpdatedByUserId);
         }
 
         [Test]
         public void MachineArea_Update_DoesUpdate()
         {
-            Area area = new Area()
+            OuterResource outerResource = new OuterResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Areas.Add(area);
+            DbContext.OuterResources.Add(outerResource);
             DbContext.SaveChanges();
             
-            Machine machine = new Machine()
+            InnerResource innerResource = new InnerResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Machines.Add(machine);
+            DbContext.InnerResources.Add(innerResource);
             DbContext.SaveChanges();
             
             Random rnd = new Random();
-            MachineArea machineArea = new MachineArea();
+            OuterInnerResource outerInnerResource = new OuterInnerResource();
 
-            machineArea.AreaId = area.Id;
-            machineArea.MachineId = machine.Id;
+            outerInnerResource.AreaId = outerResource.Id;
+            outerInnerResource.MachineId = innerResource.Id;
             
-            DbContext.MachineAreas.Add(machineArea);
+            DbContext.OuterInnerResources.Add(outerInnerResource);
             DbContext.SaveChanges();
             
             //Act
 
-            Area newArea = new Area()
+            OuterResource newOuterResource = new OuterResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Areas.Add(newArea);
+            DbContext.OuterResources.Add(newOuterResource);
             DbContext.SaveChanges();
 
-            machineArea.AreaId = newArea.Id;
-            machineArea.Update(DbContext);
+            outerInnerResource.AreaId = newOuterResource.Id;
+            outerInnerResource.Update(DbContext);
             
-            MachineArea dbMachineArea = DbContext.MachineAreas.AsNoTracking().First();
-            List<MachineArea> machineAreaList = DbContext.MachineAreas.AsNoTracking().ToList();
-            List<MachineAreaVersion> machineAreaVersions = DbContext.MachineAreaVersions.AsNoTracking().ToList();
+            OuterInnerResource dbOuterInnerResource = DbContext.OuterInnerResources.AsNoTracking().First();
+            List<OuterInnerResource> machineAreaList = DbContext.OuterInnerResources.AsNoTracking().ToList();
+            List<OuterInnerResourceVersion> machineAreaVersions = DbContext.OuterInnerResourceVersions.AsNoTracking().ToList();
             
             //Assert
             
-            Assert.NotNull(dbMachineArea);
-            Assert.NotNull(dbMachineArea.Id);
+            Assert.NotNull(dbOuterInnerResource);
+            Assert.NotNull(dbOuterInnerResource.Id);
             
-            Assert.AreEqual(dbMachineArea.AreaId, newArea.Id);
-            Assert.AreEqual(dbMachineArea.MachineId, machine.Id);
+            Assert.AreEqual(dbOuterInnerResource.AreaId, newOuterResource.Id);
+            Assert.AreEqual(dbOuterInnerResource.MachineId, innerResource.Id);
             
             Assert.AreEqual(1,machineAreaList.Count());
             Assert.AreEqual(1, machineAreaVersions.Count());
             
-            Assert.AreEqual(machineArea.CreatedAt.ToString(), dbMachineArea.CreatedAt.ToString());                                                     
-            Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
-            Assert.AreEqual(machineArea.UpdatedAt.ToString(), dbMachineArea.UpdatedAt.ToString());                                                     
-            Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
-            Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
+            Assert.AreEqual(outerInnerResource.CreatedAt.ToString(), dbOuterInnerResource.CreatedAt.ToString());                                                     
+            Assert.AreEqual(outerInnerResource.Version, dbOuterInnerResource.Version);                                                         
+            Assert.AreEqual(outerInnerResource.UpdatedAt.ToString(), dbOuterInnerResource.UpdatedAt.ToString());                                                     
+            Assert.AreEqual(outerInnerResource.CreatedByUserId, dbOuterInnerResource.CreatedByUserId);                                         
+            Assert.AreEqual(outerInnerResource.UpdatedByUserId, dbOuterInnerResource.UpdatedByUserId);
         }
 
         [Test]
         public void MachineArea_Delete_DoesSetWorkflowStateToRemoved()
         {
-            Area area = new Area()
+            OuterResource outerResource = new OuterResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Areas.Add(area);
+            DbContext.OuterResources.Add(outerResource);
             DbContext.SaveChanges();
             
-            Machine machine = new Machine()
+            InnerResource innerResource = new InnerResource()
             {
                 Name = Guid.NewGuid().ToString()
             };
-            DbContext.Machines.Add(machine);
+            DbContext.InnerResources.Add(innerResource);
             DbContext.SaveChanges();
             
             Random rnd = new Random();
-            MachineArea machineArea = new MachineArea();
+            OuterInnerResource outerInnerResource = new OuterInnerResource();
 
-            machineArea.AreaId = area.Id;
-            machineArea.MachineId = machine.Id;
+            outerInnerResource.AreaId = outerResource.Id;
+            outerInnerResource.MachineId = innerResource.Id;
             
-            DbContext.MachineAreas.Add(machineArea);
+            DbContext.OuterInnerResources.Add(outerInnerResource);
             DbContext.SaveChanges();
             
             //Act
             
-            machineArea.Delete(DbContext);
+            outerInnerResource.Delete(DbContext);
             
-            MachineArea dbMachineArea = DbContext.MachineAreas.AsNoTracking().First();
-            List<MachineArea> machineAreaList = DbContext.MachineAreas.AsNoTracking().ToList();
-            List<MachineAreaVersion> machineAreaVersions = DbContext.MachineAreaVersions.AsNoTracking().ToList();
+            OuterInnerResource dbOuterInnerResource = DbContext.OuterInnerResources.AsNoTracking().First();
+            List<OuterInnerResource> machineAreaList = DbContext.OuterInnerResources.AsNoTracking().ToList();
+            List<OuterInnerResourceVersion> machineAreaVersions = DbContext.OuterInnerResourceVersions.AsNoTracking().ToList();
             
             //Assert
             
-            Assert.NotNull(dbMachineArea);
-            Assert.NotNull(dbMachineArea.Id);
+            Assert.NotNull(dbOuterInnerResource);
+            Assert.NotNull(dbOuterInnerResource.Id);
             
-            Assert.AreEqual(dbMachineArea.MachineId, machine.Id);
-            Assert.AreEqual(dbMachineArea.AreaId, area.Id);
+            Assert.AreEqual(dbOuterInnerResource.MachineId, innerResource.Id);
+            Assert.AreEqual(dbOuterInnerResource.AreaId, outerResource.Id);
             
             Assert.AreEqual(1,machineAreaList.Count());
             Assert.AreEqual(1, machineAreaVersions.Count());
             
-            Assert.AreEqual(machineArea.CreatedAt.ToString(), dbMachineArea.CreatedAt.ToString());                                                     
-            Assert.AreEqual(machineArea.Version, dbMachineArea.Version);                                                         
-            Assert.AreEqual(machineArea.UpdatedAt.ToString(), dbMachineArea.UpdatedAt.ToString());                                                     
-            Assert.AreEqual(machineArea.CreatedByUserId, dbMachineArea.CreatedByUserId);                                         
-            Assert.AreEqual(machineArea.UpdatedByUserId, dbMachineArea.UpdatedByUserId);
-            Assert.AreEqual(dbMachineArea.WorkflowState, Constants.WorkflowStates.Removed);
+            Assert.AreEqual(outerInnerResource.CreatedAt.ToString(), dbOuterInnerResource.CreatedAt.ToString());                                                     
+            Assert.AreEqual(outerInnerResource.Version, dbOuterInnerResource.Version);                                                         
+            Assert.AreEqual(outerInnerResource.UpdatedAt.ToString(), dbOuterInnerResource.UpdatedAt.ToString());                                                     
+            Assert.AreEqual(outerInnerResource.CreatedByUserId, dbOuterInnerResource.CreatedByUserId);                                         
+            Assert.AreEqual(outerInnerResource.UpdatedByUserId, dbOuterInnerResource.UpdatedByUserId);
+            Assert.AreEqual(dbOuterInnerResource.WorkflowState, Constants.WorkflowStates.Removed);
         }
     }
 }

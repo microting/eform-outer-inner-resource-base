@@ -28,7 +28,7 @@ using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
-    public class Area : BaseEntity
+    public class OuterResource : BaseEntity
     {
 //        public Area()
 //        {
@@ -47,67 +47,67 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             Version = 1;
             WorkflowState = Constants.WorkflowStates.Created;
 
-            dbContext.Areas.Add(this);
+            dbContext.OuterResources.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.AreaVersions.Add(MapVersions(this));
+            dbContext.OuterResourceVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
         {
-            Area area = dbContext.Areas.FirstOrDefault(x => x.Id == Id);
+            OuterResource outerResource = dbContext.OuterResources.FirstOrDefault(x => x.Id == Id);
 
-            if (area == null)
+            if (outerResource == null)
             {
                 throw new NullReferenceException($"Could not find area with id: {Id}");
             }
 
-            area.Name = Name;
+            outerResource.Name = Name;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
-                area.UpdatedAt = DateTime.Now;
-                area.Version += 1;
+                outerResource.UpdatedAt = DateTime.Now;
+                outerResource.Version += 1;
 
-                dbContext.AreaVersions.Add(MapVersions(area));
+                dbContext.OuterResourceVersions.Add(MapVersions(outerResource));
                 dbContext.SaveChanges();
             }
         }
 
         public async Task Delete(MachineAreaPnDbContext dbContext)
         {
-            Area area = dbContext.Areas.FirstOrDefault(x => x.Id == Id);
+            OuterResource outerResource = dbContext.OuterResources.FirstOrDefault(x => x.Id == Id);
 
-            if (area == null)
+            if (outerResource == null)
             {
                 throw new NullReferenceException($"Could not find area with id: {Id}");
             }
 
-            area.WorkflowState = Constants.WorkflowStates.Removed;
+            outerResource.WorkflowState = Constants.WorkflowStates.Removed;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
-                area.UpdatedAt = DateTime.Now;
-                area.Version += 1;
+                outerResource.UpdatedAt = DateTime.Now;
+                outerResource.Version += 1;
 
-                dbContext.AreaVersions.Add(MapVersions(area));
+                dbContext.OuterResourceVersions.Add(MapVersions(outerResource));
                 dbContext.SaveChanges();
             }
         }
 
-        private AreaVersion MapVersions(Area area)
+        private OuterResourceVersion MapVersions(OuterResource outerResource)
         {
-            AreaVersion areaVer = new AreaVersion();
+            OuterResourceVersion outerResourceVer = new OuterResourceVersion();
 
-            areaVer.Name = area.Name;
-            areaVer.Version = area.Version;
-            areaVer.AreaId = area.Id;
-            areaVer.CreatedAt = area.CreatedAt;
-            areaVer.UpdatedAt = area.UpdatedAt;
+            outerResourceVer.Name = outerResource.Name;
+            outerResourceVer.Version = outerResource.Version;
+            outerResourceVer.AreaId = outerResource.Id;
+            outerResourceVer.CreatedAt = outerResource.CreatedAt;
+            outerResourceVer.UpdatedAt = outerResource.UpdatedAt;
 
 
-            return areaVer;
+            return outerResourceVer;
         }
     }
 }

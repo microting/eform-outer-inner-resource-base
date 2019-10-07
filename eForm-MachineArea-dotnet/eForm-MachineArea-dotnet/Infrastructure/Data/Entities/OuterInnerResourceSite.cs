@@ -27,7 +27,7 @@ using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 {
-    public class MachineAreaSite : BaseEntity
+    public class OuterInnerResourceSite : BaseEntity
     {        
         public int MicrotingSdkeFormId { get; set; }
         
@@ -49,72 +49,72 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             Version = 1;
             WorkflowState = Constants.WorkflowStates.Created;
 
-            dbContext.MachineAreaSites.Add(this);
+            dbContext.OuterInnerResourceSites.Add(this);
             dbContext.SaveChanges();
 
-            dbContext.MachineAreaSiteVersions.Add(MapVersions(this));
+            dbContext.OuterInnerResourceSiteVersions.Add(MapVersions(this));
             dbContext.SaveChanges();
         }
 
         public async Task Update(MachineAreaPnDbContext dbContext)
         {
-            MachineAreaSite machineAreaSite = dbContext.MachineAreaSites.FirstOrDefault(x => x.Id == Id);
+            OuterInnerResourceSite outerInnerResourceSite = dbContext.OuterInnerResourceSites.FirstOrDefault(x => x.Id == Id);
 
-            if (machineAreaSite == null)
+            if (outerInnerResourceSite == null)
             {
                 throw new NullReferenceException($"Could not find machineArea with id: {Id}");
             }
 
-            machineAreaSite.MachineAreaId = MachineAreaId;
-            machineAreaSite.MicrotingSdkCaseId = MicrotingSdkCaseId;
-            machineAreaSite.MicrotingSdkeFormId = MicrotingSdkeFormId;
-            machineAreaSite.MicrotingSdkSiteId = MicrotingSdkSiteId;
+            outerInnerResourceSite.MachineAreaId = MachineAreaId;
+            outerInnerResourceSite.MicrotingSdkCaseId = MicrotingSdkCaseId;
+            outerInnerResourceSite.MicrotingSdkeFormId = MicrotingSdkeFormId;
+            outerInnerResourceSite.MicrotingSdkSiteId = MicrotingSdkSiteId;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
-                machineAreaSite.UpdatedAt = DateTime.Now;
-                machineAreaSite.Version += 1;
+                outerInnerResourceSite.UpdatedAt = DateTime.Now;
+                outerInnerResourceSite.Version += 1;
 
-                dbContext.MachineAreaSiteVersions.Add(MapVersions(machineAreaSite));
+                dbContext.OuterInnerResourceSiteVersions.Add(MapVersions(outerInnerResourceSite));
                 dbContext.SaveChanges();
             }
         }
 
         public async Task Delete(MachineAreaPnDbContext dbContext)
         {
-            MachineAreaSite machineAreaSite = dbContext.MachineAreaSites.FirstOrDefault(x => x.Id == Id);
+            OuterInnerResourceSite outerInnerResourceSite = dbContext.OuterInnerResourceSites.FirstOrDefault(x => x.Id == Id);
 
-            if (machineAreaSite == null)
+            if (outerInnerResourceSite == null)
             {
                 throw new NullReferenceException($"Could not find machineArea with id: {Id}");
             }
 
-            machineAreaSite.WorkflowState = Constants.WorkflowStates.Removed;
+            outerInnerResourceSite.WorkflowState = Constants.WorkflowStates.Removed;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
-                machineAreaSite.UpdatedAt = DateTime.Now;
-                machineAreaSite.Version += 1;
+                outerInnerResourceSite.UpdatedAt = DateTime.Now;
+                outerInnerResourceSite.Version += 1;
 
-                dbContext.MachineAreaSiteVersions.Add(MapVersions(machineAreaSite));
+                dbContext.OuterInnerResourceSiteVersions.Add(MapVersions(outerInnerResourceSite));
                 dbContext.SaveChanges();
             }
         }
 
-        private MachineAreaSiteVersion MapVersions(MachineAreaSite machineAreaSite)
+        private OuterInnerResourceSiteVersion MapVersions(OuterInnerResourceSite outerInnerResourceSite)
         {
-            MachineAreaSiteVersion machineAreaSiteVersionVer = new MachineAreaSiteVersion();
+            OuterInnerResourceSiteVersion outerInnerResourceSiteVersionVer = new OuterInnerResourceSiteVersion();
 
-            machineAreaSiteVersionVer.MachineAreaId = machineAreaSite.MachineAreaId;
-            machineAreaSiteVersionVer.MicrotingSdkCaseId = machineAreaSite.MicrotingSdkCaseId;
-            machineAreaSiteVersionVer.MicrotingSdkeFormId = machineAreaSite.MicrotingSdkeFormId;
-            machineAreaSiteVersionVer.MachineAreaSiteId = machineAreaSite.Id;
-            machineAreaSiteVersionVer.Version = machineAreaSite.Version;
-            machineAreaSiteVersionVer.CreatedAt = machineAreaSite.CreatedAt;
-            machineAreaSiteVersionVer.UpdatedAt = machineAreaSite.UpdatedAt;
+            outerInnerResourceSiteVersionVer.MachineAreaId = outerInnerResourceSite.MachineAreaId;
+            outerInnerResourceSiteVersionVer.MicrotingSdkCaseId = outerInnerResourceSite.MicrotingSdkCaseId;
+            outerInnerResourceSiteVersionVer.MicrotingSdkeFormId = outerInnerResourceSite.MicrotingSdkeFormId;
+            outerInnerResourceSiteVersionVer.MachineAreaSiteId = outerInnerResourceSite.Id;
+            outerInnerResourceSiteVersionVer.Version = outerInnerResourceSite.Version;
+            outerInnerResourceSiteVersionVer.CreatedAt = outerInnerResourceSite.CreatedAt;
+            outerInnerResourceSiteVersionVer.UpdatedAt = outerInnerResourceSite.UpdatedAt;
 
 
-            return machineAreaSiteVersionVer;
+            return outerInnerResourceSiteVersionVer;
         }
     }
     

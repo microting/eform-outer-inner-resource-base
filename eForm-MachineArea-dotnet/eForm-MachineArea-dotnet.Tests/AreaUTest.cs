@@ -16,29 +16,29 @@ namespace eFormMachineAreaDotnet.Tests
         {
             //Arrange
             
-            Area area = new Area();
-            area.Name = Guid.NewGuid().ToString();
+            OuterResource outerResource = new OuterResource();
+            outerResource.Name = Guid.NewGuid().ToString();
 
             //Act
 
-            area.Create(DbContext);
+            outerResource.Create(DbContext);
 
-            Area dbArea = DbContext.Areas.AsNoTracking().First();
-            List<Area> areaList = DbContext.Areas.AsNoTracking().ToList();
+            OuterResource dbOuterResource = DbContext.OuterResources.AsNoTracking().First();
+            List<OuterResource> areaList = DbContext.OuterResources.AsNoTracking().ToList();
             
             //Assert
             
-            Assert.NotNull(dbArea);
-            Assert.NotNull(dbArea.Id);
+            Assert.NotNull(dbOuterResource);
+            Assert.NotNull(dbOuterResource.Id);
             
             Assert.AreEqual(1,areaList.Count());
-            Assert.AreEqual(area.CreatedAt.ToString(), dbArea.CreatedAt.ToString());
-            Assert.AreEqual(area.Version, dbArea.Version);
-            Assert.AreEqual(area.UpdatedAt.ToString(), dbArea.UpdatedAt.ToString());
-            Assert.AreEqual(dbArea.WorkflowState, Constants.WorkflowStates.Created);
-            Assert.AreEqual(area.CreatedByUserId, dbArea.CreatedByUserId);
-            Assert.AreEqual(area.UpdatedByUserId, dbArea.UpdatedByUserId);
-            Assert.AreEqual(area.Name, dbArea.Name);
+            Assert.AreEqual(outerResource.CreatedAt.ToString(), dbOuterResource.CreatedAt.ToString());
+            Assert.AreEqual(outerResource.Version, dbOuterResource.Version);
+            Assert.AreEqual(outerResource.UpdatedAt.ToString(), dbOuterResource.UpdatedAt.ToString());
+            Assert.AreEqual(dbOuterResource.WorkflowState, Constants.WorkflowStates.Created);
+            Assert.AreEqual(outerResource.CreatedByUserId, dbOuterResource.CreatedByUserId);
+            Assert.AreEqual(outerResource.UpdatedByUserId, dbOuterResource.UpdatedByUserId);
+            Assert.AreEqual(outerResource.Name, dbOuterResource.Name);
         }
 
         [Test]
@@ -46,34 +46,34 @@ namespace eFormMachineAreaDotnet.Tests
         {
             //Arrange
             
-            Area area = new Area();
-            area.Name = Guid.NewGuid().ToString();
+            OuterResource outerResource = new OuterResource();
+            outerResource.Name = Guid.NewGuid().ToString();
 
-            DbContext.Areas.Add(area);
+            DbContext.OuterResources.Add(outerResource);
             DbContext.SaveChanges();
             
             //Act
 
-            area.Name = Guid.NewGuid().ToString();
+            outerResource.Name = Guid.NewGuid().ToString();
 
-            area.Update(DbContext);
+            outerResource.Update(DbContext);
 
-            Area dbArea = DbContext.Areas.AsNoTracking().First();
-            List<Area> areasList = DbContext.Areas.AsNoTracking().ToList();
-            List<AreaVersion> areaVersions = DbContext.AreaVersions.AsNoTracking().ToList();
+            OuterResource dbOuterResource = DbContext.OuterResources.AsNoTracking().First();
+            List<OuterResource> areasList = DbContext.OuterResources.AsNoTracking().ToList();
+            List<OuterResourceVersion> areaVersions = DbContext.OuterResourceVersions.AsNoTracking().ToList();
             
             //Assert
             
-            Assert.NotNull(dbArea);
+            Assert.NotNull(dbOuterResource);
             
             Assert.AreEqual(1, areasList.Count());
             Assert.AreEqual(1, areaVersions.Count());
-            Assert.AreEqual(area.Name, dbArea.Name);
-            Assert.AreEqual(area.CreatedAt.ToString(), dbArea.CreatedAt.ToString());
-            Assert.AreEqual(area.Version, dbArea.Version);                                        
-            Assert.AreEqual(area.UpdatedAt.ToString(), dbArea.UpdatedAt.ToString());
-            Assert.AreEqual(area.CreatedByUserId, dbArea.CreatedByUserId);                        
-            Assert.AreEqual(area.UpdatedByUserId, dbArea.UpdatedByUserId);                        
+            Assert.AreEqual(outerResource.Name, dbOuterResource.Name);
+            Assert.AreEqual(outerResource.CreatedAt.ToString(), dbOuterResource.CreatedAt.ToString());
+            Assert.AreEqual(outerResource.Version, dbOuterResource.Version);                                        
+            Assert.AreEqual(outerResource.UpdatedAt.ToString(), dbOuterResource.UpdatedAt.ToString());
+            Assert.AreEqual(outerResource.CreatedByUserId, dbOuterResource.CreatedByUserId);                        
+            Assert.AreEqual(outerResource.UpdatedByUserId, dbOuterResource.UpdatedByUserId);                        
         }
 
         [Test]
@@ -81,34 +81,34 @@ namespace eFormMachineAreaDotnet.Tests
         {
             //Arrange
             
-            Area area = new Area();
-            area.Name = Guid.NewGuid().ToString();
+            OuterResource outerResource = new OuterResource();
+            outerResource.Name = Guid.NewGuid().ToString();
 
-            DbContext.Areas.Add(area);
+            DbContext.OuterResources.Add(outerResource);
             DbContext.SaveChanges();
             
             //Act
-            area.Delete(DbContext);
+            outerResource.Delete(DbContext);
 
-            Area dbArea = DbContext.Areas.AsNoTracking().First();
-            List<Area> areaList = DbContext.Areas.AsNoTracking().ToList();
-            List<AreaVersion> areaVersions = DbContext.AreaVersions.AsNoTracking().ToList();
+            OuterResource dbOuterResource = DbContext.OuterResources.AsNoTracking().First();
+            List<OuterResource> areaList = DbContext.OuterResources.AsNoTracking().ToList();
+            List<OuterResourceVersion> areaVersions = DbContext.OuterResourceVersions.AsNoTracking().ToList();
             
             //Assert
             
-            Assert.NotNull(dbArea);
+            Assert.NotNull(dbOuterResource);
             
             Assert.AreEqual(1, areaList.Count());
             Assert.AreEqual(1, areaVersions.Count());
             
-            Assert.AreEqual(area.Name, dbArea.Name);
-            Assert.AreEqual(area.CreatedAt.ToString(), dbArea.CreatedAt.ToString());
-            Assert.AreEqual(dbArea.WorkflowState, Constants.WorkflowStates.Removed);
+            Assert.AreEqual(outerResource.Name, dbOuterResource.Name);
+            Assert.AreEqual(outerResource.CreatedAt.ToString(), dbOuterResource.CreatedAt.ToString());
+            Assert.AreEqual(dbOuterResource.WorkflowState, Constants.WorkflowStates.Removed);
                                                                             
-            Assert.AreEqual(area.Version, dbArea.Version);                 
-            Assert.AreEqual(area.UpdatedAt.ToString(), dbArea.UpdatedAt.ToString());             
-            Assert.AreEqual(area.CreatedByUserId, dbArea.CreatedByUserId); 
-            Assert.AreEqual(area.UpdatedByUserId, dbArea.UpdatedByUserId); 
+            Assert.AreEqual(outerResource.Version, dbOuterResource.Version);                 
+            Assert.AreEqual(outerResource.UpdatedAt.ToString(), dbOuterResource.UpdatedAt.ToString());             
+            Assert.AreEqual(outerResource.CreatedByUserId, dbOuterResource.CreatedByUserId); 
+            Assert.AreEqual(outerResource.UpdatedByUserId, dbOuterResource.UpdatedByUserId); 
         }
     }
 }
