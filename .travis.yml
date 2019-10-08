@@ -3,20 +3,19 @@ branches:
   only:
     - master
 language: csharp
-solution: eForm-MachineArea-dotnet/eForm-MachineArea-dotnet.sln
+solution: Microting.eFormOuterInnerResourceBase.sln
 mono: none
 dotnet: 2.2
 services:
 - mysql
 script:
-  - cd eForm-MachineArea-dotnet
   - dotnet restore
-  - dotnet build eForm-MachineArea-dotnet.sln
-  - dotnet test -v n eForm-MachineArea-dotnet.Integration.Tests/eForm-MachineArea-dotnet.Integration.Tests.csproj
-  - dotnet build eForm-MachineArea-dotnet.sln -c Release
+  - dotnet build Microting.eFormOuterInnerResourceBase.sln
+  - dotnet test -v n Microting.eFormOuterInnerResourceBase.Tests/Microting.eFormOuterInnerResourceBase.Tests.csproj
+  - dotnet build Microting.eFormOuterInnerResourceBase.sln -c Release
   - export GITVERSION=`git describe --abbrev=0 --tags | cut -d "v" -f 2`
   - echo $GITVERSION
-  - dotnet pack eForm-MachineArea-dotnet.sln -c Release -o ./artifacts -p:PackageVersion=$GITVERSION
-  - export FILENAME="/home/travis/build/microting/eform-machinearea-dotnet/eForm-MachineArea-dotnet/eForm-MachineArea-dotnet/artifacts/Microting.eFormMachineAreaBase.${GITVERSION}.nupkg"
+  - dotnet pack Microting.eFormOuterInnerResourceBase.sln -c Release -o ./artifacts -p:PackageVersion=$GITVERSION
+  - export FILENAME="/home/travis/build/microting/eform-machinearea-dotnet/Microting.eFormOuterInnerResourceBase/artifacts/Microting.eFormOuterInnerResourceBase.${GITVERSION}.nupkg"
   - echo $FILENAME
   - dotnet nuget push $FILENAME -k $NUGET_SECRET_KEY -s https://api.nuget.org/v3/index.json || true
