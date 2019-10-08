@@ -49,11 +49,11 @@ namespace eFormMachineAreaDotnet.Tests
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                _connectionString = @"data source=(LocalDb)\SharedInstance;Initial catalog=machine-area-base-tests;Integrated Security=true";
+                _connectionString = @"data source=(LocalDb)\SharedInstance;Initial catalog=outer-inner-resource-tests;Integrated Security=true";
             }
             else
             {
-                _connectionString = @"Server = localhost; port = 3306; Database = machine-area-base-tests; user = root; Convert Zero Datetime = true;";
+                _connectionString = @"Server = localhost; port = 3306; Database = outer-inner-resource-tests; user = root; Convert Zero Datetime = true;";
             }
 
             GetContext(_connectionString);
@@ -75,23 +75,21 @@ namespace eFormMachineAreaDotnet.Tests
         public void TearDown()
         {
             ClearDb();
-
-            ClearFile();
-
+            
             DbContext.Dispose();
         }
 
         private void ClearDb()
         {
             List<string> modelNames = new List<string>();
-            modelNames.Add("Areas");
-            modelNames.Add("AreaVersions");
-            modelNames.Add("Machines");
-            modelNames.Add("MachineVersions");
-            modelNames.Add("MachineAreas");
-            modelNames.Add("MachineAreaVersions");
-            modelNames.Add("MachineAreaTimeRegistrations");
-            modelNames.Add("MachineAreaTimeRegistrationVersions");
+            modelNames.Add("OuterResources");
+            modelNames.Add("OuterResourceVersions");
+            modelNames.Add("InnerResources");
+            modelNames.Add("InnerResourceVersions");
+            modelNames.Add("OuterInnerResources");
+            modelNames.Add("OuterInnerResourceVersions");
+            modelNames.Add("ResourceTimeRegistrations");
+            modelNames.Add("ResourceTimeRegistrationVersions");
             modelNames.Add("PluginConfigurationValues");
             modelNames.Add("PluginConfigurationValueVersions");
 
@@ -102,7 +100,7 @@ namespace eFormMachineAreaDotnet.Tests
                     string sqlCmd;
                     if (DbContext.Database.IsMySql())
                     {
-                        sqlCmd = $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `machine-area-base-tests`.`{modelName}`";
+                        sqlCmd = $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `outer-inner-resource-tests`.`{modelName}`";
                     }
                     else
                     {
@@ -117,25 +115,6 @@ namespace eFormMachineAreaDotnet.Tests
             }
         }
         private string path;
-
-        private void ClearFile()
-        {
-            path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
-            path = System.IO.Path.GetDirectoryName(path).Replace(@"file:\", "");
-
-            string picturePath = path + @"\output\dataFolder\picture\Deleted";
-
-            DirectoryInfo diPic = new DirectoryInfo(picturePath);
-
-            try
-            {
-                foreach (FileInfo file in diPic.GetFiles())
-                {
-                    file.Delete();
-                }
-            }
-            catch { }
-        }
 
         protected virtual void DoSetup() { }
     }

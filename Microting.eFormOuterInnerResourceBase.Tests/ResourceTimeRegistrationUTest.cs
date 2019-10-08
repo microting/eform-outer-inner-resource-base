@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using eFormMachineAreaDotnet.Tests;
 using Microsoft.EntityFrameworkCore;
 using Microting.eForm.Infrastructure.Constants;
 using Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
-namespace eFormMachineAreaDotnet.Tests
+namespace eForm_MachineArea_dotnet.Tests
 {
     [TestFixture]
-    public class MachineAreaTimeRegistrationUTest : DbTestFixture
+    public class ResourceTimeRegistrationUTest : DbTestFixture
     {
         [Test]
         public void MachineAreaTimeRegistration_Create_DoesCreate()
@@ -38,8 +39,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.OuterResource = outerResource;
-            matr.InnerResource = innerResource;
+            matr.OuterResourceId = outerResource.Id;
+            matr.InnerResourceId = innerResource.Id;
             
             //Act
             
@@ -53,7 +54,7 @@ namespace eFormMachineAreaDotnet.Tests
             
             Assert.NotNull(dbMatr);
             
-            Assert.AreEqual(matr.DoneAt, dbMatr.DoneAt);
+            Assert.AreEqual(matr.DoneAt.ToString(), dbMatr.DoneAt.ToString());
             Assert.AreEqual(matr.TimeInHours, dbMatr.TimeInHours);
             Assert.AreEqual(matr.TimeInMinutes, dbMatr.TimeInMinutes);
             Assert.AreEqual(matr.TimeInSeconds, dbMatr.TimeInSeconds);
@@ -93,8 +94,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.OuterResource = outerResource;
-            matr.InnerResource = innerResource;
+            matr.OuterResourceId = outerResource.Id;
+            matr.InnerResourceId = innerResource.Id;
 
             DbContext.ResourceTimeRegistrations.Add(matr);
             DbContext.SaveChanges();
@@ -113,7 +114,7 @@ namespace eFormMachineAreaDotnet.Tests
             
             Assert.NotNull(dbMatr);
             
-            Assert.AreEqual(matr.DoneAt, dbMatr.DoneAt);
+            Assert.AreEqual(matr.DoneAt.ToString(), dbMatr.DoneAt.ToString());
             Assert.AreEqual(matr.TimeInHours, dbMatr.TimeInHours);
             Assert.AreEqual(matr.TimeInMinutes, dbMatr.TimeInMinutes);
             Assert.AreEqual(matr.TimeInSeconds, dbMatr.TimeInSeconds);
@@ -154,8 +155,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.OuterResource = outerResource;
-            matr.InnerResource = innerResource;
+            matr.OuterResourceId = outerResource.Id;
+            matr.InnerResourceId = innerResource.Id;
 
             DbContext.ResourceTimeRegistrations.Add(matr);
             DbContext.SaveChanges();
@@ -175,7 +176,7 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.NotNull(dbMatr);
             Assert.AreEqual(dbMatr.WorkflowState, Constants.WorkflowStates.Removed);
             
-            Assert.AreEqual(matr.DoneAt, dbMatr.DoneAt);
+            Assert.AreEqual(matr.DoneAt.ToString(), dbMatr.DoneAt.ToString());
             Assert.AreEqual(matr.TimeInHours, dbMatr.TimeInHours);
             Assert.AreEqual(matr.TimeInMinutes, dbMatr.TimeInMinutes);
             Assert.AreEqual(matr.TimeInSeconds, dbMatr.TimeInSeconds);
