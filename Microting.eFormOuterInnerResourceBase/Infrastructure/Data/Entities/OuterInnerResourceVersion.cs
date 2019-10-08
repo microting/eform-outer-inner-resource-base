@@ -27,15 +27,15 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
     {
         public int InnerResourceId { get; set; }
 
-//        public virtual Machine Machine { get; set; }
+        public virtual InnerResource InnerResource { get; set; }
 
         public int OuterResourceId { get; set; }
 
-//        public virtual Area Area { get; set; }
+        public virtual OuterResource OuterResource { get; set; }
         
-        [ForeignKey("MachineArea")]
+        [ForeignKey("OuterInnerResource")]
         public int OuterInnerResourceId { get; set; }
         
-//        public virtual MachineArea MachineArea { get; set; }
+        public virtual OuterInnerResource OuterInnerResource { get; set; }
     }
 }

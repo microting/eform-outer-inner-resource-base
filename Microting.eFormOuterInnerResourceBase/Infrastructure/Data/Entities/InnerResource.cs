@@ -19,6 +19,7 @@ SOFTWARE.
 */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,15 +29,15 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
 {
     public class InnerResource : BaseEntity
     {
-//        public Machine()
-//        {
-//            this.MachineAreas = new HashSet<MachineArea>();
-//        }
+        public InnerResource()
+        {
+            this.OuterInnerResources = new HashSet<OuterInnerResource>();
+        }
 
         [StringLength(250)]
         public string Name { get; set; }
         
-//        public virtual ICollection<MachineArea> MachineAreas { get; set; }
+        public virtual ICollection<OuterInnerResource> OuterInnerResources { get; set; }
 
         public async Task Create(OuterInnerResourcePnDbContext dbContext)
         {

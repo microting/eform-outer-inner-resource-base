@@ -29,10 +29,10 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         [StringLength(250)]
         public string Name { get; set; }
         
-        [ForeignKey("Area")]
+        [ForeignKey("OuterResource")]
         public int OuterResourceId { get; set; }
         
-//        public virtual Area Area { get; set; }
+        public virtual OuterResource OuterResource { get; set; }
         
     }
 }

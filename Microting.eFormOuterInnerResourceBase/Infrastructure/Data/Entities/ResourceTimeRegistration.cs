@@ -28,15 +28,15 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
 {
     public class ResourceTimeRegistration : BaseEntity
     {
-        [ForeignKey("Machine")]
+        [ForeignKey("InnerResource")]
         public int InnerResourceId { get; set; }
         
-//        public virtual Machine Machine { get; set; }
+        public virtual InnerResource InnerResource { get; set; }
         
-        [ForeignKey("Area")]
+        [ForeignKey("OuterResource")]
         public int OuterResourceId { get; set; }
         
-//        public virtual Area Area { get; set; }
+        public virtual OuterResource OuterResource { get; set; }
         
         public DateTime DoneAt { get; set; }
         

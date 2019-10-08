@@ -29,9 +29,9 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         [StringLength(250)]
         public string Name { get; set; }
         
-        [ForeignKey("Machine")]
+        [ForeignKey("InnerResource")]
         public int InnerResourceId { get; set; }
         
-//        public virtual Machine Machine { get; set; }
+        public virtual InnerResource InnerResource { get; set; }
     }
 }

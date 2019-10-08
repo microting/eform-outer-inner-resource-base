@@ -29,11 +29,11 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         
         public int InnerResourceId { get; set; }
         
-//        public virtual Machine Machine { get; set; }
+        public virtual InnerResource InnerResource { get; set; }
         
         public int OuterResourceId { get; set; }
         
-//        public virtual Area Area { get; set; }
+        public virtual OuterResource OuterResource { get; set; }
         
         public DateTime DoneAt { get; set; }
         
@@ -49,9 +49,9 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         
         public int SDKSiteId { get; set; }
         
-        [ForeignKey("MachineAreaTimeRegistration")]
+        [ForeignKey("ResourceTimeRegistration")]
         public int MachineAreaTimeRegistrationId { get; set; }
         
-//        public virtual MachineAreaTimeRegistration MachineAreaTimeRegistration { get; set; }
+        public virtual ResourceTimeRegistration ResourceTimeRegistration { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         
         public int OuterInnerResourceId { get; set; }
         
-        [ForeignKey("MachineAreaSite")]
+        [ForeignKey("OuterInnerResourceSite")]
         public int OuterInnerResourceSiteId { get; set; }
         
         public int MicrotingSdkSiteId { get; set; }
