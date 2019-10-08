@@ -102,7 +102,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 
             outerResourceVer.Name = outerResource.Name;
             outerResourceVer.Version = outerResource.Version;
-            outerResourceVer.AreaId = outerResource.Id;
+            outerResourceVer.OuterResourceId = outerResource.Id;
             outerResourceVer.CreatedAt = outerResource.CreatedAt;
             outerResourceVer.UpdatedAt = outerResource.UpdatedAt;
 

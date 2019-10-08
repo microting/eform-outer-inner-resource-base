@@ -29,8 +29,8 @@ namespace eFormMachineAreaDotnet.Tests
             Random rnd = new Random();
             OuterInnerResource outerInnerResource = new OuterInnerResource();
 
-            outerInnerResource.AreaId = outerResource.Id;
-            outerInnerResource.MachineId = innerResource.Id;
+            outerInnerResource.OuterResourceId = outerResource.Id;
+            outerInnerResource.InnerResourceId = innerResource.Id;
             
             //Act
             
@@ -44,8 +44,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.NotNull(dbOuterInnerResource);
             Assert.NotNull(dbOuterInnerResource.Id);
             
-            Assert.AreEqual(outerInnerResource.AreaId, outerResource.Id);
-            Assert.AreEqual(outerInnerResource.MachineId, innerResource.Id);
+            Assert.AreEqual(outerInnerResource.OuterResourceId, outerResource.Id);
+            Assert.AreEqual(outerInnerResource.InnerResourceId, innerResource.Id);
             
             Assert.AreEqual(1,machineAreaList.Count());
             Assert.AreEqual(outerInnerResource.CreatedAt.ToString(), dbOuterInnerResource.CreatedAt.ToString());                                                     
@@ -76,8 +76,8 @@ namespace eFormMachineAreaDotnet.Tests
             Random rnd = new Random();
             OuterInnerResource outerInnerResource = new OuterInnerResource();
 
-            outerInnerResource.AreaId = outerResource.Id;
-            outerInnerResource.MachineId = innerResource.Id;
+            outerInnerResource.OuterResourceId = outerResource.Id;
+            outerInnerResource.InnerResourceId = innerResource.Id;
             
             DbContext.OuterInnerResources.Add(outerInnerResource);
             DbContext.SaveChanges();
@@ -91,7 +91,7 @@ namespace eFormMachineAreaDotnet.Tests
             DbContext.OuterResources.Add(newOuterResource);
             DbContext.SaveChanges();
 
-            outerInnerResource.AreaId = newOuterResource.Id;
+            outerInnerResource.OuterResourceId = newOuterResource.Id;
             outerInnerResource.Update(DbContext);
             
             OuterInnerResource dbOuterInnerResource = DbContext.OuterInnerResources.AsNoTracking().First();
@@ -103,8 +103,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.NotNull(dbOuterInnerResource);
             Assert.NotNull(dbOuterInnerResource.Id);
             
-            Assert.AreEqual(dbOuterInnerResource.AreaId, newOuterResource.Id);
-            Assert.AreEqual(dbOuterInnerResource.MachineId, innerResource.Id);
+            Assert.AreEqual(dbOuterInnerResource.OuterResourceId, newOuterResource.Id);
+            Assert.AreEqual(dbOuterInnerResource.InnerResourceId, innerResource.Id);
             
             Assert.AreEqual(1,machineAreaList.Count());
             Assert.AreEqual(1, machineAreaVersions.Count());
@@ -136,8 +136,8 @@ namespace eFormMachineAreaDotnet.Tests
             Random rnd = new Random();
             OuterInnerResource outerInnerResource = new OuterInnerResource();
 
-            outerInnerResource.AreaId = outerResource.Id;
-            outerInnerResource.MachineId = innerResource.Id;
+            outerInnerResource.OuterResourceId = outerResource.Id;
+            outerInnerResource.InnerResourceId = innerResource.Id;
             
             DbContext.OuterInnerResources.Add(outerInnerResource);
             DbContext.SaveChanges();
@@ -155,8 +155,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.NotNull(dbOuterInnerResource);
             Assert.NotNull(dbOuterInnerResource.Id);
             
-            Assert.AreEqual(dbOuterInnerResource.MachineId, innerResource.Id);
-            Assert.AreEqual(dbOuterInnerResource.AreaId, outerResource.Id);
+            Assert.AreEqual(dbOuterInnerResource.InnerResourceId, innerResource.Id);
+            Assert.AreEqual(dbOuterInnerResource.OuterResourceId, outerResource.Id);
             
             Assert.AreEqual(1,machineAreaList.Count());
             Assert.AreEqual(1, machineAreaVersions.Count());

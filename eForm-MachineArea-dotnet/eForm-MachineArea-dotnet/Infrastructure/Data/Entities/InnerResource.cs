@@ -102,11 +102,11 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             InnerResourceVersion innerResourceVer = new InnerResourceVersion();
 
             innerResourceVer.Name = innerResource.Name;
-            innerResourceVer.MachineId = innerResource.Id;
+            innerResourceVer.InnerResourceId = innerResource.Id;
             innerResourceVer.Version = innerResource.Version;
             innerResourceVer.CreatedAt = innerResource.CreatedAt;
             innerResourceVer.UpdatedAt = innerResource.UpdatedAt;
-            innerResourceVer.MachineId = innerResource.Id;
+            innerResourceVer.InnerResourceId = innerResource.Id;
 
 
             return innerResourceVer;

@@ -38,8 +38,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.AreaId = outerResource.Id;
-            matr.MachineId = innerResource.Id;
+            matr.OuterResourceId = outerResource.Id;
+            matr.InnerResourceId = innerResource.Id;
             
             //Act
             
@@ -60,8 +60,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(matr.SDKCaseId, dbMatr.SDKCaseId);
             Assert.AreEqual(matr.SDKSiteId, dbMatr.SDKSiteId);
             Assert.AreEqual(matr.SDKFieldValueId, dbMatr.SDKFieldValueId);
-            Assert.AreEqual(matr.AreaId, dbMatr.AreaId);
-            Assert.AreEqual(matr.MachineId, dbMatr.MachineId);
+            Assert.AreEqual(matr.OuterResourceId, dbMatr.OuterResourceId);
+            Assert.AreEqual(matr.InnerResourceId, dbMatr.InnerResourceId);
             
             Assert.AreEqual(1,matrList.Count());
         }
@@ -93,8 +93,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.AreaId = outerResource.Id;
-            matr.MachineId = innerResource.Id;
+            matr.OuterResourceId = outerResource.Id;
+            matr.InnerResourceId = innerResource.Id;
 
             DbContext.ResourceTimeRegistrations.Add(matr);
             DbContext.SaveChanges();
@@ -120,8 +120,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(matr.SDKCaseId, dbMatr.SDKCaseId);
             Assert.AreEqual(matr.SDKSiteId, dbMatr.SDKSiteId);
             Assert.AreEqual(matr.SDKFieldValueId, dbMatr.SDKFieldValueId);
-            Assert.AreEqual(matr.AreaId, dbMatr.AreaId);
-            Assert.AreEqual(matr.MachineId, dbMatr.MachineId);
+            Assert.AreEqual(matr.OuterResourceId, dbMatr.OuterResourceId);
+            Assert.AreEqual(matr.InnerResourceId, dbMatr.InnerResourceId);
             
             Assert.AreEqual(1,matrList.Count());
             Assert.AreEqual(1, matrVersions.Count());
@@ -154,8 +154,8 @@ namespace eFormMachineAreaDotnet.Tests
             matr.SDKCaseId = rnd.Next(1, 100);
             matr.SDKSiteId = rnd.Next(1, 100);
             matr.SDKFieldValueId = rnd.Next(1, 100);
-            matr.AreaId = outerResource.Id;
-            matr.MachineId = innerResource.Id;
+            matr.OuterResourceId = outerResource.Id;
+            matr.InnerResourceId = innerResource.Id;
 
             DbContext.ResourceTimeRegistrations.Add(matr);
             DbContext.SaveChanges();
@@ -182,8 +182,8 @@ namespace eFormMachineAreaDotnet.Tests
             Assert.AreEqual(matr.SDKCaseId, dbMatr.SDKCaseId);
             Assert.AreEqual(matr.SDKSiteId, dbMatr.SDKSiteId);
             Assert.AreEqual(matr.SDKFieldValueId, dbMatr.SDKFieldValueId);
-            Assert.AreEqual(matr.AreaId, dbMatr.AreaId);
-            Assert.AreEqual(matr.MachineId, dbMatr.MachineId);
+            Assert.AreEqual(matr.OuterResourceId, dbMatr.OuterResourceId);
+            Assert.AreEqual(matr.InnerResourceId, dbMatr.InnerResourceId);
             
             Assert.AreEqual(1,matrList.Count());
             Assert.AreEqual(1, matrVersions.Count());

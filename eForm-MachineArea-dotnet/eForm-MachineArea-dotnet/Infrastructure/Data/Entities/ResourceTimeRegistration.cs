@@ -30,12 +30,12 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
     public class ResourceTimeRegistration : BaseEntity
     {
         [ForeignKey("Machine")]
-        public int MachineId { get; set; }
+        public int InnerResourceId { get; set; }
         
 //        public virtual Machine Machine { get; set; }
         
         [ForeignKey("Area")]
-        public int AreaId { get; set; }
+        public int OuterResourceId { get; set; }
         
 //        public virtual Area Area { get; set; }
         
@@ -76,8 +76,8 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 throw new NullReferenceException($"Could not find area with id: {Id}");
             }
 
-            resourceTimeRegistration.MachineId = MachineId;
-            resourceTimeRegistration.AreaId = AreaId;
+            resourceTimeRegistration.InnerResourceId = InnerResourceId;
+            resourceTimeRegistration.OuterResourceId = OuterResourceId;
             resourceTimeRegistration.DoneAt = DoneAt;
             resourceTimeRegistration.SDKCaseId = SDKCaseId;
             resourceTimeRegistration.SDKFieldValueId = SDKFieldValueId;
@@ -122,8 +122,8 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             ResourceTimeRegistrationVersion resourceTimeRegistrationVersion = new ResourceTimeRegistrationVersion();
 
 
-            resourceTimeRegistrationVersion.MachineId = resourceTimeRegistration.MachineId;
-            resourceTimeRegistrationVersion.AreaId = resourceTimeRegistration.AreaId;
+            resourceTimeRegistrationVersion.InnerResourceId = resourceTimeRegistration.InnerResourceId;
+            resourceTimeRegistrationVersion.OuterResourceId = resourceTimeRegistration.OuterResourceId;
             resourceTimeRegistrationVersion.DoneAt = resourceTimeRegistration.DoneAt;
             resourceTimeRegistrationVersion.SDKCaseId = resourceTimeRegistration.SDKCaseId;
             resourceTimeRegistrationVersion.SDKFieldValueId = resourceTimeRegistration.SDKFieldValueId;

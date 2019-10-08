@@ -34,7 +34,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         public int Status { get; set; }
         
         [ForeignKey("MachineArea")]
-        public int MachineAreaId { get; set; }
+        public int OuterInnerResourceId { get; set; }
         
 //        public virtual MachineArea MachineArea { get; set; }
         
@@ -65,7 +65,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 throw new NullReferenceException($"Could not find machineArea with id: {Id}");
             }
 
-            outerInnerResourceSite.MachineAreaId = MachineAreaId;
+            outerInnerResourceSite.OuterInnerResourceId = OuterInnerResourceId;
             outerInnerResourceSite.MicrotingSdkCaseId = MicrotingSdkCaseId;
             outerInnerResourceSite.MicrotingSdkeFormId = MicrotingSdkeFormId;
             outerInnerResourceSite.MicrotingSdkSiteId = MicrotingSdkSiteId;
@@ -105,10 +105,10 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         {
             OuterInnerResourceSiteVersion outerInnerResourceSiteVersionVer = new OuterInnerResourceSiteVersion();
 
-            outerInnerResourceSiteVersionVer.MachineAreaId = outerInnerResourceSite.MachineAreaId;
+            outerInnerResourceSiteVersionVer.OuterInnerResourceId = outerInnerResourceSite.OuterInnerResourceId;
             outerInnerResourceSiteVersionVer.MicrotingSdkCaseId = outerInnerResourceSite.MicrotingSdkCaseId;
             outerInnerResourceSiteVersionVer.MicrotingSdkeFormId = outerInnerResourceSite.MicrotingSdkeFormId;
-            outerInnerResourceSiteVersionVer.MachineAreaSiteId = outerInnerResourceSite.Id;
+            outerInnerResourceSiteVersionVer.OuterInnerResourceSiteId = outerInnerResourceSite.Id;
             outerInnerResourceSiteVersionVer.Version = outerInnerResourceSite.Version;
             outerInnerResourceSiteVersionVer.CreatedAt = outerInnerResourceSite.CreatedAt;
             outerInnerResourceSiteVersionVer.UpdatedAt = outerInnerResourceSite.UpdatedAt;

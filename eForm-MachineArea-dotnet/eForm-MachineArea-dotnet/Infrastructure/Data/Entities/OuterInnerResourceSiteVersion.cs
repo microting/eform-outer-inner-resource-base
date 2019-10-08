@@ -29,10 +29,10 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         
         public int Status { get; set; }
         
-        public int MachineAreaId { get; set; }
+        public int OuterInnerResourceId { get; set; }
         
         [ForeignKey("MachineAreaSite")]
-        public int MachineAreaSiteId { get; set; }
+        public int OuterInnerResourceSiteId { get; set; }
         
         public int MicrotingSdkSiteId { get; set; }
         

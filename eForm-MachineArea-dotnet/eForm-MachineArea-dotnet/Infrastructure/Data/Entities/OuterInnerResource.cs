@@ -36,12 +36,12 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
 //        }
         
         [ForeignKey("Machine")]
-        public int MachineId { get; set; }
+        public int InnerResourceId { get; set; }
 
 //        public virtual Machine Machine { get; set; }
 
         [ForeignKey("Area")]
-        public int AreaId { get; set; }
+        public int OuterResourceId { get; set; }
 
 //        public virtual Area Area { get; set; }
         
@@ -72,8 +72,8 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
                 throw new NullReferenceException($"Could not find machineArea with id: {Id}");
             }
 
-            outerInnerResource.AreaId = AreaId;
-            outerInnerResource.MachineId = MachineId;
+            outerInnerResource.OuterResourceId = OuterResourceId;
+            outerInnerResource.InnerResourceId = InnerResourceId;
 
             if (dbContext.ChangeTracker.HasChanges())
             {
@@ -110,12 +110,12 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         {
             OuterInnerResourceVersion outerInnerResourceVersionVer = new OuterInnerResourceVersion();
 
-            outerInnerResourceVersionVer.AreaId = outerInnerResource.AreaId;
-            outerInnerResourceVersionVer.MachineId = outerInnerResource.MachineId;
+            outerInnerResourceVersionVer.OuterResourceId = outerInnerResource.OuterResourceId;
+            outerInnerResourceVersionVer.InnerResourceId = outerInnerResource.InnerResourceId;
             outerInnerResourceVersionVer.Version = outerInnerResource.Version;
             outerInnerResourceVersionVer.CreatedAt = outerInnerResource.CreatedAt;
             outerInnerResourceVersionVer.UpdatedAt = outerInnerResource.UpdatedAt;
-            outerInnerResourceVersionVer.MachineAreaId = outerInnerResource.Id;
+            outerInnerResourceVersionVer.OuterInnerResourceId = outerInnerResource.Id;
 
 
             return outerInnerResourceVersionVer;
