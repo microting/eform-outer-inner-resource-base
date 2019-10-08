@@ -53,7 +53,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         
         public int SDKSiteId { get; set; }
 
-        public async Task Create(MachineAreaPnDbContext dbContext)
+        public async Task Create(OuterInnerResourcePnDbContext dbContext)
         {
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
@@ -67,7 +67,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             dbContext.SaveChanges();
         }
 
-        public async Task Update(MachineAreaPnDbContext dbContext)
+        public async Task Update(OuterInnerResourcePnDbContext dbContext)
         {
             ResourceTimeRegistration resourceTimeRegistration = dbContext.ResourceTimeRegistrations.FirstOrDefault(x => x.Id == Id);
 
@@ -96,7 +96,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             }
         }
 
-        public async Task Delete(MachineAreaPnDbContext dbContext)
+        public async Task Delete(OuterInnerResourcePnDbContext dbContext)
         {
             ResourceTimeRegistration resourceTimeRegistration = dbContext.ResourceTimeRegistrations.FirstOrDefault(x => x.Id == Id);
 

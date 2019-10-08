@@ -8,7 +8,7 @@ using Microting.eFormMachineAreaBase.Infrastructure.Data;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 {
-    [DbContext(typeof(MachineAreaPnDbContext))]
+    [DbContext(typeof(OuterInnerResourcePnDbContext))]
     partial class MachineAreaPnDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

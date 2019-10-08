@@ -9,7 +9,7 @@ using Microting.eFormMachineAreaBase.Infrastructure.Data;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 {
-    [DbContext(typeof(MachineAreaPnDbContext))]
+    [DbContext(typeof(OuterInnerResourcePnDbContext))]
     [Migration("20191008070052_RenamingForeignKeys")]
     partial class RenamingForeignKeys
     {

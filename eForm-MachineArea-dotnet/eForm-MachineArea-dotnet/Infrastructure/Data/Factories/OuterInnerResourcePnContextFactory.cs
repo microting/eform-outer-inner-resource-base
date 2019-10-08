@@ -25,11 +25,11 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Factories
 {
-    public class MachineAreaPnContextFactory : IDesignTimeDbContextFactory<MachineAreaPnDbContext>
+    public class OuterInnerResourcePnContextFactory : IDesignTimeDbContextFactory<OuterInnerResourcePnDbContext>
     {
-        public MachineAreaPnDbContext CreateDbContext(string[] args)
+        public OuterInnerResourcePnDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<MachineAreaPnDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
             if (args.Any())
             {
                 if (args.FirstOrDefault().ToLower().Contains("convert zero datetime"))
@@ -48,7 +48,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Factories
             // optionsBuilder.UseSqlServer(@"data source=(LocalDb)\SharedInstance;Initial catalog=machine-area-base;Integrated Security=True");
             // dotnet ef migrations add InitialCreate --project eForm-MachineArea-dotnet --startup-project DBMigrator
             optionsBuilder.UseLazyLoadingProxies(true);
-            return new MachineAreaPnDbContext(optionsBuilder.Options);
+            return new OuterInnerResourcePnDbContext(optionsBuilder.Options);
         }
     }
 }

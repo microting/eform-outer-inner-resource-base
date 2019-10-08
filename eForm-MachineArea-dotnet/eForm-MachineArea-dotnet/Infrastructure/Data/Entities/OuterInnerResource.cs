@@ -47,7 +47,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
         
 //        public virtual ICollection<MachineAreaSite> MachineAreaSites { get; set; }
         
-        public async Task Create(MachineAreaPnDbContext dbContext)
+        public async Task Create(OuterInnerResourcePnDbContext dbContext)
         {
 
             CreatedAt = DateTime.Now;
@@ -63,7 +63,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             
         }
 
-        public async Task Update(MachineAreaPnDbContext dbContext)
+        public async Task Update(OuterInnerResourcePnDbContext dbContext)
         {
             OuterInnerResource outerInnerResource = dbContext.OuterInnerResources.FirstOrDefault(x => x.Id == Id);
 
@@ -85,7 +85,7 @@ namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Entities
             }
         }
 
-        public async Task Delete(MachineAreaPnDbContext dbContext)
+        public async Task Delete(OuterInnerResourcePnDbContext dbContext)
         {
             OuterInnerResource outerInnerResource = dbContext.OuterInnerResources.FirstOrDefault(x => x.Id == Id);
 

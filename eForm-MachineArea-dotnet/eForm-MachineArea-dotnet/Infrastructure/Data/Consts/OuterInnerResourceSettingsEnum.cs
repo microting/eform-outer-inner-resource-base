@@ -24,7 +24,7 @@ using System.Text;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data.Consts
 {
-    public enum MachineAreaSettingsEnum
+    public enum OuterInnerResourceSettingsEnum
     {
         LogLevel,
         LogLimit,

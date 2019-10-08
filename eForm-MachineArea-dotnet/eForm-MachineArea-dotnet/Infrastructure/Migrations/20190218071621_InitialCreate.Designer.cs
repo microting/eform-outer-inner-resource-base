@@ -29,7 +29,7 @@ using Microting.eFormMachineAreaBase.Infrastructure.Data;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Migrations
 {
-    [DbContext(typeof(MachineAreaPnDbContext))]
+    [DbContext(typeof(OuterInnerResourcePnDbContext))]
     [Migration("20190218071621_InitialCreate")]
     partial class InitialCreate
     {

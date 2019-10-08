@@ -32,12 +32,12 @@ namespace eFormMachineAreaDotnet.Tests
     [TestFixture]
     public abstract class DbTestFixture
     {
-        protected MachineAreaPnDbContext DbContext;
+        protected OuterInnerResourcePnDbContext DbContext;
         private string _connectionString;
 
         private void GetContext(string connectionStr)
         {
-            MachineAreaPnContextFactory contextFactory = new MachineAreaPnContextFactory();
+            OuterInnerResourcePnContextFactory contextFactory = new OuterInnerResourcePnContextFactory();
             DbContext = contextFactory.CreateDbContext(new[] {connectionStr});
 
             DbContext.Database.Migrate();

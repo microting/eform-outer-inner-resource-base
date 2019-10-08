@@ -25,12 +25,12 @@ using Microting.eFormMachineAreaBase.Infrastructure.Data.Entities;
 
 namespace Microting.eFormMachineAreaBase.Infrastructure.Data
 {
-    public class MachineAreaPnDbContext : DbContext, IPluginDbContext
+    public class OuterInnerResourcePnDbContext : DbContext, IPluginDbContext
     {
 
-        public MachineAreaPnDbContext() { }
+        public OuterInnerResourcePnDbContext() { }
 
-        public MachineAreaPnDbContext(DbContextOptions<MachineAreaPnDbContext> options) 
+        public OuterInnerResourcePnDbContext(DbContextOptions<OuterInnerResourcePnDbContext> options) 
             : base(options)
         {
         }
