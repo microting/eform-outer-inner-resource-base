@@ -9,22 +9,22 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
             migrationBuilder.RenameColumn(
                 name: "MachineId",
                 table: "ResourceTimeRegistrationVersions",
-                newName: "OuterResourceId");
+                newName: "InnerResourceId");
 
             migrationBuilder.RenameColumn(
                 name: "AreaId",
                 table: "ResourceTimeRegistrationVersions",
-                newName: "InnerResourceId");
+                newName: "OuterResourceId");
 
             migrationBuilder.RenameColumn(
                 name: "MachineId",
                 table: "ResourceTimeRegistrations",
-                newName: "OuterResourceId");
+                newName: "InnerResourceId");
 
             migrationBuilder.RenameColumn(
                 name: "AreaId",
                 table: "ResourceTimeRegistrations",
-                newName: "InnerResourceId");
+                newName: "OuterResourceId");
 
             migrationBuilder.RenameColumn(
                 name: "AreaId",
@@ -34,7 +34,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
             migrationBuilder.RenameColumn(
                 name: "MachineId",
                 table: "OuterInnerResourceVersions",
-                newName: "OuterResourceId");
+                newName: "InnerResourceId");
 
             migrationBuilder.RenameColumn(
                 name: "MachineAreaId",
@@ -44,7 +44,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
             migrationBuilder.RenameColumn(
                 name: "AreaId",
                 table: "OuterInnerResourceVersions",
-                newName: "InnerResourceId");
+                newName: "OuterResourceId");
 
             migrationBuilder.RenameColumn(
                 name: "MachineAreaSiteId",
@@ -64,12 +64,12 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
             migrationBuilder.RenameColumn(
                 name: "MachineId",
                 table: "OuterInnerResources",
-                newName: "OuterResourceId");
+                newName: "InnerResourceId");
 
             migrationBuilder.RenameColumn(
                 name: "AreaId",
                 table: "OuterInnerResources",
-                newName: "InnerResourceId");
+                newName: "OuterResourceId");
 
             migrationBuilder.RenameColumn(
                 name: "MachineId",
