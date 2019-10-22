@@ -29,6 +29,8 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories
     {
         public OuterInnerResourcePnDbContext CreateDbContext(string[] args)
         {
+            //args = new[]
+            //    {"data source=.\\sqlexpress;database=appointments-plugin;integrated security=true"};
             var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
             if (args.Any())
             {
