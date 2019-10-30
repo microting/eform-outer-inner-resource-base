@@ -42,45 +42,34 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
                     PermissionId = table.Column<int>(),
                     IsEnabled = table.Column<bool>(),
                     PluginGroupPermissionId = table.Column<int>(),
-                    PluginGroupPermissionId1 = table.Column<int>(nullable: true)
+                    FK_PluginGroupPermissionVersions_PluginGroupPermissionId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PluginGroupPermissionVersions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PluginGroupPermissionVersions_PluginGroupPermissions_FK_PluginGroupPermissionVersions_PluginGroupPermissionId",
+                        column: x => x.FK_PluginGroupPermissionVersions_PluginGroupPermissionId,
+                        principalTable: "PluginGroupPermissions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PluginGroupPermissionVersions_PluginPermissions_PermissionId",
                         column: x => x.PermissionId,
                         principalTable: "PluginPermissions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PluginGroupPermissionVersions_PluginGroupPermissions_PluginGroupPermissionId",
-                        column: x => x.PluginGroupPermissionId,
-                        principalTable: "PluginGroupPermissions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PluginGroupPermissionVersions_PluginGroupPermissions_PluginGroupPermissionId1",
-                        column: x => x.PluginGroupPermissionId1,
-                        principalTable: "PluginGroupPermissions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PluginGroupPermissionVersions_FK_PluginGroupPermissionVersions_PluginGroupPermissionId",
+                table: "PluginGroupPermissionVersions",
+                column: "FK_PluginGroupPermissionVersions_PluginGroupPermissionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PluginGroupPermissionVersions_PermissionId",
                 table: "PluginGroupPermissionVersions",
                 column: "PermissionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PluginGroupPermissionVersions_PluginGroupPermissionId",
-                table: "PluginGroupPermissionVersions",
-                column: "PluginGroupPermissionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PluginGroupPermissionVersions_PluginGroupPermissionId1",
-                table: "PluginGroupPermissionVersions",
-                column: "PluginGroupPermissionId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

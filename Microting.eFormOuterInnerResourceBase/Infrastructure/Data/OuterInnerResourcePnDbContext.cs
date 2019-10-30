@@ -71,9 +71,9 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data
                 .HasIndex(x => x.UpdatedByUserId);
 
             modelBuilder.Entity<PluginGroupPermissionVersion>()
-                .HasOne<PluginGroupPermission>()
+                .HasOne(x => x.PluginGroupPermission)
                 .WithMany()
-                .HasForeignKey(x => x.PluginGroupPermissionId)
+                .HasForeignKey("FK_PluginGroupPermissionVersions_PluginGroupPermissionId")
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
