@@ -192,7 +192,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
 
                     b.Property<int>("CreatedByUserId");
 
-                    b.Property<int>("ExternalId");
+                    b.Property<int?>("ExternalId");
 
                     b.Property<string>("Name")
                         .HasMaxLength(250);
@@ -227,7 +227,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
 
                     b.Property<int>("CreatedByUserId");
 
-                    b.Property<int>("ExternalId");
+                    b.Property<int?>("ExternalId");
 
                     b.Property<int>("InnerResourceId");
 
@@ -400,7 +400,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
 
                     b.Property<int>("CreatedByUserId");
 
-                    b.Property<int>("ExternalId");
+                    b.Property<int?>("ExternalId");
 
                     b.Property<string>("Name")
                         .HasMaxLength(250);
@@ -435,7 +435,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
 
                     b.Property<int>("CreatedByUserId");
 
-                    b.Property<int>("ExternalId");
+                    b.Property<int?>("ExternalId");
 
                     b.Property<string>("Name")
                         .HasMaxLength(250);
