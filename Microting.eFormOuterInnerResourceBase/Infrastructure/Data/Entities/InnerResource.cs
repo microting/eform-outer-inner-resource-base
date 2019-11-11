@@ -37,7 +37,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         [StringLength(250)]
         public string Name { get; set; }
         
-        public int ExternalId { get; set; }
+        public int? ExternalId { get; set; }
         
         public virtual ICollection<OuterInnerResource> OuterInnerResources { get; set; }
 

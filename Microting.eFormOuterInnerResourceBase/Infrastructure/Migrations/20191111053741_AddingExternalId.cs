@@ -9,25 +9,25 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
             migrationBuilder.AddColumn<int>(
                 name: "ExternalId",
                 table: "OuterResourceVersions",
-                nullable: false,
+                nullable: true,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "ExternalId",
                 table: "OuterResources",
-                nullable: false,
+                nullable: true,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "ExternalId",
                 table: "InnerResourceVersions",
-                nullable: false,
+                nullable: true,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "ExternalId",
                 table: "InnerResources",
-                nullable: false,
+                nullable: true,
                 defaultValue: 0);
         }
 
