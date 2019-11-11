@@ -29,10 +29,6 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories
     {
         public OuterInnerResourcePnDbContext CreateDbContext(string[] args)
         {
-            //args = new[]
-            //    {"host=localhost;Database=outer-pl;Uid=root;Pwd=111111;port=3306;Convert Zero Datetime = true;SslMode=none;PersistSecurityInfo=true;"};
-            //args = new[]
-            //    {"Data Source=.\\SQLEXPRESS;Database=outer-pl;Integrated Security=True"}; ;
             var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
             if (args.Any())
             {

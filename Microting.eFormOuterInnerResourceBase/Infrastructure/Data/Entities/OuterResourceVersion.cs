@@ -34,5 +34,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         
         public virtual OuterResource OuterResource { get; set; }
         
+        public int ExternalId { get; set; }
+        
     }
 }

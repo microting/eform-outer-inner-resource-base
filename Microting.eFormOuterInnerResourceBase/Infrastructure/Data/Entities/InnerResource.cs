@@ -37,6 +37,8 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         [StringLength(250)]
         public string Name { get; set; }
         
+        public int ExternalId { get; set; }
+        
         public virtual ICollection<OuterInnerResource> OuterInnerResources { get; set; }
 
         public async Task Create(OuterInnerResourcePnDbContext dbContext)
@@ -63,8 +65,8 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
             }
 
             innerResource.Name = Name;
-            // TODO: INSERT UPDATE MAPPING
-
+            innerResource.ExternalId = ExternalId;
+            
             if (dbContext.ChangeTracker.HasChanges())
             {
                 innerResource.UpdatedAt = DateTime.Now;
@@ -98,16 +100,16 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
 
         private InnerResourceVersion MapVersions(InnerResource innerResource)
         {
-            InnerResourceVersion innerResourceVer = new InnerResourceVersion();
-
-            innerResourceVer.Name = innerResource.Name;
-            innerResourceVer.InnerResourceId = innerResource.Id;
-            innerResourceVer.Version = innerResource.Version;
-            innerResourceVer.CreatedAt = innerResource.CreatedAt;
-            innerResourceVer.UpdatedAt = innerResource.UpdatedAt;
-            innerResourceVer.InnerResourceId = innerResource.Id;
-
-
+            InnerResourceVersion innerResourceVer = new InnerResourceVersion
+            {
+                Name = innerResource.Name,
+                InnerResourceId = innerResource.Id,
+                Version = innerResource.Version,
+                CreatedAt = innerResource.CreatedAt,
+                UpdatedAt = innerResource.UpdatedAt,
+                ExternalId = innerResource.ExternalId
+            };
+            
             return innerResourceVer;
         }
     }
