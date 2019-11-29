@@ -39,7 +39,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
         
         public int MicrotingSdkSiteId { get; set; }
         
-        public int MicrotingSdkCaseId { get; set; }
+        public int? MicrotingSdkCaseId { get; set; }
         
         public async Task Create(OuterInnerResourcePnDbContext dbContext)
         {

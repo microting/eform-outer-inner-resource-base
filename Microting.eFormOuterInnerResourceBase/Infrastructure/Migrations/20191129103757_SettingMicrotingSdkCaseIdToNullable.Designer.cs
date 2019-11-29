@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microting.eFormOuterInnerResourceBase.Infrastructure.Data;
 
 namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
 {
     [DbContext(typeof(OuterInnerResourcePnDbContext))]
-    partial class MachineAreaPnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191129103757_SettingMicrotingSdkCaseIdToNullable")]
+    partial class SettingMicrotingSdkCaseIdToNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             string autoIDGenStrategy = "SqlServer:ValueGenerationStrategy";
