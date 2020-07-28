@@ -29,26 +29,13 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories
     {
         public OuterInnerResourcePnDbContext CreateDbContext(string[] args)
         {
+            var defaultCs = "Server = localhost; port = 3306; Database = outer-inner-resource-pn; user = root; Convert Zero Datetime = true;";
             var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
-            if (args.Any())
-            {
-                if (args.FirstOrDefault().ToLower().Contains("convert zero datetime"))
-                {
-                    optionsBuilder.UseMySql(args.FirstOrDefault());
-                }
-                else
-                {
-                    optionsBuilder.UseSqlServer(args.FirstOrDefault());
-                }
-            }
-            else
-            {
-                throw new ArgumentNullException("Connection string not present");
-            }
-            // optionsBuilder.UseSqlServer(@"data source=(LocalDb)\SharedInstance;Initial catalog=machine-area-base;Integrated Security=True");
-            // dotnet ef migrations add InitialCreate --project Microting.eFormOuterInnerResourceBase --startup-project DBMigrator
+            optionsBuilder.UseMySql(args.Any() ? args[0]: defaultCs);
             optionsBuilder.UseLazyLoadingProxies(true);
+
             return new OuterInnerResourcePnDbContext(optionsBuilder.Options);
+            // dotnet ef migrations add InitialCreate --project Microting.eFormOuterInnerResourceBase --startup-project DBMigrator
         }
     }
 }
