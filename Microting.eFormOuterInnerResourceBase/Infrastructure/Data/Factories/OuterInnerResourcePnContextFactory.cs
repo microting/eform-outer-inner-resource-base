@@ -30,7 +30,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories
     {
         public OuterInnerResourcePnDbContext CreateDbContext(string[] args)
         {
-            var defaultCs = "Server = localhost; port = 3306; Database = outer-inner-resource-pn; user = root; Convert Zero Datetime = true;";
+            var defaultCs = "Server = localhost; port = 3306; Database = outer-inner-resource-pn; user = root; password = secretpassword; Convert Zero Datetime = true;";
             var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
             optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, mysqlOptions =>
             {

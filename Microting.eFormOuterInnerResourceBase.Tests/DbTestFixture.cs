@@ -53,7 +53,7 @@ namespace eFormMachineAreaDotnet.Tests
             }
             else
             {
-                _connectionString = @"Server = localhost; port = 3306; Database = outer-inner-resource-tests; user = root; Convert Zero Datetime = true;";
+                _connectionString = @"Server = localhost; port = 3306; Database = outer-inner-resource-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
             }
 
             GetContext(_connectionString);
