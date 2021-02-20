@@ -34,9 +34,8 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories
             var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
             optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, mysqlOptions =>
             {
-                mysqlOptions.ServerVersion(new Version(10, 4, 0), ServerType.MariaDb);
+                mysqlOptions.ServerVersion(new Version(10, 4, 0), ServerType.MariaDb).EnableRetryOnFailure();
             });
-            optionsBuilder.UseLazyLoadingProxies(true);
 
             return new OuterInnerResourcePnDbContext(optionsBuilder.Options);
             // dotnet ef migrations add InitialCreate --project Microting.eFormOuterInnerResourceBase --startup-project DBMigrator
