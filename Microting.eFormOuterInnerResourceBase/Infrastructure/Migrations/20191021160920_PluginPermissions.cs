@@ -11,7 +11,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
             //Setup for SQL Server Provider
 
             var autoIdGenStrategy = "SqlServer:ValueGenerationStrategy";
-            object autoIdGenStrategyValue = SqlServerValueGenerationStrategy.IdentityColumn;
+            object autoIdGenStrategyValue = MySqlValueGenerationStrategy.IdentityColumn;
 
             // Setup for MySQL Provider
             if (migrationBuilder.ActiveProvider == "Pomelo.EntityFrameworkCore.MySql")

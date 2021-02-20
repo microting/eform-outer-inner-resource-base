@@ -36,7 +36,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             string autoIDGenStrategy = "SqlServer:ValueGenerationStrategy";
-            object autoIDGenStrategyValue = SqlServerValueGenerationStrategy.IdentityColumn;
+            object autoIDGenStrategyValue = MySqlValueGenerationStrategy.IdentityColumn;
             if (DbConfig.IsMySQL)
             {
                 autoIDGenStrategy = "MySql:ValueGenerationStrategy";

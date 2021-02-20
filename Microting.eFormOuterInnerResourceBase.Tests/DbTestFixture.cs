@@ -47,14 +47,7 @@ namespace eFormMachineAreaDotnet.Tests
         [SetUp]
         public void Setup()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                _connectionString = @"data source=(LocalDb)\SharedInstance;Initial catalog=outer-inner-resource-tests;Integrated Security=true";
-            }
-            else
-            {
-                _connectionString = @"Server = localhost; port = 3306; Database = outer-inner-resource-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
-            }
+            _connectionString = @"Server = localhost; port = 3306; Database = outer-inner-resource-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
 
             GetContext(_connectionString);
 
@@ -75,46 +68,52 @@ namespace eFormMachineAreaDotnet.Tests
         public void TearDown()
         {
             ClearDb();
-            
+
             DbContext.Dispose();
         }
 
         private void ClearDb()
         {
-            List<string> modelNames = new List<string>();
-            modelNames.Add("OuterResources");
-            modelNames.Add("OuterResourceVersions");
-            modelNames.Add("InnerResources");
-            modelNames.Add("InnerResourceVersions");
-            modelNames.Add("OuterInnerResources");
-            modelNames.Add("OuterInnerResourceVersions");
-            modelNames.Add("ResourceTimeRegistrations");
-            modelNames.Add("ResourceTimeRegistrationVersions");
-            modelNames.Add("PluginConfigurationValues");
-            modelNames.Add("PluginConfigurationValueVersions");
+            List<string> modelNames = new List<string>
+            {
+                "OuterResources",
+                "OuterResourceVersions",
+                "InnerResources",
+                "InnerResourceVersions",
+                "OuterInnerResources",
+                "OuterInnerResourceVersions",
+                "ResourceTimeRegistrations",
+                "ResourceTimeRegistrationVersions",
+                "PluginConfigurationValues",
+                "PluginConfigurationValueVersions"
+            };
+
+            bool firstRunNotDone = true;
 
             foreach (var modelName in modelNames)
             {
                 try
                 {
-                    string sqlCmd;
-                    if (DbContext.Database.IsMySql())
+                    if (firstRunNotDone)
                     {
-                        sqlCmd = $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `outer-inner-resource-tests`.`{modelName}`";
+                        DbContext.Database.ExecuteSqlRaw(
+                            $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `outer-inner-resource-tests`.`{modelName}`");
                     }
-                    else
-                    {
-                        sqlCmd = $"DELETE FROM [{modelName}]";
-                    }
-                    DbContext.Database.ExecuteSqlCommand(sqlCmd);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    if (ex.Message == "Unknown database 'outer-inner-resource-tests'")
+                    {
+                        firstRunNotDone = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
             }
         }
-        private string path;
+        private string _path;
 
         protected virtual void DoSetup() { }
     }
