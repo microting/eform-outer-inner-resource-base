@@ -1,5 +1,14 @@
 # Changelog
 
+## [v2.0.90](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.90) (2021-04-04)
+
+[Full Changelog](https://github.com/microting/eform-outer-inner-resource-base/compare/v2.0.89...v2.0.90)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 2.0.109 to 2.0.110 [\#47](https://github.com/microting/eform-outer-inner-resource-base/issues/47)
+- Bump Microting.eForm from 4.4.16 to 4.4.17 [\#46](https://github.com/microting/eform-outer-inner-resource-base/issues/46)
+
 ## [v2.0.89](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.89) (2021-04-02)
 
 [Full Changelog](https://github.com/microting/eform-outer-inner-resource-base/compare/v2.0.88...v2.0.89)
