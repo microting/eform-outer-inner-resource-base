@@ -1,5 +1,20 @@
 # Changelog
 
+## [v3.0.22](https://github.com/microting/eform-outer-inner-resource-base/tree/v3.0.22) (2021-07-05)
+
+[Full Changelog](https://github.com/microting/eform-outer-inner-resource-base/compare/v3.0.21...v3.0.22)
+
+**Implemented enhancements:**
+
+- Bump Microting.eFormApi.BasePn from 3.0.26 to 3.0.27 [\#146](https://github.com/microting/eform-outer-inner-resource-base/issues/146)
+- Bump Microting.eForm from 5.2.13 to 5.2.14 [\#145](https://github.com/microting/eform-outer-inner-resource-base/issues/145)
+
+**Merged pull requests:**
+
+- Bump NUnit3TestAdapter from 3.17.0 to 4.0.0 [\#131](https://github.com/microting/eform-outer-inner-resource-base/pull/131) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump Microsoft.EntityFrameworkCore.Design from 5.0.6 to 5.0.7 [\#130](https://github.com/microting/eform-outer-inner-resource-base/pull/130) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump Microsoft.NET.Test.Sdk from 16.9.4 to 16.10.0 [\#118](https://github.com/microting/eform-outer-inner-resource-base/pull/118) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v3.0.21](https://github.com/microting/eform-outer-inner-resource-base/tree/v3.0.21) (2021-07-05)
 
 [Full Changelog](https://github.com/microting/eform-outer-inner-resource-base/compare/v3.0.20...v3.0.21)
@@ -230,7 +245,6 @@
 
 - Bump Microting.eFormApi.BasePn from 2.0.129 to 2.1.0 [\#77](https://github.com/microting/eform-outer-inner-resource-base/issues/77)
 - Bump Microting.eForm from 4.4.38 to 4.5.0 [\#76](https://github.com/microting/eform-outer-inner-resource-base/issues/76)
-- Bump Microting.eForm from 4.4.35 to 4.4.36 [\#70](https://github.com/microting/eform-outer-inner-resource-base/issues/70)
 
 ## [v2.0.103](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.103) (2021-04-20)
 
@@ -257,6 +271,7 @@
 **Implemented enhancements:**
 
 - Bump Microting.eFormApi.BasePn from 2.0.126 to 2.0.127 [\#71](https://github.com/microting/eform-outer-inner-resource-base/issues/71)
+- Bump Microting.eForm from 4.4.35 to 4.4.36 [\#70](https://github.com/microting/eform-outer-inner-resource-base/issues/70)
 
 ## [v2.0.100](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.100) (2021-04-15)
 
@@ -264,7 +279,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eFormApi.BasePn from 2.0.122 to 2.0.126 [\#69](https://github.com/microting/eform-outer-inner-resource-base/issues/69)
 - Bump Microting.eForm from 4.4.31 to 4.4.35 [\#68](https://github.com/microting/eform-outer-inner-resource-base/issues/68)
 
 ## [v2.0.99](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.99) (2021-04-14)
@@ -273,6 +287,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eFormApi.BasePn from 2.0.122 to 2.0.126 [\#69](https://github.com/microting/eform-outer-inner-resource-base/issues/69)
 - Bump Microting.eFormApi.BasePn from 2.0.120 to 2.0.122 [\#67](https://github.com/microting/eform-outer-inner-resource-base/issues/67)
 - Bump Microting.eForm from 4.4.29 to 4.4.31 [\#66](https://github.com/microting/eform-outer-inner-resource-base/issues/66)
 
@@ -320,6 +335,7 @@
 
 - Bump Microting.eFormApi.BasePn from 2.0.113 to 2.0.115 [\#57](https://github.com/microting/eform-outer-inner-resource-base/issues/57)
 - Bump Microting.eForm from 4.4.21 to 4.4.23 [\#56](https://github.com/microting/eform-outer-inner-resource-base/issues/56)
+- Bump Microting.eFormApi.BasePn from 2.0.111 to 2.0.113 [\#54](https://github.com/microting/eform-outer-inner-resource-base/issues/54)
 
 ## [v2.0.93](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.93) (2021-04-07)
 
@@ -327,7 +343,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eFormApi.BasePn from 2.0.111 to 2.0.113 [\#54](https://github.com/microting/eform-outer-inner-resource-base/issues/54)
 - Bump Microting.eForm from 4.4.20 to 4.4.21 [\#53](https://github.com/microting/eform-outer-inner-resource-base/issues/53)
 
 ## [v2.0.92](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.92) (2021-04-06)
