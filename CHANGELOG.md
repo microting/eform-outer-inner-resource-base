@@ -1,5 +1,15 @@
 # Changelog
 
+## [v3.0.24](https://github.com/microting/eform-outer-inner-resource-base/tree/v3.0.24) (2021-07-15)
+
+[Full Changelog](https://github.com/microting/eform-outer-inner-resource-base/compare/v3.0.23...v3.0.24)
+
+**Implemented enhancements:**
+
+- Bump Microsoft.EntityFrameworkCore.Design from 5.0.7 to 5.0.8 [\#152](https://github.com/microting/eform-outer-inner-resource-base/issues/152)
+- Bump Microting.eFormApi.BasePn from 3.0.28 to 3.0.30 [\#151](https://github.com/microting/eform-outer-inner-resource-base/issues/151)
+- Bump Microting.eForm from 5.2.15 to 5.2.17 [\#150](https://github.com/microting/eform-outer-inner-resource-base/issues/150)
+
 ## [v3.0.23](https://github.com/microting/eform-outer-inner-resource-base/tree/v3.0.23) (2021-07-08)
 
 [Full Changelog](https://github.com/microting/eform-outer-inner-resource-base/compare/v3.0.22...v3.0.23)
@@ -298,7 +308,6 @@
 **Implemented enhancements:**
 
 - Bump Microting.eFormApi.BasePn from 2.0.120 to 2.0.122 [\#67](https://github.com/microting/eform-outer-inner-resource-base/issues/67)
-- Bump Microting.eForm from 4.4.29 to 4.4.31 [\#66](https://github.com/microting/eform-outer-inner-resource-base/issues/66)
 
 ## [v2.0.98](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.98) (2021-04-13)
 
@@ -324,6 +333,7 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eForm from 4.4.29 to 4.4.31 [\#66](https://github.com/microting/eform-outer-inner-resource-base/issues/66)
 - Bump Microting.eFormApi.BasePn from 2.0.116 to 2.0.117 [\#61](https://github.com/microting/eform-outer-inner-resource-base/issues/61)
 - Bump Microting.eForm from 4.4.24 to 4.4.26 [\#60](https://github.com/microting/eform-outer-inner-resource-base/issues/60)
 
@@ -343,6 +353,7 @@
 **Implemented enhancements:**
 
 - Bump Microting.eFormApi.BasePn from 2.0.113 to 2.0.115 [\#57](https://github.com/microting/eform-outer-inner-resource-base/issues/57)
+- Bump Microting.eForm from 4.4.21 to 4.4.23 [\#56](https://github.com/microting/eform-outer-inner-resource-base/issues/56)
 
 ## [v2.0.93](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.93) (2021-04-07)
 
@@ -350,7 +361,6 @@
 
 **Implemented enhancements:**
 
-- Bump Microting.eForm from 4.4.21 to 4.4.23 [\#56](https://github.com/microting/eform-outer-inner-resource-base/issues/56)
 - Bump Microting.eFormApi.BasePn from 2.0.111 to 2.0.113 [\#54](https://github.com/microting/eform-outer-inner-resource-base/issues/54)
 - Bump Microting.eForm from 4.4.20 to 4.4.21 [\#53](https://github.com/microting/eform-outer-inner-resource-base/issues/53)
 
@@ -361,7 +371,6 @@
 **Implemented enhancements:**
 
 - Bump Microting.eForm from 4.4.19 to 4.4.20 [\#50](https://github.com/microting/eform-outer-inner-resource-base/issues/50)
-- Bump Microting.eFormApi.BasePn from 2.0.98 to 2.0.107 [\#40](https://github.com/microting/eform-outer-inner-resource-base/issues/40)
 
 ## [v2.0.91](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.91) (2021-04-05)
 
@@ -406,7 +415,6 @@
 
 - Bump Microting.eFormApi.BasePn from 2.0.97 to 2.0.98 [\#23](https://github.com/microting/eform-outer-inner-resource-base/issues/23)
 - Bump Microting.eForm from 4.4.1 to 4.4.2 [\#22](https://github.com/microting/eform-outer-inner-resource-base/issues/22)
-- Bump Microting.eFormApi.BasePn from 2.0.96 to 2.0.97 [\#21](https://github.com/microting/eform-outer-inner-resource-base/issues/21)
 
 ## [v2.0.86](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.86) (2021-02-20)
 
@@ -414,6 +422,8 @@
 
 **Implemented enhancements:**
 
+- Bump Microting.eFormApi.BasePn from 2.0.98 to 2.0.107 [\#40](https://github.com/microting/eform-outer-inner-resource-base/issues/40)
+- Bump Microting.eFormApi.BasePn from 2.0.96 to 2.0.97 [\#21](https://github.com/microting/eform-outer-inner-resource-base/issues/21)
 - Bump Microting.eForm from 4.3.18 to 4.4.1 [\#20](https://github.com/microting/eform-outer-inner-resource-base/issues/20)
 
 ## [v2.0.85](https://github.com/microting/eform-outer-inner-resource-base/tree/v2.0.85) (2021-02-20)
