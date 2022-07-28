@@ -33,7 +33,7 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories
             var defaultCs = "Server = localhost; port = 3306; Database = outer-inner-resource-pn; user = root; password = secretpassword; Convert Zero Datetime = true;";
             var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
             optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, new MariaDbServerVersion(
-                new Version(10, 4, 0)), mySqlOptionsAction: builder =>
+                ServerVersion.AutoDetect(args.Any() ? args[0] : defaultCs)), mySqlOptionsAction: builder =>
             {
                 builder.EnableRetryOnFailure();
             });
