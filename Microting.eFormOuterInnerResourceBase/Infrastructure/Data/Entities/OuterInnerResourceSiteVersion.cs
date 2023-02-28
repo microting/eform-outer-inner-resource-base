@@ -21,22 +21,21 @@ SOFTWARE.
 using System.ComponentModel.DataAnnotations.Schema;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class OuterInnerResourceSiteVersion : BaseEntity
 {
-    public class OuterInnerResourceSiteVersion : BaseEntity
-    {
-        public int MicrotingSdkeFormId { get; set; }
-        
-        public int Status { get; set; }
-        
-        public int OuterInnerResourceId { get; set; }
-        
-        [ForeignKey("OuterInnerResourceSite")]
-        public int OuterInnerResourceSiteId { get; set; }
-        
-        public int MicrotingSdkSiteId { get; set; }
-        
-        public int? MicrotingSdkCaseId { get; set; }
-        
-    }
+    public int MicrotingSdkeFormId { get; set; }
+
+    public int Status { get; set; }
+
+    public int OuterInnerResourceId { get; set; }
+
+    [ForeignKey("OuterInnerResourceSite")]
+    public int OuterInnerResourceSiteId { get; set; }
+
+    public int MicrotingSdkSiteId { get; set; }
+
+    public int? MicrotingSdkCaseId { get; set; }
+
 }

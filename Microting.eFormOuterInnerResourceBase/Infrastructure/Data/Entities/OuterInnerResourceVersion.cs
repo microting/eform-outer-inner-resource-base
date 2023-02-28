@@ -21,21 +21,20 @@ SOFTWARE.
 using System.ComponentModel.DataAnnotations.Schema;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class OuterInnerResourceVersion : BaseEntity
 {
-    public class OuterInnerResourceVersion : BaseEntity
-    {
-        public int InnerResourceId { get; set; }
+    public int InnerResourceId { get; set; }
 
-        public virtual InnerResource InnerResource { get; set; }
+    public virtual InnerResource InnerResource { get; set; }
 
-        public int OuterResourceId { get; set; }
+    public int OuterResourceId { get; set; }
 
-        public virtual OuterResource OuterResource { get; set; }
-        
-        [ForeignKey("OuterInnerResource")]
-        public int OuterInnerResourceId { get; set; }
-        
-        public virtual OuterInnerResource OuterInnerResource { get; set; }
-    }
+    public virtual OuterResource OuterResource { get; set; }
+
+    [ForeignKey("OuterInnerResource")]
+    public int OuterInnerResourceId { get; set; }
+
+    public virtual OuterInnerResource OuterInnerResource { get; set; }
 }

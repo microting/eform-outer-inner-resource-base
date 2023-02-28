@@ -22,36 +22,35 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class ResourceTimeRegistrationVersion : BaseEntity
 {
-    public class ResourceTimeRegistrationVersion : BaseEntity
-    {
-        
-        public int InnerResourceId { get; set; }
-        
-        public virtual InnerResource InnerResource { get; set; }
-        
-        public int OuterResourceId { get; set; }
-        
-        public virtual OuterResource OuterResource { get; set; }
-        
-        public DateTime DoneAt { get; set; }
-        
-        public int SDKCaseId { get; set; }
-        
-        public int SDKFieldValueId { get; set; }
-        
-        public int TimeInSeconds { get; set; }
-        
-        public int TimeInMinutes { get; set; }
-        
-        public int TimeInHours { get; set; }
-        
-        public int SDKSiteId { get; set; }
-        
-        [ForeignKey("ResourceTimeRegistration")]
-        public int MachineAreaTimeRegistrationId { get; set; }
-        
-        public virtual ResourceTimeRegistration ResourceTimeRegistration { get; set; }
-    }
+
+    public int InnerResourceId { get; set; }
+
+    public virtual InnerResource InnerResource { get; set; }
+
+    public int OuterResourceId { get; set; }
+
+    public virtual OuterResource OuterResource { get; set; }
+
+    public DateTime DoneAt { get; set; }
+
+    public int SDKCaseId { get; set; }
+
+    public int SDKFieldValueId { get; set; }
+
+    public int TimeInSeconds { get; set; }
+
+    public int TimeInMinutes { get; set; }
+
+    public int TimeInHours { get; set; }
+
+    public int SDKSiteId { get; set; }
+
+    [ForeignKey("ResourceTimeRegistration")]
+    public int MachineAreaTimeRegistrationId { get; set; }
+
+    public virtual ResourceTimeRegistration ResourceTimeRegistration { get; set; }
 }

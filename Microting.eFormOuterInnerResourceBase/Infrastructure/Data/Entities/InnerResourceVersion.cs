@@ -22,18 +22,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class InnerResourceVersion : BaseEntity
 {
-    public class InnerResourceVersion : BaseEntity
-    {
-        [StringLength(250)]
-        public string Name { get; set; }
-        
-        [ForeignKey("InnerResource")]
-        public int InnerResourceId { get; set; }
-        
-        public virtual InnerResource InnerResource { get; set; }
-        
-        public int? ExternalId { get; set; }
-    }
+    [StringLength(250)]
+    public string Name { get; set; }
+
+    [ForeignKey("InnerResource")]
+    public int InnerResourceId { get; set; }
+
+    public virtual InnerResource InnerResource { get; set; }
+
+    public int? ExternalId { get; set; }
 }

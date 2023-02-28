@@ -24,119 +24,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class ResourceTimeRegistration : PnBase
 {
-    public class ResourceTimeRegistration : BaseEntity
-    {
-        [ForeignKey("InnerResource")]
-        public int InnerResourceId { get; set; }
-        
-        public virtual InnerResource InnerResource { get; set; }
-        
-        [ForeignKey("OuterResource")]
-        public int OuterResourceId { get; set; }
-        
-        public virtual OuterResource OuterResource { get; set; }
-        
-        public DateTime DoneAt { get; set; }
-        
-        public int SDKCaseId { get; set; }
-        
-        public int SDKFieldValueId { get; set; }
-        
-        public int TimeInSeconds { get; set; }
-        
-        public int TimeInMinutes { get; set; }
-        
-        public int TimeInHours { get; set; }
-        
-        public int SDKSiteId { get; set; }
+    [ForeignKey("InnerResource")]
+    public int InnerResourceId { get; set; }
 
-        public async Task Create(OuterInnerResourcePnDbContext dbContext)
-        {
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Version = 1;
-            WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Created;
-     
-            dbContext.ResourceTimeRegistrations.Add(this);
-            dbContext.SaveChanges();
+    public virtual InnerResource InnerResource { get; set; }
 
-            dbContext.ResourceTimeRegistrationVersions.Add(MapVersions(this));
-            dbContext.SaveChanges();
-        }
+    [ForeignKey("OuterResource")]
+    public int OuterResourceId { get; set; }
 
-        public async Task Update(OuterInnerResourcePnDbContext dbContext)
-        {
-            ResourceTimeRegistration resourceTimeRegistration = dbContext.ResourceTimeRegistrations.FirstOrDefault(x => x.Id == Id);
+    public virtual OuterResource OuterResource { get; set; }
 
-            if (resourceTimeRegistration == null)
-            {
-                throw new NullReferenceException($"Could not find area with id: {Id}");
-            }
+    public DateTime DoneAt { get; set; }
 
-            resourceTimeRegistration.InnerResourceId = InnerResourceId;
-            resourceTimeRegistration.OuterResourceId = OuterResourceId;
-            resourceTimeRegistration.DoneAt = DoneAt;
-            resourceTimeRegistration.SDKCaseId = SDKCaseId;
-            resourceTimeRegistration.SDKFieldValueId = SDKFieldValueId;
-            resourceTimeRegistration.TimeInSeconds = TimeInSeconds;
-            resourceTimeRegistration.TimeInMinutes = TimeInMinutes;
-            resourceTimeRegistration.TimeInHours = TimeInHours;
-            resourceTimeRegistration.SDKSiteId = SDKSiteId;
+    public int SDKCaseId { get; set; }
 
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                resourceTimeRegistration.UpdatedAt = DateTime.Now;
-                resourceTimeRegistration.Version += 1;
+    public int SDKFieldValueId { get; set; }
 
-                dbContext.ResourceTimeRegistrationVersions.Add(MapVersions(resourceTimeRegistration));
-                dbContext.SaveChanges();
-            }
-        }
+    public int TimeInSeconds { get; set; }
 
-        public async Task Delete(OuterInnerResourcePnDbContext dbContext)
-        {
-            ResourceTimeRegistration resourceTimeRegistration = dbContext.ResourceTimeRegistrations.FirstOrDefault(x => x.Id == Id);
+    public int TimeInMinutes { get; set; }
 
-            if (resourceTimeRegistration == null)
-            {
-                throw new NullReferenceException($"Could not find area with id: {Id}");
-            }
+    public int TimeInHours { get; set; }
 
-            resourceTimeRegistration.WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Removed;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                resourceTimeRegistration.UpdatedAt = DateTime.Now;
-                resourceTimeRegistration.Version += 1;
-
-                dbContext.ResourceTimeRegistrationVersions.Add(MapVersions(resourceTimeRegistration));
-                dbContext.SaveChanges();
-            }
-        }
-
-        private ResourceTimeRegistrationVersion MapVersions(ResourceTimeRegistration resourceTimeRegistration)
-        {
-            ResourceTimeRegistrationVersion resourceTimeRegistrationVersion = new ResourceTimeRegistrationVersion();
-
-
-            resourceTimeRegistrationVersion.InnerResourceId = resourceTimeRegistration.InnerResourceId;
-            resourceTimeRegistrationVersion.OuterResourceId = resourceTimeRegistration.OuterResourceId;
-            resourceTimeRegistrationVersion.DoneAt = resourceTimeRegistration.DoneAt;
-            resourceTimeRegistrationVersion.SDKCaseId = resourceTimeRegistration.SDKCaseId;
-            resourceTimeRegistrationVersion.SDKFieldValueId = resourceTimeRegistration.SDKFieldValueId;
-            resourceTimeRegistrationVersion.TimeInSeconds = resourceTimeRegistration.TimeInSeconds;
-            resourceTimeRegistrationVersion.TimeInMinutes = resourceTimeRegistration.TimeInMinutes;
-            resourceTimeRegistrationVersion.TimeInHours = resourceTimeRegistration.TimeInHours;
-            resourceTimeRegistrationVersion.SDKSiteId = resourceTimeRegistration.SDKSiteId;
-            resourceTimeRegistrationVersion.Version = resourceTimeRegistration.Version;
-            resourceTimeRegistrationVersion.MachineAreaTimeRegistrationId = resourceTimeRegistration.Id;
-            resourceTimeRegistrationVersion.CreatedAt = resourceTimeRegistration.CreatedAt;
-            resourceTimeRegistrationVersion.UpdatedAt = resourceTimeRegistration.UpdatedAt;
-
-
-            return resourceTimeRegistrationVersion;
-        }
-    }
+    public int SDKSiteId { get; set; }
 }

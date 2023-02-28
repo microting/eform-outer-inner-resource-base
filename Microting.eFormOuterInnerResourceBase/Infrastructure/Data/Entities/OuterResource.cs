@@ -25,94 +25,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class OuterResource : PnBase
 {
-    public class OuterResource : BaseEntity
+    public OuterResource()
     {
-        public OuterResource()
-        {
-            this.OuterInnerResources = new HashSet<OuterInnerResource>();
-        }
-
-        [StringLength(250)]
-        public string Name { get; set; }
-        
-        public int? ExternalId { get; set; }
-        
-        public virtual ICollection<OuterInnerResource> OuterInnerResources { get; set; }
-
-        public async Task Create(OuterInnerResourcePnDbContext dbContext)
-        {
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Version = 1;
-            WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Created;
-
-            dbContext.OuterResources.Add(this);
-            dbContext.SaveChanges();
-
-            dbContext.OuterResourceVersions.Add(MapVersions(this));
-            dbContext.SaveChanges();
-        }
-
-        public async Task Update(OuterInnerResourcePnDbContext dbContext)
-        {
-            OuterResource outerResource = dbContext.OuterResources.FirstOrDefault(x => x.Id == Id);
-
-            if (outerResource == null)
-            {
-                throw new NullReferenceException($"Could not find area with id: {Id}");
-            }
-
-            outerResource.Name = Name;
-            outerResource.ExternalId = ExternalId;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                outerResource.UpdatedAt = DateTime.Now;
-                outerResource.Version += 1;
-
-                dbContext.OuterResourceVersions.Add(MapVersions(outerResource));
-                dbContext.SaveChanges();
-            }
-        }
-
-        public async Task Delete(OuterInnerResourcePnDbContext dbContext)
-        {
-            OuterResource outerResource = dbContext.OuterResources.FirstOrDefault(x => x.Id == Id);
-
-            if (outerResource == null)
-            {
-                throw new NullReferenceException($"Could not find area with id: {Id}");
-            }
-
-            outerResource.WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Removed;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                outerResource.UpdatedAt = DateTime.Now;
-                outerResource.Version += 1;
-
-                dbContext.OuterResourceVersions.Add(MapVersions(outerResource));
-                dbContext.SaveChanges();
-            }
-        }
-
-        private OuterResourceVersion MapVersions(OuterResource outerResource)
-        {
-            OuterResourceVersion outerResourceVer = new OuterResourceVersion
-            {
-                Name = outerResource.Name,
-                Version = outerResource.Version,
-                OuterResourceId = outerResource.Id,
-                CreatedAt = outerResource.CreatedAt,
-                UpdatedAt = outerResource.UpdatedAt,
-                ExternalId = outerResource.ExternalId
-            };
-
-
-
-            return outerResourceVer;
-        }
+        this.OuterInnerResources = new HashSet<OuterInnerResource>();
     }
+
+    [StringLength(250)]
+    public string Name { get; set; }
+
+    public int? ExternalId { get; set; }
+
+    public virtual ICollection<OuterInnerResource> OuterInnerResources { get; set; }
 }

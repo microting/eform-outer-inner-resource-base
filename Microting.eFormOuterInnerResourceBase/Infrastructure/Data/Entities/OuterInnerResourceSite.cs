@@ -24,98 +24,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class OuterInnerResourceSite : PnBase
 {
-    public class OuterInnerResourceSite : BaseEntity
-    {        
-        public int MicrotingSdkeFormId { get; set; }
-        
-        public int Status { get; set; }
-        
-        [ForeignKey("OuterInnerResource")]
-        public int OuterInnerResourceId { get; set; }
-        
-        public virtual OuterInnerResource OuterInnerResource { get; set; }
-        
-        public int MicrotingSdkSiteId { get; set; }
-        
-        public int? MicrotingSdkCaseId { get; set; }
-        
-        public async Task Create(OuterInnerResourcePnDbContext dbContext)
-        {
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Version = 1;
-            WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Created;
+    public int MicrotingSdkeFormId { get; set; }
 
-            dbContext.OuterInnerResourceSites.Add(this);
-            dbContext.SaveChanges();
+    public int Status { get; set; }
 
-            dbContext.OuterInnerResourceSiteVersions.Add(MapVersions(this));
-            dbContext.SaveChanges();
-        }
+    [ForeignKey("OuterInnerResource")]
+    public int OuterInnerResourceId { get; set; }
 
-        public async Task Update(OuterInnerResourcePnDbContext dbContext)
-        {
-            OuterInnerResourceSite outerInnerResourceSite = dbContext.OuterInnerResourceSites.FirstOrDefault(x => x.Id == Id);
+    public virtual OuterInnerResource OuterInnerResource { get; set; }
 
-            if (outerInnerResourceSite == null)
-            {
-                throw new NullReferenceException($"Could not find machineArea with id: {Id}");
-            }
+    public int MicrotingSdkSiteId { get; set; }
 
-            outerInnerResourceSite.OuterInnerResourceId = OuterInnerResourceId;
-            outerInnerResourceSite.MicrotingSdkCaseId = MicrotingSdkCaseId;
-            outerInnerResourceSite.MicrotingSdkeFormId = MicrotingSdkeFormId;
-            outerInnerResourceSite.MicrotingSdkSiteId = MicrotingSdkSiteId;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                outerInnerResourceSite.UpdatedAt = DateTime.Now;
-                outerInnerResourceSite.Version += 1;
-
-                dbContext.OuterInnerResourceSiteVersions.Add(MapVersions(outerInnerResourceSite));
-                dbContext.SaveChanges();
-            }
-        }
-
-        public async Task Delete(OuterInnerResourcePnDbContext dbContext)
-        {
-            OuterInnerResourceSite outerInnerResourceSite = dbContext.OuterInnerResourceSites.FirstOrDefault(x => x.Id == Id);
-
-            if (outerInnerResourceSite == null)
-            {
-                throw new NullReferenceException($"Could not find machineArea with id: {Id}");
-            }
-
-            outerInnerResourceSite.WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Removed;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                outerInnerResourceSite.UpdatedAt = DateTime.Now;
-                outerInnerResourceSite.Version += 1;
-
-                dbContext.OuterInnerResourceSiteVersions.Add(MapVersions(outerInnerResourceSite));
-                dbContext.SaveChanges();
-            }
-        }
-
-        private OuterInnerResourceSiteVersion MapVersions(OuterInnerResourceSite outerInnerResourceSite)
-        {
-            OuterInnerResourceSiteVersion outerInnerResourceSiteVersionVer = new OuterInnerResourceSiteVersion();
-
-            outerInnerResourceSiteVersionVer.OuterInnerResourceId = outerInnerResourceSite.OuterInnerResourceId;
-            outerInnerResourceSiteVersionVer.MicrotingSdkCaseId = outerInnerResourceSite.MicrotingSdkCaseId;
-            outerInnerResourceSiteVersionVer.MicrotingSdkeFormId = outerInnerResourceSite.MicrotingSdkeFormId;
-            outerInnerResourceSiteVersionVer.OuterInnerResourceSiteId = outerInnerResourceSite.Id;
-            outerInnerResourceSiteVersionVer.Version = outerInnerResourceSite.Version;
-            outerInnerResourceSiteVersionVer.CreatedAt = outerInnerResourceSite.CreatedAt;
-            outerInnerResourceSiteVersionVer.UpdatedAt = outerInnerResourceSite.UpdatedAt;
-
-
-            return outerInnerResourceSiteVersionVer;
-        }
-    }
-    
-    
+    public int? MicrotingSdkCaseId { get; set; }
 }

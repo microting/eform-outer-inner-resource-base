@@ -113,8 +113,6 @@ namespace eFormMachineAreaDotnet.Tests
                 }
             }
         }
-        private string _path;
-
         protected virtual void DoSetup() { }
     }
 }

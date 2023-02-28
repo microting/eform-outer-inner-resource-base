@@ -25,92 +25,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class InnerResource : PnBase
 {
-    public class InnerResource : BaseEntity
+    public InnerResource()
     {
-        public InnerResource()
-        {
-            this.OuterInnerResources = new HashSet<OuterInnerResource>();
-        }
-
-        [StringLength(250)]
-        public string Name { get; set; }
-        
-        public int? ExternalId { get; set; }
-        
-        public virtual ICollection<OuterInnerResource> OuterInnerResources { get; set; }
-
-        public async Task Create(OuterInnerResourcePnDbContext dbContext)
-        {
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Version = 1;
-            WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Created;
-
-            dbContext.InnerResources.Add(this);
-            dbContext.SaveChanges();
-
-            dbContext.InnerResourceVersions.Add(MapVersions(this));
-            dbContext.SaveChanges();
-        }
-
-        public async Task Update(OuterInnerResourcePnDbContext dbContext)
-        {
-            InnerResource innerResource = dbContext.InnerResources.FirstOrDefault(x => x.Id == Id);
-
-            if (innerResource == null)
-            {
-                throw new NullReferenceException($"Could not find Machine with id: {Id}");
-            }
-
-            innerResource.Name = Name;
-            innerResource.ExternalId = ExternalId;
-            
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                innerResource.UpdatedAt = DateTime.Now;
-                innerResource.Version += 1;
-
-                dbContext.InnerResourceVersions.Add(MapVersions(innerResource));
-                dbContext.SaveChanges();
-            }
-        }
-
-        public async Task Delete(OuterInnerResourcePnDbContext dbContext)
-        {
-            InnerResource innerResource = dbContext.InnerResources.FirstOrDefault(x => x.Id == Id);
-
-            if (innerResource == null)
-            {
-                throw new NullReferenceException($"Could not find machine with id: {Id}");
-            }
-
-            innerResource.WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Removed;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                innerResource.UpdatedAt = DateTime.Now;
-                innerResource.Version += 1;
-
-                dbContext.InnerResourceVersions.Add(MapVersions(innerResource));
-                dbContext.SaveChanges();
-            }
-        }
-
-        private InnerResourceVersion MapVersions(InnerResource innerResource)
-        {
-            InnerResourceVersion innerResourceVer = new InnerResourceVersion
-            {
-                Name = innerResource.Name,
-                InnerResourceId = innerResource.Id,
-                Version = innerResource.Version,
-                CreatedAt = innerResource.CreatedAt,
-                UpdatedAt = innerResource.UpdatedAt,
-                ExternalId = innerResource.ExternalId
-            };
-            
-            return innerResourceVer;
-        }
+        this.OuterInnerResources = new HashSet<OuterInnerResource>();
     }
+
+    [StringLength(250)]
+    public string Name { get; set; }
+
+    public int? ExternalId { get; set; }
+
+    public virtual ICollection<OuterInnerResource> OuterInnerResources { get; set; }
+
 }

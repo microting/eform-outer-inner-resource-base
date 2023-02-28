@@ -25,99 +25,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
+
+public class OuterInnerResource : PnBase
 {
-    public class OuterInnerResource : BaseEntity
+    public OuterInnerResource()
     {
-        public OuterInnerResource()
-        {
-            this.OuterInnerResourceSites = new HashSet<OuterInnerResourceSite>();
-        }
-        
-        [ForeignKey("InnerResource")]
-        public int InnerResourceId { get; set; }
-
-        public virtual InnerResource InnerResource { get; set; }
-
-        [ForeignKey("OuterResource")]
-        public int OuterResourceId { get; set; }
-
-        public virtual OuterResource OuterResource { get; set; }
-        
-        public virtual ICollection<OuterInnerResourceSite> OuterInnerResourceSites { get; set; }
-        
-        public async Task Create(OuterInnerResourcePnDbContext dbContext)
-        {
-
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Version = 1;
-            WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Created;
-
-            dbContext.OuterInnerResources.Add(this);
-            dbContext.SaveChanges();
-
-            dbContext.OuterInnerResourceVersions.Add(MapVersions(this));
-            dbContext.SaveChanges();
-            
-        }
-
-        public async Task Update(OuterInnerResourcePnDbContext dbContext)
-        {
-            OuterInnerResource outerInnerResource = dbContext.OuterInnerResources.FirstOrDefault(x => x.Id == Id);
-
-            if (outerInnerResource == null)
-            {
-                throw new NullReferenceException($"Could not find machineArea with id: {Id}");
-            }
-
-            outerInnerResource.OuterResourceId = OuterResourceId;
-            outerInnerResource.InnerResourceId = InnerResourceId;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                outerInnerResource.UpdatedAt = DateTime.Now;
-                outerInnerResource.Version += 1;
-
-                dbContext.OuterInnerResourceVersions.Add(MapVersions(outerInnerResource));
-                dbContext.SaveChanges();
-            }
-        }
-
-        public async Task Delete(OuterInnerResourcePnDbContext dbContext)
-        {
-            OuterInnerResource outerInnerResource = dbContext.OuterInnerResources.FirstOrDefault(x => x.Id == Id);
-
-            if (outerInnerResource == null)
-            {
-                throw new NullReferenceException($"Could not find machineArea with id: {Id}");
-            }
-
-            outerInnerResource.WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Removed;
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                outerInnerResource.UpdatedAt = DateTime.Now;
-                outerInnerResource.Version += 1;
-
-                dbContext.OuterInnerResourceVersions.Add(MapVersions(outerInnerResource));
-                dbContext.SaveChanges();
-            }
-        }
-
-        private OuterInnerResourceVersion MapVersions(OuterInnerResource outerInnerResource)
-        {
-            OuterInnerResourceVersion outerInnerResourceVersionVer = new OuterInnerResourceVersion();
-
-            outerInnerResourceVersionVer.OuterResourceId = outerInnerResource.OuterResourceId;
-            outerInnerResourceVersionVer.InnerResourceId = outerInnerResource.InnerResourceId;
-            outerInnerResourceVersionVer.Version = outerInnerResource.Version;
-            outerInnerResourceVersionVer.CreatedAt = outerInnerResource.CreatedAt;
-            outerInnerResourceVersionVer.UpdatedAt = outerInnerResource.UpdatedAt;
-            outerInnerResourceVersionVer.OuterInnerResourceId = outerInnerResource.Id;
-
-
-            return outerInnerResourceVersionVer;
-        }
+        this.OuterInnerResourceSites = new HashSet<OuterInnerResourceSite>();
     }
+
+    [ForeignKey("InnerResource")]
+    public int InnerResourceId { get; set; }
+
+    public virtual InnerResource InnerResource { get; set; }
+
+    [ForeignKey("OuterResource")]
+    public int OuterResourceId { get; set; }
+
+    public virtual OuterResource OuterResource { get; set; }
+
+    public virtual ICollection<OuterInnerResourceSite> OuterInnerResourceSites { get; set; }
 }
