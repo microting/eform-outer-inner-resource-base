@@ -49,8 +49,7 @@ public class ResourceTimeRegistrationVersion : BaseEntity
 
     public int SDKSiteId { get; set; }
 
-    [ForeignKey("ResourceTimeRegistration")]
-    public int MachineAreaTimeRegistrationId { get; set; }
+    public int ResourceTimeRegistrationId { get; set; }
 
     public virtual ResourceTimeRegistration ResourceTimeRegistration { get; set; }
 }
