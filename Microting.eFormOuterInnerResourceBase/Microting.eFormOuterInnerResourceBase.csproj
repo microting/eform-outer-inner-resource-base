@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
@@ -7,7 +7,7 @@
 
     <ItemGroup>
       <PackageReference Include="Microting.eForm" Version="7.0.42" />
-      <PackageReference Include="Microting.eFormApi.BasePn" Version="7.0.35" />
+      <PackageReference Include="Microting.eFormApi.BasePn" Version="7.0.38" />
     </ItemGroup>
 
     <ItemGroup>
