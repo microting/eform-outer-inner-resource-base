@@ -10,27 +10,27 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrati",
-                table: "ResourceTimeRegistrationVersions");
-
+            // migrationBuilder.DropForeignKey(
+            //     name: "FK_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrati",
+            //     table: "ResourceTimeRegistrationVersions");
+            //
             migrationBuilder.RenameColumn(
                 name: "MachineAreaTimeRegistrationId",
                 table: "ResourceTimeRegistrationVersions",
                 newName: "ResourceTimeRegistrationId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrati",
-                table: "ResourceTimeRegistrationVersions",
-                newName: "IX_ResourceTimeRegistrationVersions_ResourceTimeRegistrationId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_ResourceTimeRegistrationVersions_ResourceTimeRegistrations_R~",
-                table: "ResourceTimeRegistrationVersions",
-                column: "ResourceTimeRegistrationId",
-                principalTable: "ResourceTimeRegistrations",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+            //
+            // migrationBuilder.RenameIndex(
+            //     name: "IX_MachineAreaTimeRegistrationVersions_MachineAreaTimeRegistrati",
+            //     table: "ResourceTimeRegistrationVersions",
+            //     newName: "IX_ResourceTimeRegistrationVersions_ResourceTimeRegistrationId");
+            //
+            // migrationBuilder.AddForeignKey(
+            //     name: "FK_ResourceTimeRegistrationVersions_ResourceTimeRegistrations_R~",
+            //     table: "ResourceTimeRegistrationVersions",
+            //     column: "ResourceTimeRegistrationId",
+            //     principalTable: "ResourceTimeRegistrations",
+            //     principalColumn: "Id",
+            //     onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
