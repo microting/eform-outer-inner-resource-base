@@ -18,12 +18,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 
@@ -31,14 +27,12 @@ public class InnerResource : PnBase
 {
     public InnerResource()
     {
-        this.OuterInnerResources = new HashSet<OuterInnerResource>();
+        OuterInnerResources = new HashSet<OuterInnerResource>();
     }
 
-    [StringLength(250)]
-    public string Name { get; set; }
+    [StringLength(250)] public string Name { get; set; }
 
     public int? ExternalId { get; set; }
 
     public virtual ICollection<OuterInnerResource> OuterInnerResources { get; set; }
-
 }

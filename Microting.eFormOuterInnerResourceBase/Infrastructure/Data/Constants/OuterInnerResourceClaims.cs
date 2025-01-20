@@ -18,11 +18,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Constants
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Constants;
+
+public static class OuterInnerResourceClaims
 {
-    public static class OuterInnerResourceClaims
-    {
-        public const string AccessOuterInnerResourcePlugin = "outer_inner_resource_plugin_access";
-        public const string CreateMachines = "machines_create";
-    }
+    public const string AccessOuterInnerResourcePlugin = "outer_inner_resource_plugin_access";
+    public const string CreateMachines = "machines_create";
 }

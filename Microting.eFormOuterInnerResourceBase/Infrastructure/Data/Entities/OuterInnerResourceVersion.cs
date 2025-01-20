@@ -33,8 +33,7 @@ public class OuterInnerResourceVersion : BaseEntity
 
     public virtual OuterResource OuterResource { get; set; }
 
-    [ForeignKey("OuterInnerResource")]
-    public int OuterInnerResourceId { get; set; }
+    [ForeignKey("OuterInnerResource")] public int OuterInnerResourceId { get; set; }
 
     public virtual OuterInnerResource OuterInnerResource { get; set; }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eFormMachineAreaDotnet.Tests;
@@ -8,117 +7,116 @@ using Microting.eForm.Infrastructure.Constants;
 using Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 using NUnit.Framework;
 
-namespace eForm_MachineArea_dotnet.Tests
+namespace eForm_MachineArea_dotnet.Tests;
+
+[TestFixture]
+public class InnerResourceUTest : DbTestFixture
 {
-    [TestFixture]
-    public class InnerResourceUTest : DbTestFixture
+    [Test]
+    public async Task Machine_Create_DoesCreate()
     {
-        [Test]
-        public async Task Machine_Create_DoesCreate()
+        //Arrange
+
+        var innerResource = new InnerResource
         {
-            //Arrange
+            Name = Guid.NewGuid().ToString()
+        };
 
-            InnerResource innerResource = new InnerResource
-            {
-                Name = Guid.NewGuid().ToString()
-            };
+        //Act
 
-            //Act
+        await innerResource.Create(DbContext);
 
-            await innerResource.Create(DbContext);
+        var dbInnerResource = DbContext.InnerResources.AsNoTracking().First();
+        var machinelList = DbContext.InnerResources.AsNoTracking().ToList();
 
-            InnerResource dbInnerResource = DbContext.InnerResources.AsNoTracking().First();
-            List<InnerResource> machinelList = DbContext.InnerResources.AsNoTracking().ToList();
+        //Assert
 
-            //Assert
+        Assert.That(dbInnerResource, Is.Not.Null);
+        Assert.That(dbInnerResource.Id, Is.Not.Null);
 
-            Assert.NotNull(dbInnerResource);
-            Assert.NotNull(dbInnerResource.Id);
+        Assert.That(machinelList.Count(), Is.EqualTo(1));
+        Assert.That(dbInnerResource.CreatedAt.ToString(), Is.EqualTo(innerResource.CreatedAt.ToString()));
+        Assert.That(dbInnerResource.Version, Is.EqualTo(innerResource.Version));
+        Assert.That(dbInnerResource.UpdatedAt.ToString(), Is.EqualTo(innerResource.UpdatedAt.ToString()));
+        Assert.That(Constants.WorkflowStates.Created, Is.EqualTo(dbInnerResource.WorkflowState));
+        Assert.That(dbInnerResource.CreatedByUserId, Is.EqualTo(innerResource.CreatedByUserId));
+        Assert.That(dbInnerResource.UpdatedByUserId, Is.EqualTo(innerResource.UpdatedByUserId));
+        Assert.That(dbInnerResource.Name, Is.EqualTo(innerResource.Name));
+    }
 
-            Assert.AreEqual(1,machinelList.Count());
-            Assert.AreEqual(innerResource.CreatedAt.ToString(), dbInnerResource.CreatedAt.ToString());
-            Assert.AreEqual(innerResource.Version, dbInnerResource.Version);
-            Assert.AreEqual(innerResource.UpdatedAt.ToString(), dbInnerResource.UpdatedAt.ToString());
-            Assert.AreEqual(dbInnerResource.WorkflowState, Constants.WorkflowStates.Created);
-            Assert.AreEqual(innerResource.CreatedByUserId, dbInnerResource.CreatedByUserId);
-            Assert.AreEqual(innerResource.UpdatedByUserId, dbInnerResource.UpdatedByUserId);
-            Assert.AreEqual(innerResource.Name, dbInnerResource.Name);
-        }
-
-        [Test]
-        public async Task Machine_Update_DoesUpdate()
+    [Test]
+    public async Task Machine_Update_DoesUpdate()
+    {
+        var innerResource = new InnerResource
         {
-            InnerResource innerResource = new InnerResource
-            {
-                Name = Guid.NewGuid().ToString()
-            };
+            Name = Guid.NewGuid().ToString()
+        };
 
-            DbContext.InnerResources.Add(innerResource);
-            await DbContext.SaveChangesAsync();
+        DbContext.InnerResources.Add(innerResource);
+        await DbContext.SaveChangesAsync();
 
-            //Act
+        //Act
 
-            innerResource.Name = Guid.NewGuid().ToString();
+        innerResource.Name = Guid.NewGuid().ToString();
 
-            await innerResource.Update(DbContext);
+        await innerResource.Update(DbContext);
 
-            InnerResource dbInnerResource = DbContext.InnerResources.AsNoTracking().First();
-            List<InnerResource> machinelList = DbContext.InnerResources.AsNoTracking().ToList();
-            List<InnerResourceVersion> machineVersions = DbContext.InnerResourceVersions.AsNoTracking().ToList();
+        var dbInnerResource = DbContext.InnerResources.AsNoTracking().First();
+        var machinelList = DbContext.InnerResources.AsNoTracking().ToList();
+        var machineVersions = DbContext.InnerResourceVersions.AsNoTracking().ToList();
 
-            //Assert
+        //Assert
 
-            Assert.NotNull(dbInnerResource);
-            Assert.NotNull(dbInnerResource.Id);
+        Assert.That(dbInnerResource, Is.Not.Null);
+        Assert.That(dbInnerResource.Id, Is.Not.Null);
 
-            Assert.AreEqual(1,machinelList.Count());
-            Assert.AreEqual(1, machineVersions.Count());
+        Assert.That(machinelList.Count(), Is.EqualTo(1));
+        Assert.That(machineVersions.Count(), Is.EqualTo(1));
 
-            Assert.AreEqual(innerResource.CreatedAt.ToString(), dbInnerResource.CreatedAt.ToString());
-            Assert.AreEqual(innerResource.Version, dbInnerResource.Version);
-            Assert.AreEqual(innerResource.UpdatedAt.ToString(), dbInnerResource.UpdatedAt.ToString());
-            Assert.AreEqual(innerResource.CreatedByUserId, dbInnerResource.CreatedByUserId);
-            Assert.AreEqual(innerResource.UpdatedByUserId, dbInnerResource.UpdatedByUserId);
-            Assert.AreEqual(innerResource.Name, dbInnerResource.Name);
-        }
+        Assert.That(dbInnerResource.CreatedAt.ToString(), Is.EqualTo(innerResource.CreatedAt.ToString()));
+        Assert.That(dbInnerResource.Version, Is.EqualTo(innerResource.Version));
+        Assert.That(dbInnerResource.UpdatedAt.ToString(), Is.EqualTo(innerResource.UpdatedAt.ToString()));
+        Assert.That(dbInnerResource.CreatedByUserId, Is.EqualTo(innerResource.CreatedByUserId));
+        Assert.That(dbInnerResource.UpdatedByUserId, Is.EqualTo(innerResource.UpdatedByUserId));
+        Assert.That(dbInnerResource.Name, Is.EqualTo(innerResource.Name));
+    }
 
-        [Test]
-        public async Task Machine_Delete_SetWorkflowStateToRemoved()
+    [Test]
+    public async Task Machine_Delete_SetWorkflowStateToRemoved()
+    {
+        //Arrange
+
+        var innerResource = new InnerResource
         {
-            //Arrange
+            Name = Guid.NewGuid().ToString()
+        };
 
-            InnerResource innerResource = new InnerResource
-            {
-                Name = Guid.NewGuid().ToString()
-            };
+        DbContext.InnerResources.Add(innerResource);
+        await DbContext.SaveChangesAsync();
 
-            DbContext.InnerResources.Add(innerResource);
-            await DbContext.SaveChangesAsync();
+        //Act
 
-            //Act
+        await innerResource.Delete(DbContext);
 
-            await innerResource.Delete(DbContext);
+        var dbInnerResource = DbContext.InnerResources.AsNoTracking().First();
+        var machinelList = DbContext.InnerResources.AsNoTracking().ToList();
+        var machineVersions = DbContext.InnerResourceVersions.AsNoTracking().ToList();
 
-            InnerResource dbInnerResource = DbContext.InnerResources.AsNoTracking().First();
-            List<InnerResource> machinelList = DbContext.InnerResources.AsNoTracking().ToList();
-            List<InnerResourceVersion> machineVersions = DbContext.InnerResourceVersions.AsNoTracking().ToList();
+        //Assert
 
-            //Assert
+        Assert.That(dbInnerResource, Is.Not.Null);
+        Assert.That(dbInnerResource.Id, Is.Not.Null);
 
-            Assert.NotNull(dbInnerResource);
-            Assert.NotNull(dbInnerResource.Id);
+        Assert.That(machinelList.Count(), Is.EqualTo(1));
+        Assert.That(machineVersions.Count(), Is.EqualTo(1));
 
-            Assert.AreEqual(1,machinelList.Count());
-            Assert.AreEqual(1, machineVersions.Count());
+        Assert.That(dbInnerResource.CreatedAt.ToString(), Is.EqualTo(innerResource.CreatedAt.ToString()));
+        Assert.That(dbInnerResource.Version, Is.EqualTo(innerResource.Version));
+        Assert.That(dbInnerResource.UpdatedAt.ToString(), Is.EqualTo(innerResource.UpdatedAt.ToString()));
+        Assert.That(dbInnerResource.CreatedByUserId, Is.EqualTo(innerResource.CreatedByUserId));
+        Assert.That(dbInnerResource.UpdatedByUserId, Is.EqualTo(innerResource.UpdatedByUserId));
+        Assert.That(dbInnerResource.Name, Is.EqualTo(innerResource.Name));
 
-            Assert.AreEqual(innerResource.CreatedAt.ToString(), dbInnerResource.CreatedAt.ToString());
-            Assert.AreEqual(innerResource.Version, dbInnerResource.Version);
-            Assert.AreEqual(innerResource.UpdatedAt.ToString(), dbInnerResource.UpdatedAt.ToString());
-            Assert.AreEqual(innerResource.CreatedByUserId, dbInnerResource.CreatedByUserId);
-            Assert.AreEqual(innerResource.UpdatedByUserId, dbInnerResource.UpdatedByUserId);
-            Assert.AreEqual(innerResource.Name, dbInnerResource.Name);
-
-            Assert.AreEqual(dbInnerResource.WorkflowState, Constants.WorkflowStates.Removed);
-        }
+        Assert.That(Constants.WorkflowStates.Removed, Is.EqualTo(dbInnerResource.WorkflowState));
     }
 }

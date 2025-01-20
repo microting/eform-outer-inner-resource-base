@@ -20,99 +20,93 @@ SOFTWARE.
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 using Microting.eFormOuterInnerResourceBase.Infrastructure.Data;
 using Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories;
 using NUnit.Framework;
 
-namespace eFormMachineAreaDotnet.Tests
+namespace eFormMachineAreaDotnet.Tests;
+
+[TestFixture]
+public abstract class DbTestFixture
 {
-    [TestFixture]
-    public abstract class DbTestFixture
+    [SetUp]
+    public void Setup()
     {
-        protected OuterInnerResourcePnDbContext DbContext;
-        private string _connectionString;
+        _connectionString =
+            @"Server = localhost; port = 3306; Database = outer-inner-resource-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
 
-        private void GetContext(string connectionStr)
-        {
-            OuterInnerResourcePnContextFactory contextFactory = new OuterInnerResourcePnContextFactory();
-            DbContext = contextFactory.CreateDbContext(new[] {connectionStr});
+        GetContext(_connectionString);
 
-            DbContext.Database.Migrate();
-            DbContext.Database.EnsureCreated();
-        }
+        DbContext.Database.SetCommandTimeout(300);
 
-        [SetUp]
-        public void Setup()
-        {
-            _connectionString = @"Server = localhost; port = 3306; Database = outer-inner-resource-tests; user = root; password = secretpassword; Convert Zero Datetime = true;";
-
-            GetContext(_connectionString);
-
-            DbContext.Database.SetCommandTimeout(300);
-
-            try
-            {
-                ClearDb();
-            }
-            catch
-            {
-                DbContext.Database.Migrate();
-            }
-            DoSetup();
-        }
-
-        [TearDown]
-        public void TearDown()
+        try
         {
             ClearDb();
-
-            DbContext.Dispose();
         }
-
-        private void ClearDb()
+        catch
         {
-            List<string> modelNames = new List<string>
-            {
-                "OuterResources",
-                "OuterResourceVersions",
-                "InnerResources",
-                "InnerResourceVersions",
-                "OuterInnerResources",
-                "OuterInnerResourceVersions",
-                "ResourceTimeRegistrations",
-                "ResourceTimeRegistrationVersions",
-                "PluginConfigurationValues",
-                "PluginConfigurationValueVersions"
-            };
-
-            bool firstRunNotDone = true;
-
-            foreach (var modelName in modelNames)
-            {
-                try
-                {
-                    if (firstRunNotDone)
-                    {
-                        DbContext.Database.ExecuteSqlRaw(
-                            $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `outer-inner-resource-tests`.`{modelName}`");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    if (ex.Message == "Unknown database 'outer-inner-resource-tests'")
-                    {
-                        firstRunNotDone = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-            }
+            DbContext.Database.Migrate();
         }
-        protected virtual void DoSetup() { }
+
+        DoSetup();
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        ClearDb();
+
+        DbContext.Dispose();
+    }
+
+    protected OuterInnerResourcePnDbContext DbContext;
+    private string _connectionString;
+
+    private void GetContext(string connectionStr)
+    {
+        var contextFactory = new OuterInnerResourcePnContextFactory();
+        DbContext = contextFactory.CreateDbContext(new[] { connectionStr });
+
+        DbContext.Database.Migrate();
+        DbContext.Database.EnsureCreated();
+    }
+
+    private void ClearDb()
+    {
+        var modelNames = new List<string>
+        {
+            "OuterResources",
+            "OuterResourceVersions",
+            "InnerResources",
+            "InnerResourceVersions",
+            "OuterInnerResources",
+            "OuterInnerResourceVersions",
+            "ResourceTimeRegistrations",
+            "ResourceTimeRegistrationVersions",
+            "PluginConfigurationValues",
+            "PluginConfigurationValueVersions"
+        };
+
+        var firstRunNotDone = true;
+
+        foreach (var modelName in modelNames)
+            try
+            {
+                if (firstRunNotDone)
+                    DbContext.Database.ExecuteSqlRaw(
+                        $"SET FOREIGN_KEY_CHECKS = 0;TRUNCATE `outer-inner-resource-tests`.`{modelName}`");
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "Unknown database 'outer-inner-resource-tests'")
+                    firstRunNotDone = false;
+                else
+                    Console.WriteLine(ex.Message);
+            }
+    }
+
+    protected virtual void DoSetup()
+    {
     }
 }

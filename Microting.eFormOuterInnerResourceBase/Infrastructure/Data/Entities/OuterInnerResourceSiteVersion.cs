@@ -31,11 +31,9 @@ public class OuterInnerResourceSiteVersion : BaseEntity
 
     public int OuterInnerResourceId { get; set; }
 
-    [ForeignKey("OuterInnerResourceSite")]
-    public int OuterInnerResourceSiteId { get; set; }
+    [ForeignKey("OuterInnerResourceSite")] public int OuterInnerResourceSiteId { get; set; }
 
     public int MicrotingSdkSiteId { get; set; }
 
     public int? MicrotingSdkCaseId { get; set; }
-
 }

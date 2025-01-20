@@ -20,21 +20,16 @@ SOFTWARE.
 
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 
 public class ResourceTimeRegistration : PnBase
 {
-    [ForeignKey("InnerResource")]
-    public int InnerResourceId { get; set; }
+    [ForeignKey("InnerResource")] public int InnerResourceId { get; set; }
 
     public virtual InnerResource InnerResource { get; set; }
 
-    [ForeignKey("OuterResource")]
-    public int OuterResourceId { get; set; }
+    [ForeignKey("OuterResource")] public int OuterResourceId { get; set; }
 
     public virtual OuterResource OuterResource { get; set; }
 

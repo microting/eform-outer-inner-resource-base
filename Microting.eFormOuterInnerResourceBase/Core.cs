@@ -18,9 +18,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.eFormOuterInnerResourceBase
+namespace Microting.eFormOuterInnerResourceBase;
+
+public class Core
 {
-    public class Core
-    {
-    }
 }

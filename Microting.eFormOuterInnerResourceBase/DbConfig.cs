@@ -18,10 +18,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.eFormOuterInnerResourceBase
+namespace Microting.eFormOuterInnerResourceBase;
+
+internal class DbConfig
 {
-    class DbConfig
-    {
-        public static bool IsMySQL = false;
-    }
+    public static bool IsMySQL = false;
 }

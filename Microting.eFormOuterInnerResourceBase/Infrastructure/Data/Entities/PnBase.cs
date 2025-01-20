@@ -23,18 +23,47 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
-{
-    public class PnBase : BaseEntity
-    {
-        public async Task Create(OuterInnerResourcePnDbContext dbContext)
-        {
-            CreatedAt = DateTime.UtcNow;
-            UpdatedAt = DateTime.UtcNow;
-            Version = 1;
-            WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Created;
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 
-            await dbContext.AddAsync(this);
+public class PnBase : BaseEntity
+{
+    public async Task Create(OuterInnerResourcePnDbContext dbContext)
+    {
+        CreatedAt = DateTime.UtcNow;
+        UpdatedAt = DateTime.UtcNow;
+        Version = 1;
+        WorkflowState = eForm.Infrastructure.Constants.Constants.WorkflowStates.Created;
+
+        await dbContext.AddAsync(this);
+        await dbContext.SaveChangesAsync();
+
+        var res = MapVersion(this);
+        if (res != null)
+        {
+            await dbContext.AddAsync(res);
+            await dbContext.SaveChangesAsync();
+        }
+    }
+
+    public async Task Update(OuterInnerResourcePnDbContext dbContext)
+    {
+        await UpdateInternal(dbContext);
+    }
+
+    public async Task Delete(OuterInnerResourcePnDbContext dbContext)
+    {
+        await UpdateInternal(dbContext, eForm.Infrastructure.Constants.Constants.WorkflowStates.Removed);
+    }
+
+    private async Task UpdateInternal(OuterInnerResourcePnDbContext dbContext, string state = null)
+    {
+        if (state != null) WorkflowState = state;
+
+        if (dbContext.ChangeTracker.HasChanges())
+        {
+            Version += 1;
+            UpdatedAt = DateTime.UtcNow;
+
             await dbContext.SaveChangesAsync();
 
             var res = MapVersion(this);
@@ -44,86 +73,48 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities
                 await dbContext.SaveChangesAsync();
             }
         }
+    }
 
-        public async Task Update(OuterInnerResourcePnDbContext dbContext)
-        {
-            await UpdateInternal(dbContext);
-        }
+    private object MapVersion(object obj)
+    {
+        var type = obj.GetType().UnderlyingSystemType;
+        var className = type.Name;
+        var name = obj.GetType().FullName + "Version";
+        var resultType = Assembly.GetExecutingAssembly().GetType(name);
+        if (resultType == null) return null;
 
-        public async Task Delete(OuterInnerResourcePnDbContext dbContext)
-        {
-            await UpdateInternal(dbContext, eForm.Infrastructure.Constants.Constants.WorkflowStates.Removed);
-        }
+        var returnObj = Activator.CreateInstance(resultType);
 
-        private async Task UpdateInternal(OuterInnerResourcePnDbContext dbContext, string state = null)
-        {
-            if (state != null)
-            {
-                WorkflowState = state;
-            }
-
-            if (dbContext.ChangeTracker.HasChanges())
-            {
-                Version += 1;
-                UpdatedAt = DateTime.UtcNow;
-
-                await dbContext.SaveChangesAsync();
-
-                var res = MapVersion(this);
-                if (res != null)
+        var curreList = obj.GetType().GetProperties();
+        foreach (var prop in curreList)
+            if (prop.PropertyType.FullName != null &&
+                !prop.PropertyType.FullName.Contains(typeof(PnBase).GetTypeInfo().Assembly.FullName!))
+                try
                 {
-                    await dbContext.AddAsync(res);
-                    await dbContext.SaveChangesAsync();
-                }
-            }
-        }
-
-        private object MapVersion(object obj)
-        {
-            var type = obj.GetType().UnderlyingSystemType;
-            var className = type.Name;
-            var name = obj.GetType().FullName + "Version";
-            var resultType = Assembly.GetExecutingAssembly().GetType(name);
-            if (resultType == null)
-            {
-                return null;
-            }
-
-            var returnObj = Activator.CreateInstance(resultType);
-
-            var curreList = obj.GetType().GetProperties();
-            foreach (var prop in curreList)
-            {
-                if (prop.PropertyType.FullName != null && !prop.PropertyType.FullName.Contains(typeof(PnBase).GetTypeInfo().Assembly.FullName!))
-                {
-                    try
+                    var propName = prop.Name;
+                    if (propName != "Id")
                     {
-                        var propName = prop.Name;
-                        if (propName != "Id")
-                        {
-                            var propValue = prop.GetValue(obj);
-                            var targetType = returnObj?.GetType();
-                            var targetProp = targetType?.GetProperty(propName);
+                        var propValue = prop.GetValue(obj);
+                        var targetType = returnObj?.GetType();
+                        var targetProp = targetType?.GetProperty(propName);
 
-                            targetProp?.SetValue(returnObj, propValue, null);
-                        }
-                        else
-                        {
-                            var propValue = prop.GetValue(obj);
-                            var targetType = returnObj?.GetType();
-                            var targetProp = targetType?.GetProperty($"{className}Id");
-
-                            targetProp?.SetValue(returnObj, propValue, null);
-                        }
+                        targetProp?.SetValue(returnObj, propValue, null);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Console.WriteLine($"{ex.Message} - Property:{prop.Name} probably not found on Class {returnObj?.GetType().Name}");
+                        var propValue = prop.GetValue(obj);
+                        var targetType = returnObj?.GetType();
+                        var targetProp = targetType?.GetProperty($"{className}Id");
+
+                        targetProp?.SetValue(returnObj, propValue, null);
                     }
                 }
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(
+                        $"{ex.Message} - Property:{prop.Name} probably not found on Class {returnObj?.GetType().Name}");
+                }
 
-            return returnObj;
-        }
+        return returnObj;
     }
 }

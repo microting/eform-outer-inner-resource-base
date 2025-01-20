@@ -18,28 +18,24 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Factories;
+
+public class OuterInnerResourcePnContextFactory : IDesignTimeDbContextFactory<OuterInnerResourcePnDbContext>
 {
-    public class OuterInnerResourcePnContextFactory : IDesignTimeDbContextFactory<OuterInnerResourcePnDbContext>
+    public OuterInnerResourcePnDbContext CreateDbContext(string[] args)
     {
-        public OuterInnerResourcePnDbContext CreateDbContext(string[] args)
-        {
-            var defaultCs = "Server = localhost; port = 3306; Database = outer-inner-resource-pn; user = root; password = secretpassword; Convert Zero Datetime = true;";
-            var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
-            optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, new MariaDbServerVersion(
-                ServerVersion.AutoDetect(args.Any() ? args[0] : defaultCs)), mySqlOptionsAction: builder =>
-            {
-                builder.EnableRetryOnFailure();
-            });
+        var defaultCs =
+            "Server = localhost; port = 3306; Database = outer-inner-resource-pn; user = root; password = secretpassword; Convert Zero Datetime = true;";
+        var optionsBuilder = new DbContextOptionsBuilder<OuterInnerResourcePnDbContext>();
+        optionsBuilder.UseMySql(args.Any() ? args[0] : defaultCs, new MariaDbServerVersion(
+                ServerVersion.AutoDetect(args.Any() ? args[0] : defaultCs)),
+            builder => { builder.EnableRetryOnFailure(); });
 
-            return new OuterInnerResourcePnDbContext(optionsBuilder.Options);
-            // dotnet ef migrations add InitialCreate --project Microting.eFormOuterInnerResourceBase --startup-project DBMigrator
-        }
+        return new OuterInnerResourcePnDbContext(optionsBuilder.Options);
+        // dotnet ef migrations add InitialCreate --project Microting.eFormOuterInnerResourceBase --startup-project DBMigrator
     }
 }

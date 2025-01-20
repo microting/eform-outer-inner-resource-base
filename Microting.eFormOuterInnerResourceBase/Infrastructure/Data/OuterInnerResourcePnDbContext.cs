@@ -23,53 +23,52 @@ using Microting.eFormApi.BasePn.Abstractions;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Entities;
 using Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data;
+
+public class OuterInnerResourcePnDbContext : DbContext, IPluginDbContext
 {
-    public class OuterInnerResourcePnDbContext : DbContext, IPluginDbContext
+    public OuterInnerResourcePnDbContext()
     {
+    }
 
-        public OuterInnerResourcePnDbContext() { }
+    public OuterInnerResourcePnDbContext(DbContextOptions<OuterInnerResourcePnDbContext> options)
+        : base(options)
+    {
+    }
 
-        public OuterInnerResourcePnDbContext(DbContextOptions<OuterInnerResourcePnDbContext> options) 
-            : base(options)
-        {
-        }
+    public DbSet<InnerResource> InnerResources { get; set; }
+    public DbSet<InnerResourceVersion> InnerResourceVersions { get; set; }
+    public DbSet<OuterResource> OuterResources { get; set; }
+    public DbSet<OuterResourceVersion> OuterResourceVersions { get; set; }
+    public DbSet<OuterInnerResource> OuterInnerResources { get; set; }
+    public DbSet<OuterInnerResourceSite> OuterInnerResourceSites { get; set; }
+    public DbSet<OuterInnerResourceSiteVersion> OuterInnerResourceSiteVersions { get; set; }
+    public DbSet<OuterInnerResourceVersion> OuterInnerResourceVersions { get; set; }
+    public DbSet<ResourceTimeRegistration> ResourceTimeRegistrations { get; set; }
+    public DbSet<ResourceTimeRegistrationVersion> ResourceTimeRegistrationVersions { get; set; }
 
-        public DbSet<InnerResource> InnerResources { get; set; }
-        public DbSet<InnerResourceVersion> InnerResourceVersions { get; set; }
-        public DbSet<OuterResource> OuterResources { get; set; }
-        public DbSet<OuterResourceVersion> OuterResourceVersions { get; set; }
-        public DbSet<OuterInnerResource> OuterInnerResources { get; set; }
-        public DbSet<OuterInnerResourceSite> OuterInnerResourceSites { get; set; }
-        public DbSet<OuterInnerResourceSiteVersion> OuterInnerResourceSiteVersions { get; set; }
-        public DbSet<OuterInnerResourceVersion> OuterInnerResourceVersions { get; set; }
-        public DbSet<ResourceTimeRegistration> ResourceTimeRegistrations { get; set; }
-        public DbSet<ResourceTimeRegistrationVersion> ResourceTimeRegistrationVersions { get; set; }
-        
-        // plugin settings
-        public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
-        public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }
-        public DbSet<PluginPermission> PluginPermissions { get; set; }
-        public DbSet<PluginGroupPermission> PluginGroupPermissions { get; set; }
-        public DbSet<PluginGroupPermissionVersion> PluginGroupPermissionVersions { get; set; }
+    // plugin settings
+    public DbSet<PluginConfigurationValue> PluginConfigurationValues { get; set; }
+    public DbSet<PluginConfigurationValueVersion> PluginConfigurationValueVersions { get; set; }
+    public DbSet<PluginPermission> PluginPermissions { get; set; }
+    public DbSet<PluginGroupPermission> PluginGroupPermissions { get; set; }
+    public DbSet<PluginGroupPermissionVersion> PluginGroupPermissionVersions { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<InnerResource>()
-                .HasIndex(x => x.Name);
-            modelBuilder.Entity<InnerResource>()
-                .HasIndex(x => x.CreatedByUserId);
-            modelBuilder.Entity<InnerResource>()
-                .HasIndex(x => x.UpdatedByUserId);
-            modelBuilder.Entity<OuterResource>()
-                .HasIndex(x => x.Name);
-            modelBuilder.Entity<OuterResource>()
-                .HasIndex(x => x.CreatedByUserId);
-            modelBuilder.Entity<OuterResource>()
-                .HasIndex(x => x.UpdatedByUserId);
-
-        }
+        modelBuilder.Entity<InnerResource>()
+            .HasIndex(x => x.Name);
+        modelBuilder.Entity<InnerResource>()
+            .HasIndex(x => x.CreatedByUserId);
+        modelBuilder.Entity<InnerResource>()
+            .HasIndex(x => x.UpdatedByUserId);
+        modelBuilder.Entity<OuterResource>()
+            .HasIndex(x => x.Name);
+        modelBuilder.Entity<OuterResource>()
+            .HasIndex(x => x.CreatedByUserId);
+        modelBuilder.Entity<OuterResource>()
+            .HasIndex(x => x.UpdatedByUserId);
     }
 }

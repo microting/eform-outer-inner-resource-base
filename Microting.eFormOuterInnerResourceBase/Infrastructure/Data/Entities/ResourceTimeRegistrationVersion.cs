@@ -19,14 +19,12 @@ SOFTWARE.
 */
 
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microting.eFormApi.BasePn.Infrastructure.Database.Base;
 
 namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 
 public class ResourceTimeRegistrationVersion : BaseEntity
 {
-
     public int InnerResourceId { get; set; }
 
     public virtual InnerResource InnerResource { get; set; }

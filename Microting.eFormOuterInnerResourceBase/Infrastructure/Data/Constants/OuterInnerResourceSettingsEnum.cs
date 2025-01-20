@@ -18,18 +18,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Constants
+namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Constants;
+
+public enum OuterInnerResourceSettingsEnum
 {
-    public enum OuterInnerResourceSettingsEnum
-    {
-        LogLevel,
-        LogLimit,
-        SdkConnectionString,
-        MaxParallelism,
-        NumberOfWorkers,
-        Token,
-        SdkeFormId,
-        EnabledSiteIds,
-        QuickSyncEnabled
-    }
+    LogLevel,
+    LogLimit,
+    SdkConnectionString,
+    MaxParallelism,
+    NumberOfWorkers,
+    Token,
+    SdkeFormId,
+    EnabledSiteIds,
+    QuickSyncEnabled
 }

@@ -26,14 +26,11 @@ namespace Microting.eFormOuterInnerResourceBase.Infrastructure.Data.Entities;
 
 public class OuterResourceVersion : BaseEntity
 {
-    [StringLength(250)]
-    public string Name { get; set; }
+    [StringLength(250)] public string Name { get; set; }
 
-    [ForeignKey("OuterResource")]
-    public int OuterResourceId { get; set; }
+    [ForeignKey("OuterResource")] public int OuterResourceId { get; set; }
 
     public virtual OuterResource OuterResource { get; set; }
 
     public int? ExternalId { get; set; }
-
 }
